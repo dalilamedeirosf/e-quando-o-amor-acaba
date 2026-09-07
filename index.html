@@ -2333,6 +2333,29 @@
 (function(){
   "use strict";
 
+  /* ============ DESTINO DOS LEADS ============ */
+  // URL do Apps Script publicado (termina em /exec). Veja google-apps-script.js.
+  // Vazio: cai no /api/lead do server.js, para rodar local.
+  var LEADS_URL = "";
+
+  function enviarLead(lead){
+    var destino = LEADS_URL || "/api/lead";
+    var corpo = {
+      name: lead.name,
+      phone: lead.phone,
+      origem: (location.hostname || "") + (document.referrer ? " · via " + document.referrer : "")
+    };
+    try {
+      fetch(destino, {
+        method: "POST",
+        // text/plain evita a checagem CORS de preflight, que o Apps Script
+        // nao responde. O corpo continua sendo JSON.
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(corpo)
+      }).catch(function(){});
+    } catch(e) {}
+  }
+
   /* ============ LINK DE PAGAMENTO ============ */
   // Troque pela URL do seu checkout (Hotmart, Kiwify, Cakto...).
   // Enquanto estiver vazio, os botões apenas rolam até a oferta na página.
@@ -2678,13 +2701,7 @@
       localStorage.setItem("diagnostico_lead", JSON.stringify(currentLead));
     } catch(e) {}
 
-    try {
-      fetch('/api/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(currentLead)
-      }).catch(function(){});
-    } catch(e) {}
+    enviarLead(currentLead);
 
     unlockQuiz();
   }

@@ -1821,7 +1821,7 @@
   <header class="topbar">
     <div class="wide">
       <a href="#view-landing" class="brand-link" title="E Quando o Amor Acaba">
-        <img src="marca/logo-oficial.png" alt="E Quando o Amor Acaba — Mara Lazarini &amp; Giselli Louback" class="main-logo">
+        <img src="marca/logo-oficial.webp" alt="E Quando o Amor Acaba — Mara Lazarini &amp; Giselli Louback" class="main-logo">
       </a>
       <div class="top-pill">
         <span class="top-pill-icon">+</span>
@@ -1865,7 +1865,7 @@
           <!-- Coluna Lateral Direita -->
           <div class="hero-side">
             <div class="hero-visual-card">
-              <img src="marca/autoras.jpg" alt="Mara Lazarini e Giselli Louback">
+              <img src="marca/autoras.webp" alt="Mara Lazarini e Giselli Louback">
               <div class="hero-visual-badge">
                 <span class="hero-visual-tag">Método Autoral</span>
                 <span class="hero-visual-authors">Mara Lazarini &amp; Giselli Louback</span>
@@ -1937,7 +1937,7 @@
           <!-- Card 01 -->
           <div class="situation-card">
             <div class="situation-photo-circle">
-              <img src="marca/situacao-1.png" alt="Situação 01">
+              <img src="marca/situacao-1.webp" alt="Situação 01">
             </div>
             <span class="situation-num">01</span>
             <p class="situation-text">
@@ -1948,7 +1948,7 @@
           <!-- Card 02 -->
           <div class="situation-card">
             <div class="situation-photo-circle">
-              <img src="marca/situacao-2.png" alt="Situação 02">
+              <img src="marca/situacao-2.webp" alt="Situação 02">
             </div>
             <span class="situation-num">02</span>
             <p class="situation-text">
@@ -1959,7 +1959,7 @@
           <!-- Card 03 -->
           <div class="situation-card">
             <div class="situation-photo-circle">
-              <img src="marca/situacao-3.png" alt="Situação 03">
+              <img src="marca/situacao-3.webp" alt="Situação 03">
             </div>
             <span class="situation-num">03</span>
             <p class="situation-text">
@@ -1995,7 +1995,7 @@
           <!-- Card Giselli Louback -->
           <article class="author-profile-card">
             <div class="author-photo-wrapper">
-              <img src="marca/giselli.jpg" alt="Giselli Louback — Master Terapeuta TRG" class="author-photo" style="object-position: center 20%;">
+              <img src="marca/giselli.webp" alt="Giselli Louback — Master Terapeuta TRG" class="author-photo" style="object-position: center 20%;">
               <span class="author-badge-pill">Master Terapeuta TRG</span>
             </div>
             <div class="author-content">
@@ -2020,7 +2020,7 @@
           <!-- Card Mara Lazarini -->
           <article class="author-profile-card">
             <div class="author-photo-wrapper">
-              <img src="marca/mara.jpg" alt="Mara Lazarini — Master Terapeuta TRG" class="author-photo" style="object-position: center 15%;">
+              <img src="marca/mara.webp" alt="Mara Lazarini — Master Terapeuta TRG" class="author-photo" style="object-position: center 15%;">
               <span class="author-badge-pill">Master Terapeuta TRG</span>
             </div>
             <div class="author-content">
@@ -2085,7 +2085,7 @@
   <header class="topbar">
     <div class="wide">
       <a href="#view-landing" class="brand-link" title="E Quando o Amor Acaba">
-        <img src="marca/logo-oficial.png" alt="E Quando o Amor Acaba" class="main-logo">
+        <img src="marca/logo-oficial.webp" alt="E Quando o Amor Acaba" class="main-logo">
       </a>
       <button type="button" class="back-to-landing-btn" id="leadBackToHome">
         ← Voltar para a página inicial
@@ -2167,7 +2167,7 @@
   <header class="topbar">
     <div class="wide quiz-top-nav">
       <a href="#view-landing" class="brand-link" title="E Quando o Amor Acaba">
-        <img src="marca/logo-oficial.png" alt="E Quando o Amor Acaba" class="main-logo">
+        <img src="marca/logo-oficial.webp" alt="E Quando o Amor Acaba" class="main-logo">
       </a>
       <div class="top-pill">
         <span class="top-pill-icon">✦</span>
@@ -2211,7 +2211,7 @@
   <header class="topbar">
     <div class="wide">
       <a href="#view-landing" class="brand-link" title="E Quando o Amor Acaba">
-        <img src="marca/logo-oficial.png" alt="E Quando o Amor Acaba" class="main-logo">
+        <img src="marca/logo-oficial.webp" alt="E Quando o Amor Acaba" class="main-logo">
       </a>
       <button type="button" class="back-to-landing-btn" id="resultBackToHome">
         ← Voltar para a página inicial
@@ -2340,6 +2340,13 @@
 
   function enviarLead(lead){
     var destino = LEADS_URL || "/api/lead";
+
+    // Em producao sem LEADS_URL, o POST cai num endereco que nao existe e o
+    // cadastro se perde sem ninguem perceber. Avisa alto no console.
+    var local = /^(localhost|127.0.0.1|[::1])$/.test(location.hostname);
+    if(!LEADS_URL && !local){
+      console.error("[LEADS] LEADS_URL esta vazio: este cadastro NAO sera salvo em lugar nenhum. Preencha a URL do Apps Script no topo do script.");
+    }
     var corpo = {
       name: lead.name,
       phone: lead.phone,

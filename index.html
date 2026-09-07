@@ -102,14 +102,11 @@
     .stack { display: flex; flex-direction: column; }
 
     /* ============ CONTROLE DE VIEWS / FOLHAS DO FUNIL ============ */
-    .app-view {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.25s ease-in-out;
-    }
-    .app-view.is-active {
-      display: block;
-      opacity: 1;
+    .app-view { display: none; }
+    .app-view.is-active { display: block; }
+    @media (prefers-reduced-motion: no-preference){
+      .app-view.is-active{ animation: viewIn .42s cubic-bezier(.22,1,.36,1) both; }
+      @keyframes viewIn{ from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
     }
 
     /* ============ EYEBROW & BADGES ============ */
@@ -1760,6 +1757,56 @@
     .buy-bar-txt b{color:var(--on-sunk);font-size:.98rem;font-weight:700;line-height:1.25}
     .buy-bar-txt span{color:var(--on-sunk-2);font-size:.83rem}
     .buy-bar .btn-buy-now{white-space:nowrap}
+
+    /* ============ CAMADA DE ANIMAÇÃO ============ */
+    /* Só esconde o que vai ser revelado quando o JS assume o controle.
+       Sem JS, .reveal nunca fica invisível. */
+    @media (prefers-reduced-motion: no-preference){
+      .js-anim .reveal{
+        opacity:0; transform:translateY(22px);
+        transition:opacity .62s cubic-bezier(.22,1,.36,1), transform .62s cubic-bezier(.22,1,.36,1);
+        transition-delay:var(--d,0ms);
+        will-change:opacity,transform;
+      }
+      .js-anim .reveal.in{opacity:1;transform:none}
+
+      /* entrada do herói, sem esperar rolagem */
+      .js-anim .hero-card-main,
+      .js-anim .hero-side{ animation:heroIn .72s cubic-bezier(.22,1,.36,1) both }
+      .js-anim .hero-side{ animation-delay:.12s }
+      @keyframes heroIn{ from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+
+      /* marcador de etapa comemora quando a etapa fecha */
+      @keyframes dotPop{ 0%{transform:scaleY(1)} 45%{transform:scaleY(3.4)} 100%{transform:scaleY(1)} }
+      .quiz-dot.pop{ animation:dotPop .5s cubic-bezier(.34,1.56,.64,1) }
+
+      /* opção responde ao toque */
+      .opt{ transition:border-color .15s ease,background .15s ease,color .15s ease,transform .12s ease }
+      .opt:active{ transform:scale(.985) }
+
+      /* barra de compra entra deslizando */
+      .app-view.is-active .buy-bar{ animation:barUp .5s .35s cubic-bezier(.22,1,.36,1) both }
+      @keyframes barUp{ from{opacity:0;transform:translateY(100%)} to{opacity:1;transform:none} }
+
+      /* cartão do veredito e oferta */
+      .app-view.is-active .verdict{ animation:cardIn .55s .1s cubic-bezier(.22,1,.36,1) both }
+      @keyframes cardIn{ from{opacity:0;transform:translateY(16px) scale(.99)} to{opacity:1;transform:none} }
+    }
+
+    /* hover dos cartões — vale mesmo com movimento reduzido, é sutil */
+    .situation-card,.author-profile-card,.signal-card-box{
+      transition:transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease;
+    }
+    @media (hover:hover){
+      .situation-card:hover,.author-profile-card:hover{
+        transform:translateY(-4px);
+        box-shadow:0 14px 34px -18px rgba(14,20,28,.45);
+      }
+      .signal-card-box:hover{ transform:translateY(-2px) }
+    }
+
+    /* números da pontuação contando */
+    .meter-val b{font-variant-numeric:tabular-nums}
   </style>
 </head>
 
@@ -2719,12 +2766,18 @@
     warnEl.hidden = true;
 
     // avanca sozinho: da o feedback da escolha e segue
+    // ultima pergunta da etapa? o marcador comemora antes de virar
+    var fechouEtapa = (item.qi === POR_ETAPA - 1);
+    if(fechouEtapa && dotsEl && dotsEl.children[item.st]){
+      dotsEl.children[item.st].classList.add("pop");
+    }
+
     travado = true;
     setTimeout(function(){
       travado = false;
       if(idx < FLOW.length - 1){ idx++; renderFlow(false); }
       else { finish(); }
-    }, 320);
+    }, fechouEtapa ? 620 : 320);
   }
 
   backBtn.addEventListener("click", function(){
@@ -2774,7 +2827,7 @@
     var m = "";
     for(var i=0;i<5;i++){
       m += '<div class="meter"><span class="meter-label">Etapa '+(i+1)+' · '+STAGES[i].name+'</span>'
-         + '<span class="meter-val">'+t[i]+'/'+MAX_ETAPA+'<em>'+READ[i](t[i])+'</em></span>'
+         + '<span class="meter-val"><b class="meter-num">0</b>/'+MAX_ETAPA+'<em>'+READ[i](t[i])+'</em></span>'
          + '<span class="meter-track"><span class="meter-fill" style="width:0%"></span></span></div>';
     }
     var meters = document.getElementById("meters");
@@ -2822,12 +2875,13 @@
 
     switchView("resultado");
 
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){
-        var fills = meters.querySelectorAll(".meter-fill");
-        for(var k=0;k<fills.length;k++) fills[k].style.width = (t[k]/MAX_ETAPA*100) + "%";
-      });
-    });
+    // setTimeout em vez de requestAnimationFrame: o rAF é estrangulado em aba
+    // de segundo plano, e o resultado ficaria com todas as barras em 0%.
+    setTimeout(function(){
+      var fills = meters.querySelectorAll(".meter-fill");
+      for(var k=0;k<fills.length;k++) fills[k].style.width = (t[k]/MAX_ETAPA*100) + "%";
+      contarPontuacoes(t);
+    }, 60);
   }
 
   document.getElementById("redo").addEventListener("click", function(){
@@ -2837,6 +2891,120 @@
     switchView("diagnostico");
     renderFlow(true);
   });
+
+  /* ============ ANIMAÇÕES ============ */
+  var animaOk = !window.matchMedia || !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function montarReveal(){
+    if(!animaOk || !("IntersectionObserver" in window)) return;
+    document.documentElement.classList.add("js-anim");
+
+    var alvos = [];
+    [".signals-header",".signals-lede",".signal-card-box",
+     ".situations-title",".situation-card",".situations-conclusion",
+     ".authors-header",".authors-lede",".author-profile-card",
+     ".authors-pull-quote",".authors-bottom-cta"].forEach(function(sel){
+      Array.prototype.forEach.call(document.querySelectorAll(sel), function(el){ alvos.push(el); });
+    });
+
+    // escalona os irmãos para o grupo entrar em cascata, não em bloco
+    var porPai = {};
+    alvos.forEach(function(el){
+      el.classList.add("reveal");
+      var chave = el.parentNode ? (el.parentNode.className || "raiz") : "raiz";
+      porPai[chave] = (porPai[chave] || 0);
+      el.style.setProperty("--d", Math.min(porPai[chave] * 70, 350) + "ms");
+      porPai[chave]++;
+    });
+
+    // Dois mecanismos, porque cada um falha num caso diferente:
+    // - o observador não depende de evento de scroll nem de requestAnimationFrame,
+    //   mas só entrega o que está intersectando;
+    // - a varredura pega o que foi ultrapassado num salto (top negativo), mas
+    //   depende do evento de scroll.
+    // Juntos cobrem rolagem normal, salto por âncora/teclado e navegador sem IO.
+    var pendentes = alvos.slice();
+
+    function revelar(el){
+      var i = pendentes.indexOf(el);
+      if(i < 0) return;
+      el.classList.add("in");
+      pendentes.splice(i, 1);
+    }
+
+    function varrer(){
+      var limite = window.innerHeight * 0.92;
+      for(var i = pendentes.length - 1; i >= 0; i--){
+        if(pendentes[i].getBoundingClientRect().top < limite) revelar(pendentes[i]);
+      }
+      if(!pendentes.length){
+        window.removeEventListener("scroll", varrer);
+        window.removeEventListener("resize", varrer);
+      }
+    }
+
+    if("IntersectionObserver" in window){
+      var obs = new IntersectionObserver(function(entradas){
+        entradas.forEach(function(e){
+          // isIntersecting cobre a entrada normal; top < 0 cobre o que já passou
+          if(e.isIntersecting || e.boundingClientRect.top < 0){
+            revelar(e.target);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+      alvos.forEach(function(el){ obs.observe(el); });
+    }
+
+    window.addEventListener("scroll", varrer, { passive: true });
+    window.addEventListener("resize", varrer);
+    varrer();   // o que já está na primeira tela entra sem esperar rolagem
+
+    // REDE DE SEGURANÇA. Numa página de vendas, conteúdo invisível é pior do que
+    // conteúdo sem animação. Se o observador e o evento de scroll falharem — aba
+    // em segundo plano, navegador antigo, extensão bloqueando —, este timer varre
+    // do mesmo jeito, e desiste da animação de vez depois de 15s, mostrando tudo.
+    var tique = setInterval(function(){
+      if(!pendentes.length){ clearInterval(tique); return; }
+      varrer();
+    }, 500);
+
+    setTimeout(function(){
+      clearInterval(tique);
+      while(pendentes.length) revelar(pendentes[0]);
+    }, 15000);
+  }
+
+  // pontuações contam de 0 até o valor, em vez de aparecerem prontas
+  function contarPontuacoes(valores){
+    var els = document.querySelectorAll("#meters .meter-num");
+    if(!els.length) return;
+    function escreverFinal(){
+      for(var i=0;i<els.length;i++) els[i].textContent = valores[i];
+    }
+
+    escreverFinal();
+    if(!animaOk) return;
+
+    var dur = 900, pronto = false;
+    // Rede: se o rAF não rodar até o fim do tempo previsto, o número final entra
+    // por temporizador. A animação é enfeite; o número correto é obrigação.
+    var rede = setTimeout(function(){ if(!pronto) escreverFinal(); }, dur + 250);
+
+    for(var j=0;j<els.length;j++) els[j].textContent = "0";
+    var t0 = null;
+    function passo(ts){
+      if(t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var e = 1 - Math.pow(1 - p, 3);   // desacelera no fim
+      for(var i=0;i<els.length;i++) els[i].textContent = Math.round(valores[i] * e);
+      if(p < 1){ requestAnimationFrame(passo); }
+      else { pronto = true; clearTimeout(rede); }
+    }
+    requestAnimationFrame(passo);
+  }
+
+  montarReveal();
 
   // Inicializa o estado
   initLeadGate();

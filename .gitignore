@@ -1,0 +1,13 @@
+# Dados de leads — NUNCA versionar.
+# Contém nome e telefone de pessoas reais; o repositório é público.
+leads.json
+leads-*.json
+
+# Dependências e ambiente
+node_modules/
+.env
+.env.*
+
+# Sistema
+Thumbs.db
+.DS_Store

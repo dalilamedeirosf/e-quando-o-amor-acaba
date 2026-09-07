@@ -1681,6 +1681,85 @@
       .verdict-top, .meters, .verdict-body { padding-inline: 18px; }
       .hero-mini-cards { grid-template-columns: 1fr; }
     }
+
+    /* ============ DIAGNÓSTICO GAMIFICADO ============ */
+    .quiz-head{
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
+      padding:20px 26px;border-bottom:1px solid var(--rule);flex-wrap:wrap;
+      background:var(--surface-2);
+    }
+    .quiz-dots{display:flex;gap:7px;align-items:center}
+    .quiz-dot{
+      width:26px;height:4px;border-radius:2px;background:var(--rule);
+      transition:background .3s ease,transform .3s ease;
+    }
+    .quiz-dot.done{background:var(--accent)}
+    .quiz-dot.now{background:var(--accent);transform:scaleY(2)}
+    .quiz-counter{
+      font-family:"Karla",sans-serif;font-variant-numeric:tabular-nums;
+      color:var(--ink-3);font-size:.86rem;font-weight:600;white-space:nowrap;
+    }
+    .quiz-counter b{color:var(--accent);font-size:1.35rem;margin-right:3px}
+
+    .quiz-body{display:grid;gap:0}
+    @media (min-width:860px){ .quiz-body{grid-template-columns:minmax(0,.8fr) minmax(0,1fr)} }
+
+    .quiz-art{margin:0;overflow:hidden;background:var(--sunk);position:relative;min-height:180px}
+    .quiz-art img{
+      display:block;width:100%;height:100%;object-fit:cover;
+      opacity:.85;transition:opacity .45s ease;
+    }
+    .quiz-art::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(11,16,23,.15),rgba(11,16,23,.55));
+    }
+    @media (max-width:859px){ .quiz-art{max-height:150px} }
+
+    .qcard{padding:clamp(24px,4vw,38px);display:grid;gap:22px;align-content:center}
+    .q-eyebrow{
+      font-size:.66rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+      color:var(--accent);
+    }
+    .q-title{
+      font-family:"Cormorant Garamond",Georgia,serif;
+      font-size:clamp(1.5rem,3.4vw,2.05rem);line-height:1.24;font-weight:600;
+      color:var(--ink);margin:0;text-wrap:balance;
+    }
+    .opts{display:grid;gap:8px}
+    .opt{
+      display:flex;align-items:center;gap:14px;width:100%;text-align:left;
+      padding:13px 16px;border:1px solid var(--rule);border-radius:3px;
+      background:var(--surface);color:var(--ink-2);cursor:pointer;
+      font-family:"Karla",sans-serif;font-size:1rem;font-weight:500;
+      transition:border-color .15s ease,background .15s ease,color .15s ease;
+    }
+    .opt:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
+    .opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .opt-dot{
+      width:18px;height:18px;border-radius:50%;flex:none;
+      border:1.5px solid var(--rule);transition:all .15s ease;
+    }
+    .opt:hover .opt-dot{border-color:var(--accent)}
+    .opt.sel{background:var(--accent);border-color:var(--accent);color:#FFFFFF;font-weight:700}
+    .opt.sel .opt-dot{background:#FFFFFF;border-color:#FFFFFF}
+
+    @media (prefers-reduced-motion: no-preference){
+      .qcard{animation:qIn .32s ease both}
+      @keyframes qIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    }
+
+    /* ============ BARRA FIXA DE COMPRA (RESULTADO) ============ */
+    .buy-bar{
+      position:sticky;bottom:0;z-index:40;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+      padding:14px clamp(16px,3vw,26px);margin-top:26px;
+      background:var(--sunk);border-top:1px solid var(--accent-line);
+      box-shadow:0 -8px 26px -14px rgba(0,0,0,.55);
+    }
+    .buy-bar-txt{display:grid;gap:1px;min-width:0}
+    .buy-bar-txt b{color:var(--on-sunk);font-size:.98rem;font-weight:700;line-height:1.25}
+    .buy-bar-txt span{color:var(--on-sunk-2);font-size:.83rem}
+    .buy-bar .btn-buy-now{white-space:nowrap}
   </style>
 </head>
 
@@ -2034,7 +2113,7 @@
 
 
 <!-- ================================================================= -->
-<!-- FOLHA 3: DIAGNÓSTICO INTERATIVO (QUIZ DE 50 PERGUNTAS)           -->
+<!-- FOLHA 3: DIAGNÓSTICO INTERATIVO (20 PERGUNTAS, UMA POR TELA)     -->
 <!-- ================================================================= -->
 <div id="view-diagnostico" class="app-view">
   
@@ -2056,20 +2135,19 @@
       <div class="panel" id="panel">
         <div class="progress"><span id="bar" style="width:0%"></span></div>
         
-        <div class="panel-head">
-          <div>
-            <div class="stage-name" id="stageName">Etapa 1 — Conexão emocional</div>
-            <div class="stage-sub" id="stageSub">Como está o vínculo afetivo entre vocês?</div>
-          </div>
-          <div class="stage-count" id="stageCount">Etapa 1 de 5</div>
+        <div class="quiz-head">
+          <div class="quiz-dots" id="stageDots"></div>
+          <div class="quiz-counter"><b id="qNow">1</b><span id="qTotal">/ 20</span></div>
         </div>
 
-        <div class="qlist" id="qlist"></div>
+        <div class="quiz-body">
+          <figure class="quiz-art"><img id="stageImg" src="marca/etapa-1.webp" alt="" width="640" height="480"></figure>
+          <div class="qlist" id="qlist"></div>
+        </div>
 
         <div class="panel-foot">
-          <button class="link-back" id="back" type="button" hidden>← Voltar etapa</button>
-          <span class="foot-warn" id="warn" hidden>Responda todas as perguntas desta etapa para continuar.</span>
-          <button class="btn" id="next" type="button">Continuar</button>
+          <button class="link-back" id="back" type="button" hidden>← Voltar</button>
+          <span class="foot-warn" id="warn" hidden>Escolha uma opção para continuar.</span>
         </div>
       </div>
 
@@ -2110,7 +2188,7 @@
         </div>
 
         <div class="meters">
-          <p class="meters-title">Suas pontuações por etapa · 0 a 50</p>
+          <p class="meters-title">Suas pontuações por etapa · 0 a 20</p>
           <div id="meters"></div>
         </div>
 
@@ -2190,9 +2268,16 @@
       </div>
 
       <div class="btn-row" style="margin-top:8px;">
-        <a class="btn" href="#oferta">Garantir Meu Acesso Completo (R$ 97)</a>
         <button class="btn btn-ghost" id="redo" type="button">Refazer o diagnóstico</button>
       </div>
+    </div>
+
+    <div class="buy-bar">
+      <div class="buy-bar-txt">
+        <b id="buyBarTitle">Sua trilha personalizada está liberada</b>
+        <span>Acesso imediato e vitalício · Garantia de 7 dias</span>
+      </div>
+      <a class="btn-buy-now" id="buyBarBtn" href="#oferta">Liberar meu acesso — R$ 97 →</a>
     </div>
   </div>
 </div>
@@ -2200,6 +2285,19 @@
 <script>
 (function(){
   "use strict";
+
+  /* ============ LINK DE PAGAMENTO ============ */
+  // Troque pela URL do seu checkout (Hotmart, Kiwify, Cakto...).
+  // Enquanto estiver vazio, os botões apenas rolam até a oferta na página.
+  var CHECKOUT_URL = "";
+
+  function aplicarCheckout(){
+    if(!CHECKOUT_URL) return;
+    ["vCtaBtn","buyBarBtn"].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el){ el.href = CHECKOUT_URL; el.target = "_blank"; el.rel = "noopener"; }
+    });
+  }
 
   /* ============ NAVEGAÇÃO DE VIEWS / FOLHAS ============ */
   var views = {
@@ -2246,78 +2344,58 @@
     });
   });
 
-  /* ============ DADOS DAS 50 PERGUNTAS ============ */
+  /* ============ DADOS DAS 20 PERGUNTAS (4 POR ETAPA) ============ */
   var STAGES = [
-    { name:"Conexão emocional", sub:"Como está o vínculo afetivo entre vocês?", qs:[
+    { name:"Conexão emocional", sub:"O vínculo afetivo ainda existe?", img:"marca/etapa-1.webp", qs:[
       "Sinto que ainda existe carinho entre nós.",
-      "Ainda conseguimos conversar de forma leve e saudável.",
       "Me sinto emocionalmente segura nessa relação.",
-      "Ainda admiramos um ao outro.",
-      "Sinto vontade de compartilhar minha vida com essa pessoa.",
-      "Ainda existem momentos felizes entre nós.",
-      "Existe empatia quando um dos dois está mal.",
       "Sinto que somos parceiros de vida.",
-      "Existe respeito mesmo durante discussões.",
-      "Ainda existe desejo de lutar pela relação."
+      "Ainda existe em mim o desejo de lutar por essa relação."
     ]},
-    { name:"Desgaste e distanciamento", sub:"Identificando sinais de esgotamento emocional.", qs:[
+    { name:"Desgaste e distanciamento", sub:"Quanto essa relação está te custando?", img:"marca/etapa-2.webp", qs:[
       "Evitamos conversar para não discutir.",
       "Sinto solidão mesmo estando acompanhada.",
-      "A relação parece pesada e cansativa.",
-      "Pequenas coisas geram grandes conflitos.",
-      "Existe frieza emocional entre nós.",
-      "Já pensei várias vezes em desistir da relação.",
-      "Não me sinto valorizada.",
-      "Falta diálogo verdadeiro entre nós.",
       "Me sinto emocionalmente drenada.",
-      "Sinto que estamos mais distantes do que unidos."
+      "Já pensei várias vezes em desistir da relação."
     ]},
-    { name:"Respeito e saúde emocional", sub:"A relação ainda é saudável?", qs:[
-      "Existe manipulação emocional na relação.",
-      "Já houve humilhações ou desrespeito frequente.",
-      "Um dos dois controla excessivamente o outro.",
-      "Tenho medo das reações da pessoa.",
-      "Me sinto diminuída emocionalmente.",
-      "Existe agressividade verbal constante.",
-      "Sinto que perdi minha identidade nessa relação.",
-      "Há chantagem emocional ou culpa excessiva.",
-      "Me sinto mais triste do que feliz nesse relacionamento.",
-      "Minha saúde emocional piorou após essa relação."
+    { name:"Respeito e saúde emocional", sub:"A relação ainda é segura para você?", img:"marca/etapa-3.webp", qs:[
+      "Tenho medo das reações dessa pessoa.",
+      "Existe manipulação emocional ou chantagem entre nós.",
+      "Já houve humilhações ou desrespeito com frequência.",
+      "Minha saúde emocional piorou depois dessa relação."
     ]},
-    { name:"Possibilidade de restauração", sub:"Ainda existe base para reconstrução?", qs:[
+    { name:"Possibilidade de restauração", sub:"Ainda existe base para reconstruir?", img:"marca/etapa-4.webp", qs:[
       "Existe arrependimento verdadeiro pelos erros.",
-      "Ambos estão dispostos a mudar.",
-      "Ainda existe amor entre nós.",
-      "Existe vontade de reconstruir a confiança.",
-      "Conseguimos reconhecer nossos próprios erros.",
-      "Existe abertura para ajuda terapêutica ou aconselhamento.",
-      "Ainda conseguimos sonhar juntos.",
-      "Existe disposição para recomeçar de forma saudável.",
+      "Nós dois estamos dispostos a mudar.",
       "Ainda conseguimos nos conectar emocionalmente.",
       "Vejo possibilidade real de transformação."
     ]},
-    { name:"Identidade e recomeço", sub:"Você ainda se reconhece?", qs:[
-      "Sinto que perdi minha paz emocional.",
-      "Tenho medo de ficar sozinha.",
+    { name:"Identidade e recomeço", sub:"E você, como está nisso tudo?", img:"marca/etapa-5.webp", qs:[
       "Permaneci nessa relação mais por apego do que por amor.",
-      "Sinto necessidade de reconstruir minha identidade.",
-      "Tenho dificuldade de imaginar um novo começo.",
-      "Preciso aprender a me valorizar novamente.",
       "Sinto que preciso me curar emocionalmente.",
-      "Tenho medo da solidão, mas também do sofrimento atual.",
-      "Desejo viver uma vida emocional mais saudável.",
+      "Preciso aprender a me valorizar novamente.",
       "Sinto que preciso tomar uma decisão definitiva."
     ]}
   ];
 
-  var LABELS = ["Nunca","Raram.","Às vezes","Frequen.","Quase s.","Sempre"];
+  var POR_ETAPA = 4;
+  var MAX_ETAPA = POR_ETAPA * 5;          // 4 perguntas x nota maxima 5 = 20
 
+  // ordem plana das 20 perguntas, uma por tela
+  var FLOW = [];
+  STAGES.forEach(function(st, si){
+    st.qs.forEach(function(txt, qi){ FLOW.push({ st:si, qi:qi, txt:txt }); });
+  });
+
+  var LABELS = ["Nunca","Raramente","Às vezes","Frequentemente","Quase sempre","Sempre"];
+
+  // escala reduzida de 0-50 para 0-20 (4 perguntas por etapa)
   var READ = [
-    function(v){ return v>=34 ? "vínculo preservado" : v>=17 ? "vínculo fragilizado" : "vínculo rompido"; },
-    function(v){ return v>=34 ? "desgaste alto" : v>=17 ? "desgaste moderado" : "desgaste baixo"; },
-    function(v){ return v>=25 ? "sinais graves de adoecimento" : v>=10 ? "sinais presentes" : "relação respeitosa"; },
-    function(v){ return v>=34 ? "base sólida para reconstruir" : v>=17 ? "base parcial" : "sem base aparente"; },
-    function(v){ return v>=34 ? "necessidade forte de recomeço" : v>=17 ? "necessidade moderada" : "identidade preservada"; }
+    function(v){ return v>=14 ? "vínculo preservado" : v>=7 ? "vínculo fragilizado" : "vínculo rompido"; },
+    function(v){ return v>=14 ? "desgaste alto" : v>=7 ? "desgaste moderado" : "desgaste baixo"; },
+    function(v){ return v>=10 ? "sinais graves de adoecimento" : v>=4 ? "sinais presentes" : "relação respeitosa"; },
+    function(v){ return v>=14 ? "base sólida para reconstruir" : v>=7 ? "base parcial" : "sem base aparente"; },
+    function(v){ return v>=14 ? "necessidade forte de recomeço" : v>=7 ? "necessidade moderada" : "identidade preservada"; }
   ];
 
   var SCEN = {
@@ -2407,15 +2485,20 @@
   };
 
   var answers = [[],[],[],[],[]];
-  var stage = 0;
+  var stage = 0;   // etapa atual (0-4), derivada de FLOW[idx]
+  var idx = 0;     // pergunta atual dentro de FLOW (0-19)
+  var travado = false;
 
   var qlist=document.getElementById("qlist"),
       bar=document.getElementById("bar"),
       nameEl=document.getElementById("stageName"),
       subEl=document.getElementById("stageSub"),
       countEl=document.getElementById("stageCount"),
-      nextBtn=document.getElementById("next"),
       backBtn=document.getElementById("back"),
+      dotsEl=document.getElementById("stageDots"),
+      qNowEl=document.getElementById("qNow"),
+      qTotalEl=document.getElementById("qTotal"),
+      stageImg=document.getElementById("stageImg"),
       warnEl=document.getElementById("warn"),
       panelEl=document.getElementById("panel"),
       leadName=document.getElementById("leadName"),
@@ -2563,94 +2646,102 @@
     if (currentLead && currentLead.name && quizUserGreeting) {
       quizUserGreeting.textContent = "Diagnóstico de " + currentLead.name;
     }
+    idx = 0;
     switchView("diagnostico");
-    renderStage(true);
+    renderFlow(true);
   }
 
   if (startQuizBtn) {
     startQuizBtn.addEventListener("click", validateAndStartQuiz);
   }
 
-  /* ============ RENDERIZAÇÃO DO DIAGNÓSTICO (QUIZ) ============ */
-  function renderStage(scroll){
-    var cur = STAGES[stage];
-    nameEl.textContent = "Etapa " + (stage+1) + " — " + cur.name;
-    subEl.textContent = cur.sub;
-    countEl.textContent = "Etapa " + (stage+1) + " de " + STAGES.length;
-    bar.style.width = (stage / STAGES.length * 100) + "%";
-    backBtn.hidden = (stage === 0);
+  /* ============ DIAGNÓSTICO: UMA PERGUNTA POR TELA ============ */
+  function renderDots(){
+    if(!dotsEl) return;
+    var h = "";
+    for(var i=0;i<5;i++){
+      var cls = i < stage ? "quiz-dot done" : (i === stage ? "quiz-dot now" : "quiz-dot");
+      h += '<span class="'+cls+'" title="Etapa '+(i+1)+' — '+STAGES[i].name+'"></span>';
+    }
+    dotsEl.innerHTML = h;
+  }
+
+  function renderFlow(scroll){
+    var item = FLOW[idx];
+    stage = item.st;
+    var st = STAGES[stage];
+
+    if(qNowEl) qNowEl.textContent = String(idx + 1);
+    if(qTotalEl) qTotalEl.textContent = "/ " + FLOW.length;
+    if(bar) bar.style.width = (idx / FLOW.length * 100) + "%";
+    if(stageImg && stageImg.getAttribute("src") !== st.img){
+      stageImg.style.opacity = "0";
+      stageImg.src = st.img;
+      stageImg.alt = "";
+      stageImg.onload = function(){ stageImg.style.opacity = ".85"; };
+    }
+    renderDots();
+    backBtn.hidden = (idx === 0);
     warnEl.hidden = true;
 
-    var h = "";
-    for(var i=0; i<cur.qs.length; i++){
-      var num = (stage * 10) + (i + 1);
-      h += '<div class="q" data-i="'+i+'">'
-        + '<p class="q-text"><span class="q-num">'+num+'.</span><span>'+cur.qs[i]+'</span></p>'
-        + '<div class="scale" role="radiogroup" aria-label="Escala de 0 a 5">';
-      for(var v=0; v<=5; v++){
-        var chk = answers[stage][i] === v ? " checked" : "";
-        h += '<label><input type="radio" name="s'+stage+'_q'+i+'" value="'+v+'"'+chk+'>'
-          + '<span>'+v+'<small>'+LABELS[v]+'</small></span></label>';
-      }
-      h += '</div></div>';
+    var atual = answers[stage][item.qi];
+    var h = '<div class="qcard">'
+      + '<p class="q-eyebrow">Etapa ' + (stage+1) + ' de 5 · ' + st.name + '</p>'
+      + '<h3 class="q-title">' + item.txt + '</h3>'
+      + '<div class="opts" role="radiogroup" aria-label="' + item.txt + '">';
+    for(var v=0; v<=5; v++){
+      var sel = atual === v ? " sel" : "";
+      h += '<button type="button" class="opt'+sel+'" data-v="'+v+'" role="radio" aria-checked="'+(atual===v)+'">'
+        + '<span class="opt-dot"></span><span class="opt-label">'+LABELS[v]+'</span></button>';
     }
+    h += '</div></div>';
     qlist.innerHTML = h;
 
-    var inputs = qlist.querySelectorAll("input[type=radio]");
-    for(var k=0; k<inputs.length; k++){
-      inputs[k].addEventListener("change", onPick);
-    }
-    if(scroll) panelEl.scrollIntoView({behavior:"smooth", block:"start"});
+    var opts = qlist.querySelectorAll(".opt");
+    for(var k=0;k<opts.length;k++) opts[k].addEventListener("click", onPick);
+
+    if(scroll && panelEl) panelEl.scrollIntoView({behavior:"smooth", block:"start"});
   }
 
   function onPick(e){
-    var qDiv = e.target.closest(".q");
-    var qIdx = parseInt(qDiv.getAttribute("data-i"), 10);
-    answers[stage][qIdx] = parseInt(e.target.value, 10);
+    if(travado) return;
+    var btn = e.currentTarget;
+    var item = FLOW[idx];
+    answers[item.st][item.qi] = parseInt(btn.getAttribute("data-v"), 10);
+
+    var todos = qlist.querySelectorAll(".opt");
+    for(var i=0;i<todos.length;i++){
+      todos[i].classList.remove("sel");
+      todos[i].setAttribute("aria-checked","false");
+    }
+    btn.classList.add("sel");
+    btn.setAttribute("aria-checked","true");
     warnEl.hidden = true;
-  }
 
-  function stageComplete(){
-    for(var i=0; i<10; i++){
-      if(typeof answers[stage][i] !== "number") return false;
-    }
-    return true;
+    // avanca sozinho: da o feedback da escolha e segue
+    travado = true;
+    setTimeout(function(){
+      travado = false;
+      if(idx < FLOW.length - 1){ idx++; renderFlow(false); }
+      else { finish(); }
+    }, 320);
   }
-
-  nextBtn.addEventListener("click", function(){
-    if(!stageComplete()){
-      warnEl.hidden = false;
-      var qs = qlist.querySelectorAll(".q");
-      for(var i=0; i<10; i++){
-        if(typeof answers[stage][i] !== "number"){
-          qs[i].scrollIntoView({behavior:"smooth", block:"center"});
-          break;
-        }
-      }
-      return;
-    }
-    if(stage < STAGES.length - 1){
-      stage++;
-      renderStage(true);
-    } else {
-      finish();
-    }
-  });
 
   backBtn.addEventListener("click", function(){
-    if(stage > 0){ stage--; renderStage(true); }
+    if(idx > 0){ idx--; renderFlow(false); }
   });
 
   function total(i){
     var t = 0;
-    for(var k=0;k<10;k++) t += answers[i][k] || 0;
+    for(var k=0;k<POR_ETAPA;k++) t += answers[i][k] || 0;
     return t;
   }
 
+  // limiares reescalados de 0-50 para 0-20; segurança continua sendo o 1º teste
   function pick(e1,e2,e3,e4,e5){
-    if(e3 >= 25) return SCEN.tox;
-    if(e1 <= 18 && e4 <= 18 && e5 >= 30) return SCEN.fim;
-    if(e2 >= 30 || e1 <= 20 || e4 <= 20) return SCEN.desg;
+    if(e3 >= 10) return SCEN.tox;
+    if(e1 <= 7 && e4 <= 7 && e5 >= 12) return SCEN.fim;
+    if(e2 >= 12 || e1 <= 8 || e4 <= 8) return SCEN.desg;
     return SCEN.saud;
   }
 
@@ -2683,7 +2774,7 @@
     var m = "";
     for(var i=0;i<5;i++){
       m += '<div class="meter"><span class="meter-label">Etapa '+(i+1)+' · '+STAGES[i].name+'</span>'
-         + '<span class="meter-val">'+t[i]+'/50<em>'+READ[i](t[i])+'</em></span>'
+         + '<span class="meter-val">'+t[i]+'/'+MAX_ETAPA+'<em>'+READ[i](t[i])+'</em></span>'
          + '<span class="meter-track"><span class="meter-fill" style="width:0%"></span></span></div>';
     }
     var meters = document.getElementById("meters");
@@ -2723,12 +2814,18 @@
         + '<p>Procure um profissional de saúde mental. Se houver qualquer forma de violência, ligue <strong>180</strong> — Central de Atendimento à Mulher, gratuito e 24h. Em emergência, <strong>190</strong>.</p></div>'
       : "";
 
+    var buyTitle = document.getElementById("buyBarTitle");
+    if(buyTitle && currentLead && currentLead.name){
+      buyTitle.textContent = currentLead.name + ", sua trilha personalizada está liberada";
+    }
+    aplicarCheckout();
+
     switchView("resultado");
 
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){
         var fills = meters.querySelectorAll(".meter-fill");
-        for(var k=0;k<fills.length;k++) fills[k].style.width = (t[k]/50*100) + "%";
+        for(var k=0;k<fills.length;k++) fills[k].style.width = (t[k]/MAX_ETAPA*100) + "%";
       });
     });
   }
@@ -2736,8 +2833,9 @@
   document.getElementById("redo").addEventListener("click", function(){
     answers = [[],[],[],[],[]];
     stage = 0;
+    idx = 0;
     switchView("diagnostico");
-    renderStage(true);
+    renderFlow(true);
   });
 
   // Inicializa o estado

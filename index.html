@@ -2193,8 +2193,6 @@
         </div>
 
         <div class="verdict-body">
-          <div id="vSafety"></div>
-
           <div class="urgency-block">
             <div class="urgency-block-title" id="vUrgencyTitle"></div>
             <p id="vUrgencyDesc"></p>
@@ -2225,11 +2223,11 @@
 
             <div class="result-cta-pricing-row">
               <div class="result-cta-price-box">
-                <span class="result-cta-price-old">De R$ 297,00 por apenas</span>
+                <span class="result-cta-price-old">Valor somado dos materiais: R$ 297. Você paga</span>
                 <div class="result-cta-price-now">
-                  <small>12x de</small>
-                  <b>R$ 9,87</b>
-                  <em>ou R$ 97 à vista</em>
+                  <small>7x de</small>
+                  <b>R$ 6,16</b>
+                  <em>ou R$ 37,00 à vista</em>
                 </div>
               </div>
               <a class="btn-buy-now" id="vCtaBtn" href="#oferta">
@@ -2267,6 +2265,8 @@
         <p class="small">Às vezes, Deus restaura relacionamentos. Às vezes, Ele restaura pessoas. E os dois processos exigem a mesma coisa: verdade, maturidade emocional e decisão.</p>
       </div>
 
+      <div id="vSafety"></div>
+
       <div class="btn-row" style="margin-top:8px;">
         <button class="btn btn-ghost" id="redo" type="button">Refazer o diagnóstico</button>
       </div>
@@ -2275,9 +2275,9 @@
     <div class="buy-bar">
       <div class="buy-bar-txt">
         <b id="buyBarTitle">Sua trilha personalizada está liberada</b>
-        <span>Acesso imediato e vitalício · Garantia de 7 dias</span>
+        <span>Acesso imediato e vitalício · 7x de R$ 6,16 · Garantia de 7 dias</span>
       </div>
-      <a class="btn-buy-now" id="buyBarBtn" href="#oferta">Liberar meu acesso — R$ 97 →</a>
+      <a class="btn-buy-now" id="buyBarBtn" href="#oferta">Liberar meu acesso — R$ 37 →</a>
     </div>
   </div>
 </div>
@@ -2289,7 +2289,7 @@
   /* ============ LINK DE PAGAMENTO ============ */
   // Troque pela URL do seu checkout (Hotmart, Kiwify, Cakto...).
   // Enquanto estiver vazio, os botões apenas rolam até a oferta na página.
-  var CHECKOUT_URL = "";
+  var CHECKOUT_URL = "https://lastlink.com/p/C92C922A0/checkout-payment/";
 
   function aplicarCheckout(){
     if(!CHECKOUT_URL) return;
@@ -2404,7 +2404,7 @@
       urgencyBadge:"Nível de Alerta Crítico",
       urgencyRiskClass:"risk-high",
       urgencyTitle:"O risco invisível de adiar uma atitude",
-      urgencyDesc:"Permanecer sem posicionamento e sem limites claros em uma relação em adoecimento não apenas desgasta o amor — corrói dia após dia a sua saúde emocional, sua autoestima e sua paz.",
+      urgencyDesc:"Cada semana sem limites claros custa um pouco mais da sua autoestima e da sua paz.",
       urgencyPoints:[
         "Cada semana em silêncio normaliza atitudes que você jamais deveria tolerar.",
         "A dependência emocional e a culpa fazem você acreditar que não conseguirá ficar bem sozinha.",
@@ -2413,9 +2413,9 @@
       ctaText:"Quero Recuperar Minha Paz e Força Agora →",
       title:"Sinais de adoecimento emocional na relação",
       text:"Suas respostas apontam a presença de manipulação, controle, medo ou desrespeito frequente. Antes de qualquer conversa sobre continuar ou terminar, a prioridade é a sua segurança emocional — e, se houver risco, a sua segurança física.",
-      "do":["Priorizar a sua segurança emocional acima da relação","Buscar apoio terapêutico com um profissional","Reestabelecer limites claros e não negociáveis","Fortalecer a autoestima antes de decidir","Avaliar um afastamento saudável, com apoio de alguém de confiança"],
+      "do":["Priorizar sua segurança emocional","Reestabelecer limites não negociáveis","Buscar apoio terapêutico"],
       track:"Cura emocional e reconstrução da identidade",
-      trackText:"Comece pelos módulos 1 e 2 para organizar o que você sente, e vá direto ao módulo 3 (dependência emocional) e ao 7 (reconstrução). O módulo 5 traz o roteiro da conversa difícil, se e quando você decidir tê-la.",
+      trackText:"Comece pelos módulos 1 e 2, siga para o 3 (dependência) e o 7 (reconstrução).",
       safety:true
     },
     fim:{
@@ -2423,7 +2423,7 @@
       urgencyBadge:"Ponto de Decisão Iminente",
       urgencyRiskClass:"risk-calm",
       urgencyTitle:"O custo silencioso de adiar sua vida por mais 6 meses",
-      urgencyDesc:"Arrastar uma relação que já acabou internamente gera uma angústia crônica. Viver de aparências ou esperar passivamente que o outro mude rouba os melhores anos da sua energia vital.",
+      urgencyDesc:"Arrastar uma relação que já acabou por dentro custa anos da sua energia.",
       urgencyPoints:[
         "Adiar a decisão não diminui a dor; apenas prolonga o sofrimento em banho-maria.",
         "O medo da solidão custa muito mais caro do que a coragem de recomeçar com orientação terapêutica.",
@@ -2432,9 +2432,9 @@
       ctaText:"Quero Decidir com Segurança e Recomeçar →",
       title:"A relação demonstra sinais de encerramento",
       text:"Há desconexão profunda, ausência de parceria e perda do vínculo afetivo — e, do seu lado, uma necessidade clara de recomeçar. Isso não é fracasso. É o fim de uma etapa, e o começo de outra.",
-      "do":["Aceitar o encerramento emocional sem se culpar por ele","Atravessar o luto afetivo em vez de fugir dele","Reconstruir a sua identidade fora da relação","Desenvolver autonomia emocional","Planejar, concretamente, o seu novo ciclo de vida"],
+      "do":["Aceitar o fim sem se culpar","Atravessar o luto em vez de fugir dele","Reconstruir sua identidade"],
       track:"Decisão e recomeço",
-      trackText:"Sua trilha é a completa: clareza (1 e 2), dependência (3), decisão (4), como terminar (5), recaída (6) e reconstrução (7). O Exercício dos 7 Dias foi desenhado exatamente para o seu momento.",
+      trackText:"A trilha completa, do módulo 1 ao 7. O Exercício dos 7 Dias é para o seu momento.",
       safety:false
     },
     desg:{
@@ -2442,7 +2442,7 @@
       urgencyBadge:"Janela Crítica de Reversão",
       urgencyRiskClass:"risk-warn",
       urgencyTitle:"O desgaste não se resolve sozinho com o tempo",
-      urgencyDesc:"Relacionamentos não morrem de repente por falta de amor, mas de mágoas acumuladas e falta de método. Se nada mudar na forma de dialogar e se posicionar agora, o desgaste se transformará em indiferença irreversível.",
+      urgencyDesc:"Relações não morrem por falta de amor, morrem de mágoa acumulada. Sem método, o desgaste vira indiferença.",
       urgencyPoints:[
         "O tempo sem método não cura feridas: ele apenas amplia a distância entre vocês.",
         "Repetir os mesmos ciclos de discussões consome a última reserva de afeto e admiração.",
@@ -2451,9 +2451,9 @@
       ctaText:"Quero Restaurar Antes que Seja Tarde →",
       title:"A relação entrou em esgotamento emocional",
       text:"Ainda pode existir amor — mas há cansaço acumulado, mágoas não resolvidas e uma desconexão real. Este é o ponto em que a maioria dos casais desiste sem nunca ter tentado com método.",
-      "do":["Pausar os conflitos destrutivos antes de tentar resolver qualquer coisa","Trabalhar escuta emocional de verdade, não só o falar","Restaurar a confiança em passos pequenos e verificáveis","Reaprender a comunicar sem gerar briga","Considerar ajuda terapêutica para o casal"],
+      "do":["Pausar os conflitos destrutivos","Reaprender a conversar sem brigar","Restaurar a confiança em passos pequenos"],
       track:"Restaurando relacionamento",
-      trackText:"Faça os módulos 1 e 2 antes de qualquer tentativa de reconciliação: eles definem se você está lutando por uma fase ou negando um fim. Depois siga para a trilha de restauração e o módulo 6, sobre agir quando só um dos dois quer lutar.",
+      trackText:"Módulos 1 e 2 antes de qualquer reconciliação, depois a trilha de restauração.",
       safety:false
     },
     saud:{
@@ -2461,7 +2461,7 @@
       urgencyBadge:"Momento Ideal de Blindagem",
       urgencyRiskClass:"risk-good",
       urgencyTitle:"Proteja seu relacionamento antes que o afastamento aumente",
-      urgencyDesc:"Ainda existe base e respeito, mas a rotina e a falta de intencionalidade já abriram espaço para o esfriamento. Pequenos distanciamentos hoje viram desconexões profundas amanhã se não forem cuidados a tempo.",
+      urgencyDesc:"A base existe, mas a rotina já abriu espaço para o esfriamento. Distância pequena hoje vira desconexão amanhã.",
       urgencyPoints:[
         "A rotina engole o romance e a cumplicidade quando não há novos rituais afetivos.",
         "É infinitamente mais fácil reacender a conexão hoje do que tentar resgatar uma relação quebrada depois.",
@@ -2470,9 +2470,9 @@
       ctaText:"Blindar e Reconectar Minha Relação Hoje →",
       title:"Existe base saudável — e desgaste de rotina",
       text:"Há amor, parceria e uma base emocional preservada. O que aparece nas suas respostas é o desgaste comum da convivência: menos conversa, menos toque, menos presença. Isso se reverte — e se reverte rápido quando se sabe onde mexer.",
-      "do":["Restaurar o diálogo antes que ele vire silêncio","Retomar momentos que são só de vocês dois","Aprender comunicação emocional inteligente","Fortalecer a intimidade — emocional antes da física","Criar novos hábitos afetivos, pequenos e diários"],
+      "do":["Restaurar o diálogo antes do silêncio","Retomar momentos só de vocês dois","Criar hábitos afetivos diários"],
       track:"Reconstrução do amor e conexão emocional",
-      trackText:"Comece pelos módulos 1 e 2 para nomear com precisão o que esfriou, e siga direto para a trilha de restauração: 7 Dias de Comunicação Restauradora e o Desafio da Reconexão.",
+      trackText:"Módulos 1 e 2 para nomear o que esfriou, depois a trilha de restauração.",
       safety:false
     }
   };
@@ -2809,9 +2809,9 @@
     document.getElementById("vTrack").innerHTML = "<b>Sua trilha: " + s.track + "</b>" + s.trackText;
 
     document.getElementById("vSafety").innerHTML = s.safety
-      ? '<div class="safety"><h4>Leia isto antes de qualquer decisão</h4>'
-        + '<p>O que suas respostas descrevem pode configurar violência psicológica. Isso não é uma fase de relacionamento e não se resolve com mais esforço da sua parte.</p>'
-        + '<p>Procure um profissional de saúde mental. Se houver qualquer forma de violência, ligue <strong>180</strong> — Central de Atendimento à Mulher, gratuito e 24h. Em emergência, <strong>190</strong>.</p></div>'
+      ? '<div class="safety"><h4>Você não está sozinha</h4>'
+        + '<p>O que você descreveu pode configurar violência psicológica — e isso não se resolve com mais esforço da sua parte.</p>'
+        + '<p>Em caso de violência, ligue <strong>180</strong> (gratuito, 24h). Emergência: <strong>190</strong>.</p></div>'
       : "";
 
     var buyTitle = document.getElementById("buyBarTitle");

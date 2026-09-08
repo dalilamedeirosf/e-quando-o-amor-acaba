@@ -271,6 +271,14 @@
         grid-template-columns: 1fr;
       }
     }
+    @media (max-width: 768px) {
+      .hero-eyebrow {
+        display: none !important;
+      }
+      .hero-card-main .hero-title {
+        margin-top: 0 !important;
+      }
+    }
 
     .hero-card-main {
       background: var(--surface);
@@ -1466,7 +1474,7 @@
           <!-- Card Principal Esquerdo -->
           <div class="hero-card-main">
             <div>
-              <p class="eyebrow">Método Autoral das Terapeutas Mara Lazarini &amp; Giselli Louback</p>
+              <p class="eyebrow hero-eyebrow">Método Autoral das Terapeutas Mara Lazarini &amp; Giselli Louback</p>
               <h1 class="hero-title" style="margin-top:14px;">Você não precisa passar por essa dúvida sozinha.</h1>
             </div>
 

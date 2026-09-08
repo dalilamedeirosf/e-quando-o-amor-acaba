@@ -729,6 +729,20 @@
       animation: signalPulseWhite 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    
+    /* Sincronização: os cards de sinais entram no scroll e iniciam a alternância contínua */
+    .js-anim .signals-grid-6 .signal-card-box {
+      animation: none;
+    }
+    .js-anim .signals-grid-6 .signal-card-box.in:nth-child(odd) {
+      animation: signalPulseGold 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      animation-delay: var(--d, 0ms);
+    }
+    .js-anim .signals-grid-6 .signal-card-box.in:nth-child(even) {
+      animation: signalPulseWhite 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      animation-delay: var(--d, 0ms);
+    }
+
     .signals-grid-6:hover .signal-card-box {
       animation-play-state: paused;
     }
@@ -2154,6 +2168,86 @@
 
     /* números da pontuação contando */
     .meter-val b{font-variant-numeric:tabular-nums}
+  
+    
+    /* Barra de Progresso de Leitura no Topo */
+    .scroll-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #C9A44E 0%, #D9B868 50%, #F3E5AB 100%);
+      box-shadow: 0 1px 8px rgba(201, 164, 78, 0.45);
+      z-index: 99999;
+      pointer-events: none;
+      transition: width 0.08s ease-out;
+    }
+
+    /* Animação escalonada dos textos do Hero no index.html */
+    @media (prefers-reduced-motion: no-preference) {
+      .js-anim .hero-card-main .eyebrow {
+        animation: heroTextReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+      }
+      .js-anim .hero-card-main .hero-title {
+        animation: heroTextReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+      }
+      .js-anim .hero-card-main .oscillate-wrapper {
+        animation: heroTextReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+      }
+      .js-anim .hero-card-main .lede {
+        animation: heroTextReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.44s both;
+      }
+      .js-anim .hero-card-main .hero-mini-cards {
+        animation: heroTextReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.54s both;
+      }
+      .js-anim .hero-card-main .btn-row {
+        animation: heroTextReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.64s both;
+      }
+
+      @keyframes heroTextReveal {
+        0% {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Shimmer nos botões principais */
+      .btn-primary, .buy-bar-btn {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-primary::after, .buy-bar-btn::after {
+        content: "";
+        position: absolute;
+        top: -60%;
+        left: -130%;
+        width: 60%;
+        height: 220%;
+        background: linear-gradient(
+          105deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.28) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(25deg);
+        animation: btnGoldShimmerIndex 4.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+      }
+
+      @keyframes btnGoldShimmerIndex {
+        0%, 65% {
+          left: -130%;
+        }
+        100% {
+          left: 230%;
+        }
+      }
+    }
   </style>
 </head>
 
@@ -3301,6 +3395,29 @@
   var animaOk = !window.matchMedia || !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function montarReveal(){
+
+    // Barra de progresso de leitura no topo
+    var progressBar = document.createElement("div");
+    progressBar.className = "scroll-progress-bar";
+    progressBar.setAttribute("aria-hidden", "true");
+    document.body.appendChild(progressBar);
+
+    var tickProgress = false;
+    function atualizarProgresso(){
+      var winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      progressBar.style.width = Math.min(scrolled, 100) + "%";
+      tickProgress = false;
+    }
+    window.addEventListener("scroll", function(){
+      if(!tickProgress){
+        window.requestAnimationFrame(atualizarProgresso);
+        tickProgress = true;
+      }
+    }, { passive: true });
+    atualizarProgresso();
+
     if(!animaOk || !("IntersectionObserver" in window)) return;
     document.documentElement.classList.add("js-anim");
 

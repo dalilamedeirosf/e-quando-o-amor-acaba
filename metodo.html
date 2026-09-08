@@ -780,6 +780,20 @@
       animation: signalPulseWhite 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    
+    /* Sincronização: os cards de sinais entram no scroll e iniciam a alternância contínua */
+    .anim-active .signals-grid-6 .signal-card-box {
+      animation: none;
+    }
+    .anim-active .signals-grid-6 .signal-card-box.is-in:nth-child(odd) {
+      animation: signalPulseGold 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      animation-delay: var(--anim-d, 0ms);
+    }
+    .anim-active .signals-grid-6 .signal-card-box.is-in:nth-child(even) {
+      animation: signalPulseWhite 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      animation-delay: var(--anim-d, 0ms);
+    }
+
     .signals-grid-6:hover .signal-card-box {
       animation-play-state: paused;
     }
@@ -1512,6 +1526,224 @@
       margin-inline: auto;
       text-align: center;
     }
+  
+    /* ==========================================================================
+       SISTEMA DE ANIMAÇÕES PREMIUM - ENTRADA, SCROLL REVEAL E MICRO-INTERAÇÕES
+       ========================================================================== */
+
+    /* Barra de Progresso de Leitura no Topo */
+    .scroll-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #C9A44E 0%, #D9B868 50%, #F3E5AB 100%);
+      box-shadow: 0 1px 8px rgba(201, 164, 78, 0.45);
+      z-index: 99999;
+      pointer-events: none;
+      transition: width 0.08s ease-out;
+    }
+
+    /* Animações ao carregar a página e ao rolar */
+    @media (prefers-reduced-motion: no-preference) {
+      /* 1. Entrada no Hero ("Texto e blocos surgindo na abertura") */
+      .anim-active .hero-eyebrow {
+        animation: animHeroText 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+      }
+      .anim-active .hero-title {
+        animation: animHeroText 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+      }
+      .anim-active .oscillate-wrapper {
+        animation: animHeroText 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+      }
+      .anim-active .hero-card-main > .lede {
+        animation: animHeroText 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+      }
+      .anim-active .hero-price-tag {
+        animation: animHeroPop 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.62s both;
+      }
+      .anim-active .hero-card-main .btn-row {
+        animation: animHeroText 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.72s both;
+      }
+      .anim-active .hero-side {
+        animation: animHeroScale 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+      }
+      .anim-active .hero-mobile-photo {
+        animation: animHeroScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.75s both;
+      }
+
+      @keyframes animHeroText {
+        0% {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes animHeroPop {
+        0% {
+          opacity: 0;
+          transform: translateY(18px) scale(0.96);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes animHeroScale {
+        0% {
+          opacity: 0;
+          transform: scale(0.95) translateY(14px);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      /* 2. Scroll Reveal ("Texto e cards surgindo ao rolar a página") */
+      .anim-active .anim-reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        transition-delay: var(--anim-d, 0ms);
+        will-change: opacity, transform;
+      }
+
+      .anim-active .anim-reveal.is-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Destaque nobre para o Box de Oferta */
+      .anim-active .offer-box-main.anim-reveal {
+        opacity: 0;
+        transform: translateY(32px) scale(0.97);
+        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        transition-delay: var(--anim-d, 0ms);
+      }
+      .anim-active .offer-box-main.anim-reveal.is-in {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      /* 3. Brilho Nobre nos Botões de Compra (CTA Shimmer) */
+      .btn-buy-gold {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-buy-gold::after {
+        content: "";
+        position: absolute;
+        top: -60%;
+        left: -130%;
+        width: 60%;
+        height: 220%;
+        background: linear-gradient(
+          105deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.28) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(25deg);
+        animation: btnGoldShimmer 4.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+      }
+
+      @keyframes btnGoldShimmer {
+        0%, 65% {
+          left: -130%;
+        }
+        100% {
+          left: 230%;
+        }
+      }
+
+      /* 4. Suavização e Transições no FAQ */
+      .faq-list details {
+        transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+      .faq-list details[open] {
+        background-color: #FAF6EE;
+        border-color: #C9A44E;
+        box-shadow: 0 10px 24px -4px rgba(201, 164, 78, 0.16);
+      }
+      .faq-list details summary {
+        transition: color 0.2s ease;
+      }
+      .faq-list details[open] summary {
+        color: #8C6414;
+        font-weight: 700;
+      }
+      .faq-list details p {
+        animation: faqTextFade 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      @keyframes faqTextFade {
+        from {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* 5. Elevação Suave no Hover de Cards */
+      .module-card,
+      .situation-card,
+      .author-profile-card {
+        transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      }
+      .module-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 32px -8px rgba(14, 20, 28, 0.12);
+        border-color: var(--accent-line);
+      }
+      .situation-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 32px -8px rgba(14, 20, 28, 0.1);
+      }
+      .author-profile-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 36px -8px rgba(201, 164, 78, 0.22);
+      }
+    }
+
+    /* Fallback e Acessibilidade Estrita */
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-progress-bar {
+        display: none !important;
+      }
+      .btn-buy-gold::after {
+        display: none !important;
+      }
+      .anim-active .anim-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .anim-active .hero-eyebrow,
+      .anim-active .hero-title,
+      .anim-active .oscillate-wrapper,
+      .anim-active .hero-card-main > .lede,
+      .anim-active .hero-price-tag,
+      .anim-active .hero-card-main .btn-row,
+      .anim-active .hero-side,
+      .anim-active .hero-mobile-photo {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -2048,5 +2280,109 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      // 1. Verificação de Acessibilidade e Suporte do Navegador
+      var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced || !('IntersectionObserver' in window)) {
+        return; // Mantém tudo visível e estático
+      }
+
+      document.documentElement.classList.add('anim-active');
+
+      // 2. Barra de Progresso de Leitura no Topo
+      var progressBar = document.createElement('div');
+      progressBar.className = 'scroll-progress-bar';
+      progressBar.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(progressBar);
+
+      var isTicking = false;
+      function onScrollProgress() {
+        var winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+        progressBar.style.width = Math.min(scrolled, 100) + '%';
+        isTicking = false;
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!isTicking) {
+          window.requestAnimationFrame(onScrollProgress);
+          isTicking = true;
+        }
+      }, { passive: true });
+
+      // 3. Seleção de Elementos para Revelação no Scroll ("Texto e Blocos Surgindo")
+      var revealSelectors = [
+        // Sinais de Alerta
+        '.signals-header',
+        '.signals-title',
+        '.signals-lede',
+        '.signal-card-box',
+        // Situações Reais
+        '.situations-title',
+        '.situations-lede',
+        '.situation-card',
+        '.situations-conclusion',
+        // Módulos do Método
+        '.modules-header',
+        '.modules-title',
+        '.modules-lede',
+        '.module-card',
+        // Box de Oferta Principal
+        '.offer-box-main',
+        // Autoras
+        '.authors-header',
+        '.authors-title',
+        '.authors-lede',
+        '.author-profile-card',
+        '.authors-pull-quote',
+        '.authors-bottom-cta',
+        // FAQ
+        '.faq-header',
+        '.faq-title',
+        '.faq-list details'
+      ];
+
+      var elementsToReveal = [];
+      revealSelectors.forEach(function (sel) {
+        var matches = document.querySelectorAll(sel);
+        for (var i = 0; i < matches.length; i++) {
+          elementsToReveal.push(matches[i]);
+        }
+      });
+
+      // 4. Escalona os elementos de cada grupo para entrarem em cascata fluida
+      var parentGroupMap = new Map();
+      elementsToReveal.forEach(function (el) {
+        el.classList.add('anim-reveal');
+        var parent = el.parentElement || document.body;
+        var currentCount = parentGroupMap.get(parent) || 0;
+        var delayMs = Math.min(currentCount * 75, 420);
+        el.style.setProperty('--anim-d', delayMs + 'ms');
+        parentGroupMap.set(parent, currentCount + 1);
+      });
+
+      // 5. Intersection Observer para disparar a animação
+      var observer = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      elementsToReveal.forEach(function (el) {
+        observer.observe(el);
+      });
+
+      // Dispara imediatamente o progresso inicial
+      onScrollProgress();
+    })();
+  </script>
 </body>
 </html>

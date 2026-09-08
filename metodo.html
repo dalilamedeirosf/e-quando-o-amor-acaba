@@ -51,7 +51,7 @@
       --radius-sm: 20px;
       --radius-btn: 12px;
       --font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      --widew: min(1480px, 94vw);
+      --widew: min(1360px, 94vw);
       --maxw: min(1120px, 92vw);
     }
 
@@ -271,6 +271,8 @@
       grid-template-columns: 1.42fr 1fr;
       gap: clamp(20px, 2.5vw, 36px);
       align-items: stretch;
+      max-width: 1320px;
+      margin-inline: auto;
     }
     @media (max-width: 980px) {
       .hero-bento {
@@ -425,8 +427,12 @@
       padding-bottom: clamp(56px, 7.5vw, 96px);
     }
     .signals-header {
+      text-align: center;
       max-width: 860px;
-      margin-bottom: clamp(28px, 4vw, 44px);
+      margin: 0 auto clamp(28px, 4vw, 44px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .signals-title {
       font-size: clamp(2rem, 4.2vw, 3.1rem);
@@ -446,6 +452,8 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: clamp(16px, 2vw, 24px);
+      max-width: 1280px;
+      margin-inline: auto;
     }
     @media (max-width: 1080px) {
       .signals-grid-6 {
@@ -593,8 +601,12 @@
       padding-bottom: clamp(60px, 8vw, 100px);
     }
     .modules-header {
+      text-align: center;
       max-width: 860px;
-      margin-bottom: clamp(32px, 4.5vw, 48px);
+      margin: 0 auto clamp(32px, 4.5vw, 48px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .modules-title {
       font-size: clamp(2.1rem, 4.4vw, 3.2rem);
@@ -614,6 +626,8 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: clamp(18px, 2.2vw, 26px);
+      max-width: 1280px;
+      margin-inline: auto;
     }
     .module-card {
       background: var(--surface);
@@ -709,6 +723,8 @@
       grid-template-columns: 1.35fr 1fr;
       gap: clamp(24px, 3.5vw, 48px);
       align-items: center;
+      max-width: 1240px;
+      margin-inline: auto;
     }
     @media (max-width: 960px) {
       .offer-box-main {
@@ -846,6 +862,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: clamp(24px, 3.5vw, 40px);
+      max-width: 1200px;
+      margin-inline: auto;
     }
     @media (max-width: 920px) {
       .authors-bento-grid {
@@ -977,9 +995,12 @@
       box-shadow: var(--shadow-clean);
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
       gap: 12px;
       position: relative;
-      margin-top: 16px;
+      margin: 16px auto 0;
+      max-width: 1000px;
     }
     .pull-quote-icon {
       font-size: 3.2rem;
@@ -1015,8 +1036,12 @@
       padding-bottom: clamp(60px, 8vw, 100px);
     }
     .faq-header {
+      text-align: center;
       max-width: 860px;
-      margin-bottom: clamp(28px, 4vw, 44px);
+      margin: 0 auto clamp(28px, 4vw, 44px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .faq-title {
       font-size: clamp(2.1rem, 4.4vw, 3.1rem);
@@ -1025,11 +1050,14 @@
       letter-spacing: -0.035em;
       line-height: 1.15;
       margin-top: 10px;
+      text-align: center;
     }
     .faq-list {
       display: grid;
       gap: 14px;
-      max-width: 1000px;
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
     }
     details {
       background: var(--surface-2);
@@ -1099,6 +1127,10 @@
     footer .wide {
       display: grid;
       gap: 18px;
+      max-width: 960px;
+      margin-inline: auto;
+      text-align: center;
+      justify-items: center;
     }
     footer a {
       color: var(--accent-line);
@@ -1110,6 +1142,8 @@
       color: #7D8D9F;
       line-height: 1.65;
       max-width: 74ch;
+      margin-inline: auto;
+      text-align: center;
     }
   </style>
 </head>
@@ -1565,7 +1599,7 @@
 
     <!-- SEÇÃO 7: PERGUNTAS FREQUENTES / FAQ (BRANCO PURO) -->
     <section class="section-faq" id="faq">
-      <div class="wide stack">
+      <div class="wide stack" style="align-items: center;">
         <div class="faq-header">
           <span class="eyebrow">Dúvidas Comuns</span>
           <h2 class="faq-title">Perguntas que sempre chegam</h2>

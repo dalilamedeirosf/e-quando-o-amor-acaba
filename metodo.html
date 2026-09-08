@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E Quando o Amor Acaba? — Método Completo &amp; Livro Oficial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============ DESIGN TOKENS (PALETA OFICIAL + CLEAN BENTO) ============ */
+    :root {
+      --ground: #E7EBF0;
+      --surface: #FFFFFF;
+      --surface-2: #F0F4F8;
+      --surface-hover: #E7EEF5;
+      
+      --ink: #0E141C;
+      --ink-2: #3D4C5F;
+      --ink-3: #6B7C90;
+      --ink-muted: #8C9CAE;
+      
+      --accent: #8C6414;
+      --accent-hover: #75520E;
+      --accent-line: #C9A44E;
+      --accent-soft: #F4EAD6;
+      --accent-glow: rgba(201, 164, 78, 0.2);
+
+      --sunk: #1B2735;
+      --sunk-2: #233144;
+      --on-sunk: #EDF1F5;
+      --on-sunk-2: #A7B6C7;
+
+      --rule: #CBD4DE;
+      --rule-soft: #E2E8F0;
+      --rule-sunk: #2C3C50;
+
+      --good: #2F6B52;
+      --good-bg: #DFEBE5;
+      --warn: #96651A;
+      --warn-bg: #F3E7CE;
+      --alert: #9C3A2A;
+      --alert-bg: #F2DCD7;
+      --calm: #455076;
+      --calm-bg: #E0E3EE;
+
+      --shadow-clean: 0 8px 30px -4px rgba(14, 20, 28, 0.05), 0 2px 6px rgba(14, 20, 28, 0.03);
+      --shadow-card-hover: 0 16px 40px -4px rgba(14, 20, 28, 0.09), 0 4px 10px rgba(14, 20, 28, 0.04);
+      --radius-card: 28px;
+      --radius-sm: 20px;
+      --radius-btn: 12px;
+      --font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --widew: min(1480px, 94vw);
+      --maxw: min(1120px, 92vw);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--ground);
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: 16.5px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.035em;
+      line-height: 1.14;
+      text-wrap: balance;
+    }
+
+    h1 { font-size: clamp(2.3rem, 4.8vw, 3.6rem); }
+    h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+    h3 { font-size: 1.35rem; }
+    p { margin: 0; color: var(--ink-2); }
+    a { color: inherit; text-decoration: none; }
+    strong { font-weight: 700; color: var(--ink); }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: 24px; }
+    .wide { max-width: var(--widew); width: 100%; margin-inline: auto; padding-inline: clamp(20px, 3.5vw, 44px); }
+    .stack { display: flex; flex-direction: column; }
+
+    /* ============ EYEBROW & BADGES ============ */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+    }
+
+    .top-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      padding: 7px 18px 7px 10px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+      box-shadow: var(--shadow-clean);
+    }
+    .top-pill-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+
+    .lede {
+      font-size: 1.1rem;
+      color: var(--ink-2);
+      line-height: 1.68;
+    }
+    .muted {
+      color: var(--ink-3);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* ============ BOTÕES ============ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      border: none;
+      cursor: pointer;
+      background: var(--accent);
+      color: #FFFFFF !important;
+      border-radius: var(--radius-btn);
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(140, 100, 20, 0.25);
+      text-align: center;
+    }
+    .btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(140, 100, 20, 0.35);
+    }
+    .btn:active {
+      transform: translateY(0);
+    }
+    .btn-buy-gold {
+      background: linear-gradient(135deg, #D4AF37 0%, #8C6414 100%);
+      color: #FFFFFF !important;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.03em;
+      padding: 18px 36px;
+      box-shadow: 0 8px 24px rgba(201, 164, 78, 0.4);
+    }
+    .btn-buy-gold:hover {
+      background: linear-gradient(135deg, #E2BF4D 0%, #A07418 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(201, 164, 78, 0.55);
+    }
+    .btn-ghost {
+      background: var(--surface);
+      color: var(--accent) !important;
+      border: 1.5px solid var(--accent);
+      box-shadow: none;
+    }
+    .btn-ghost:hover {
+      background: var(--accent-soft);
+      box-shadow: none;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+    .btn-note {
+      font-size: 0.86rem;
+      color: var(--ink-3);
+      font-weight: 500;
+    }
+
+    /* ============ HEADER / TOPBAR (BRANCO PURO) ============ */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--rule-soft);
+      padding-top: 18px;
+      padding-bottom: 18px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .topbar .wide {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .main-logo {
+      height: 56px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+    .main-logo:hover {
+      transform: scale(1.02);
+    }
+    @media (max-width: 640px) {
+      .main-logo {
+        height: 42px;
+      }
+    }
+
+    /* ============ SEÇÃO 1: HERO (SLATE / GELO BENTO WIDE) ============ */
+    .hero {
+      background-color: var(--ground);
+      background-image: 
+        radial-gradient(ellipse 70% 50% at 85% 15%, rgba(201, 164, 78, 0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 15% 85%, rgba(27, 39, 53, 0.05) 0%, transparent 60%);
+      border-bottom: 1px solid var(--rule);
+      padding-top: clamp(28px, 4.5vw, 48px);
+      padding-bottom: clamp(40px, 5.5vw, 68px);
+    }
+    .hero-bento {
+      display: grid;
+      grid-template-columns: 1.42fr 1fr;
+      gap: clamp(20px, 2.5vw, 36px);
+      align-items: stretch;
+    }
+    @media (max-width: 980px) {
+      .hero-bento {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-card-main {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      padding: clamp(36px, 4.5vw, 56px);
+      box-shadow: var(--shadow-clean);
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+    }
+    .hero-title {
+      font-size: clamp(2.3rem, 4.2vw, 3.7rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+
+    .oscillate {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: var(--surface-2);
+      border-radius: var(--radius-sm);
+      padding: 18px 24px;
+      border: 1px solid var(--rule-soft);
+      border-left: 4px solid var(--accent-line);
+    }
+    .oscillate p {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink-2);
+      line-height: 1.45;
+    }
+    .oscillate p:first-child {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .hero-price-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-line);
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      align-self: flex-start;
+      font-size: 0.95rem;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .hero-price-tag s {
+      color: var(--ink-3);
+      font-size: 0.9rem;
+    }
+    .hero-price-tag strong {
+      color: var(--accent);
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(16px, 2vw, 24px);
+    }
+    .hero-visual-card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-clean);
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .hero-visual-card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
+    }
+    .hero-visual-badge {
+      padding: 18px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: var(--surface);
+      border-top: 1px solid var(--rule-soft);
+    }
+    .hero-visual-tag {
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
+    .hero-visual-authors {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .hero-mini-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(14px, 1.8vw, 22px);
+    }
+    .mini-card {
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: 24px 22px;
+      box-shadow: var(--shadow-clean);
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .mini-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .mini-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.025em;
+    }
+    .mini-card p {
+      font-size: 0.9rem;
+      color: var(--ink-2);
+      line-height: 1.55;
+    }
+
+    /* ============ SEÇÃO 2: SINAIS DE ALERTA (BRANCO PURO) ============ */
+    .section-signals {
+      background-color: #FFFFFF;
+      background-image: radial-gradient(circle at 50% 0%, rgba(240, 244, 248, 0.7) 0%, transparent 60%);
+      border-bottom: 1px solid var(--rule);
+      padding-top: clamp(48px, 6.5vw, 84px);
+      padding-bottom: clamp(56px, 7.5vw, 96px);
+    }
+    .signals-header {
+      max-width: 860px;
+      margin-bottom: clamp(28px, 4vw, 44px);
+    }
+    .signals-title {
+      font-size: clamp(2rem, 4.2vw, 3.1rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      margin-top: 10px;
+    }
+    .signals-lede {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: var(--ink-2);
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+    .signals-grid-6 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 2vw, 24px);
+    }
+    @media (max-width: 1080px) {
+      .signals-grid-6 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .signals-grid-6 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .signal-card-box {
+      background: var(--surface-2);
+      border: 1px solid var(--rule-soft);
+      border-radius: var(--radius-sm);
+      padding: clamp(22px, 3vw, 30px);
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: all 0.2s ease;
+    }
+    .signal-card-box:hover {
+      background: #FFFFFF;
+      border-color: var(--accent-line);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-clean);
+    }
+    .signal-box-num {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--accent);
+      min-width: 1.7em;
+      line-height: 1.1;
+    }
+    .signal-box-text {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.52;
+    }
+
+    /* ============ SEÇÃO 3: SITUAÇÕES REAIS (DOURADO CHAMPANHE) ============ */
+    .section-situations {
+      background-color: #F8F5EE;
+      background-image: 
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201, 164, 78, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 85% 90%, rgba(140, 100, 20, 0.06) 0%, transparent 60%);
+      border-bottom: 1px solid #E3D7BE;
+      padding-top: clamp(48px, 6.5vw, 84px);
+      padding-bottom: clamp(56px, 7.5vw, 96px);
+      text-align: center;
+    }
+    .situations-title {
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      color: var(--ink);
+      font-style: italic;
+      letter-spacing: -0.03em;
+      margin-bottom: clamp(32px, 4.5vw, 52px);
+    }
+    .situations-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 2.5vw, 32px);
+      max-width: 1280px;
+      margin-inline: auto;
+    }
+    @media (max-width: 960px) {
+      .situations-grid-3 {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+      }
+    }
+    .situation-card {
+      background: linear-gradient(180deg, #9C201C 0%, #610E0E 100%);
+      color: #FFFFFF;
+      border-radius: 28px;
+      padding: clamp(32px, 4vw, 42px) clamp(22px, 3vw, 32px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 16px 36px -6px rgba(97, 14, 14, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .situation-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 46px -6px rgba(97, 14, 14, 0.5);
+    }
+    .situation-photo-circle {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3.5px solid #FFFFFF;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      flex-shrink: 0;
+      background: #FFFFFF;
+    }
+    .situation-photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .situation-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+    }
+    .situation-text {
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #FFFFFF;
+      text-wrap: balance;
+    }
+    .situations-conclusion {
+      max-width: 900px;
+      margin: clamp(36px, 5vw, 54px) auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .situations-conclusion p {
+      font-size: clamp(1.2rem, 2.6vw, 1.55rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.45;
+      text-wrap: balance;
+    }
+    .situations-conclusion p strong {
+      color: #B31D1D;
+    }
+
+    /* ============ SEÇÃO 4: OS 7 MÓDULOS (SLATE SUAVE BENTO) ============ */
+    .section-modules {
+      background-color: var(--surface-2);
+      border-bottom: 1px solid var(--rule);
+      padding-top: clamp(52px, 7vw, 88px);
+      padding-bottom: clamp(60px, 8vw, 100px);
+    }
+    .modules-header {
+      max-width: 860px;
+      margin-bottom: clamp(32px, 4.5vw, 48px);
+    }
+    .modules-title {
+      font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      margin-top: 10px;
+    }
+    .modules-lede {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: var(--ink-2);
+      line-height: 1.62;
+      margin-top: 12px;
+    }
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: clamp(18px, 2.2vw, 26px);
+    }
+    .module-card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      padding: clamp(26px, 3.5vw, 36px);
+      box-shadow: var(--shadow-clean);
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .module-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-line);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .module-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .module-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .module-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 9999px;
+    }
+    .badge-all { background: var(--warn-bg); color: var(--warn); border: 1px solid rgba(150, 101, 26, 0.2); }
+    .badge-recomeco { background: var(--calm-bg); color: var(--calm); border: 1px solid rgba(69, 80, 118, 0.2); }
+    .badge-restaura { background: var(--good-bg); color: var(--good); border: 1px solid rgba(47, 107, 82, 0.2); }
+    
+    .module-card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.025em;
+    }
+    .module-card-desc {
+      font-size: 0.98rem;
+      color: var(--ink-2);
+      line-height: 1.6;
+    }
+    .module-card-footer {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule-soft);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--ink-3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .module-card-footer svg {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ============ SEÇÃO 5: A OFERTA & CHECKOUT (DEEP NAVY) ============ */
+    .section-offer {
+      background: linear-gradient(145deg, #1B2735 0%, #101824 100%);
+      color: var(--on-sunk);
+      border-bottom: 1px solid var(--rule-sunk);
+      padding-top: clamp(56px, 7.5vw, 92px);
+      padding-bottom: clamp(64px, 8.5vw, 104px);
+      position: relative;
+      overflow: hidden;
+    }
+    .section-offer::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 164, 78, 0.16) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .offer-box-main {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: clamp(24px, 3.5vw, 48px);
+      align-items: center;
+    }
+    @media (max-width: 960px) {
+      .offer-box-main {
+        grid-template-columns: 1fr;
+      }
+    }
+    .offer-content-left {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .offer-title {
+      font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.035em;
+      line-height: 1.14;
+    }
+    .offer-desc {
+      font-size: 1.08rem;
+      color: #B2C0D1;
+      line-height: 1.65;
+    }
+    .offer-checklist {
+      display: grid;
+      gap: 14px;
+      margin-top: 4px;
+    }
+    .offer-check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 1.02rem;
+      color: #EDF1F5;
+      line-height: 1.5;
+    }
+    .check-gold-icon {
+      color: var(--accent-line);
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .offer-card-price {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1.5px solid var(--accent-line);
+      border-radius: var(--radius-card);
+      padding: clamp(32px, 4.5vw, 44px);
+      box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+    .offer-price-old {
+      font-size: 1.05rem;
+      color: #8C9CAE;
+      text-decoration: line-through;
+    }
+    .offer-price-highlight {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
+    .offer-installments {
+      font-size: 1.15rem;
+      color: #EDF1F5;
+      font-weight: 600;
+    }
+    .offer-big-price {
+      font-size: clamp(3.2rem, 7vw, 4.5rem);
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .offer-big-price span {
+      font-size: 1.8rem;
+      color: var(--accent-line);
+      margin-right: 4px;
+    }
+    .offer-cash-price {
+      font-size: 1.1rem;
+      color: var(--accent-line);
+      font-weight: 700;
+    }
+    .offer-guarantee-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: #A7B6C7;
+      margin-top: 4px;
+      line-height: 1.45;
+    }
+    .offer-guarantee-badge svg {
+      color: var(--accent-line);
+      flex-shrink: 0;
+    }
+
+    /* ============ SEÇÃO 6: AS AUTORAS (DOURADO CHAMPANHE) ============ */
+    .section-authors {
+      background-color: #F8F5EE;
+      background-image: 
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201, 164, 78, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 85% 90%, rgba(140, 100, 20, 0.06) 0%, transparent 60%);
+      border-bottom: 1px solid #E3D7BE;
+      padding-top: clamp(52px, 7vw, 88px);
+      padding-bottom: clamp(60px, 8vw, 100px);
+    }
+    .authors-header {
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto clamp(32px, 4.5vw, 48px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .authors-title {
+      font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+    }
+    .authors-lede {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: var(--ink-2);
+      line-height: 1.62;
+    }
+    .authors-bento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 3.5vw, 40px);
+    }
+    @media (max-width: 920px) {
+      .authors-bento-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .author-profile-card {
+      background: var(--surface);
+      color: var(--ink);
+      border-radius: var(--radius-card);
+      box-shadow: 0 16px 40px -8px rgba(140, 100, 20, 0.12);
+      border: 1.5px solid #E1D6BF;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .author-profile-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-line);
+      box-shadow: 0 24px 50px -8px rgba(140, 100, 20, 0.22);
+    }
+    .author-photo-wrapper {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      background: #EAE6DC;
+      overflow: hidden;
+    }
+    .author-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+    .author-profile-card:hover .author-photo {
+      transform: scale(1.02);
+    }
+    .author-badge-pill {
+      position: absolute;
+      bottom: 16px;
+      left: 20px;
+      background: rgba(27, 39, 53, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #F4EAD6;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      border: 1px solid rgba(201, 164, 78, 0.5);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .author-content {
+      padding: clamp(26px, 3.5vw, 38px);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+    .author-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .author-name {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .author-specialty {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .author-highlight-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--rule-soft);
+      padding: 10px 16px;
+      border-radius: var(--radius-btn);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .author-highlight-box svg {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .author-bio {
+      font-size: 0.98rem;
+      color: var(--ink-2);
+      line-height: 1.65;
+    }
+    .author-books-box {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule-soft);
+      font-size: 0.88rem;
+      color: var(--ink-3);
+      line-height: 1.5;
+    }
+    .author-books-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+    .author-books-titles {
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+    .authors-pull-quote {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      padding: clamp(28px, 4vw, 42px);
+      border: 1px solid #E1D6BF;
+      border-left: 5px solid var(--accent-line);
+      box-shadow: var(--shadow-clean);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      margin-top: 16px;
+    }
+    .pull-quote-icon {
+      font-size: 3.2rem;
+      line-height: 1;
+      color: var(--accent-line);
+      font-family: Georgia, serif;
+      font-weight: 700;
+      margin-bottom: -18px;
+    }
+    .pull-quote-text {
+      font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.48;
+      letter-spacing: -0.02em;
+      font-style: italic;
+    }
+    .pull-quote-cite {
+      font-size: 0.9rem;
+      color: var(--ink-3);
+      font-weight: 600;
+    }
+    .authors-bottom-cta {
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ============ SEÇÃO 7: FAQ (BRANCO PURO) ============ */
+    .section-faq {
+      background-color: #FFFFFF;
+      border-bottom: 1px solid var(--rule);
+      padding-top: clamp(52px, 7vw, 88px);
+      padding-bottom: clamp(60px, 8vw, 100px);
+    }
+    .faq-header {
+      max-width: 860px;
+      margin-bottom: clamp(28px, 4vw, 44px);
+    }
+    .faq-title {
+      font-size: clamp(2.1rem, 4.4vw, 3.1rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      margin-top: 10px;
+    }
+    .faq-list {
+      display: grid;
+      gap: 14px;
+      max-width: 1000px;
+    }
+    details {
+      background: var(--surface-2);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--rule-soft);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+    details[open] {
+      background: #FFFFFF;
+      box-shadow: var(--shadow-clean);
+      border-color: var(--accent-line);
+    }
+    summary {
+      cursor: pointer;
+      padding: 22px 28px;
+      position: relative;
+      list-style: none;
+      font-weight: 700;
+      font-size: 1.08rem;
+      line-height: 1.45;
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+    details p {
+      padding: 0 28px 24px;
+      color: var(--ink-2);
+      font-size: 1rem;
+      line-height: 1.68;
+    }
+
+    /* ============ FOOTER (NAVY PROFUNDO ORIGINAL) ============ */
+    footer {
+      background: #0E141C;
+      color: var(--on-sunk-2);
+      border-top: 1px solid rgba(201, 164, 78, 0.25);
+      padding-block: clamp(52px, 7vw, 76px);
+      font-size: 0.9rem;
+      line-height: 1.68;
+    }
+    footer .mark {
+      color: #FFFFFF;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      display: block;
+    }
+    footer .mark span {
+      color: var(--accent-line);
+    }
+    footer .wide {
+      display: grid;
+      gap: 18px;
+    }
+    footer a {
+      color: var(--accent-line);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .legal {
+      font-size: 0.84rem;
+      color: #7D8D9F;
+      line-height: 1.65;
+      max-width: 74ch;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOPBAR (BRANCO PURO) -->
+  <header class="topbar">
+    <div class="wide">
+      <a href="#" class="brand-link" title="E Quando o Amor Acaba">
+        <img src="marca/logo-oficial.png" alt="E Quando o Amor Acaba — Mara Lazarini &amp; Giselli Louback" class="main-logo">
+      </a>
+      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+        <div class="top-pill">
+          <span class="top-pill-icon">★</span>
+          <span>Método Completo &amp; Livro Oficial</span>
+        </div>
+        <a class="btn btn-buy-gold" style="padding:10px 20px; font-size:0.85rem;" href="https://lastlink.com/p/C92C922A0/checkout-payment/">
+          Garantir Acesso (R$ 37)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- SEÇÃO 1: HERO (SLATE / GELO BENTO WIDE) -->
+    <section class="hero">
+      <div class="wide">
+        <div class="hero-bento">
+          
+          <!-- Card Principal Esquerdo -->
+          <div class="hero-card-main">
+            <div>
+              <p class="eyebrow">Método Autoral das Terapeutas Mara Lazarini &amp; Giselli Louback</p>
+              <h1 class="hero-title" style="margin-top:14px;">Você não precisa passar por essa dúvida sozinha.</h1>
+            </div>
+
+            <div class="oscillate">
+              <p>Hoje eu acho que devo terminar.</p>
+              <p>Amanhã eu acho que posso dar mais uma chance.</p>
+            </div>
+
+            <p class="lede">
+              Esse vai e vem não é fraqueza. É <strong>excesso de emoção sem organização</strong> — e enquanto ele durar, qualquer decisão que você tomar vai ser tomada no escuro.
+            </p>
+
+            <p class="lede">
+              O método <strong>E Quando o Amor Acaba?</strong> entrega o passo a passo prático para você descobrir se a relação ainda tem base ou se é o momento de encerrar com maturidade, romper a dependência emocional e reconstruir sua paz.
+            </p>
+
+            <div class="hero-price-tag">
+              <span>De <s>R$ 97,00</s> por apenas:</span>
+              <strong>7x de R$ 6,16</strong>
+              <span>ou R$ 37,00 à vista</span>
+            </div>
+
+            <div class="btn-row">
+              <a class="btn btn-buy-gold" href="https://lastlink.com/p/C92C922A0/checkout-payment/">
+                Quero Acesso Imediato ao Método →
+              </a>
+              <span class="btn-note">Acesso imediato · Vitalício · 7 dias de garantia incondicional</span>
+            </div>
+          </div>
+
+          <!-- Coluna Lateral Direita -->
+          <div class="hero-side">
+            <div class="hero-visual-card">
+              <img src="marca/autoras.jpg" alt="Mara Lazarini e Giselli Louback">
+              <div class="hero-visual-badge">
+                <span class="hero-visual-tag">Método Autoral &amp; Livro Oficial</span>
+                <span class="hero-visual-authors">Mara Lazarini &amp; Giselli Louback</span>
+              </div>
+            </div>
+
+            <div class="hero-mini-cards">
+              <div class="mini-card">
+                <h3>7 Módulos + Bônus</h3>
+                <p>Vídeos e áudios guiados para ouvir no seu ritmo e aplicar no dia a dia.</p>
+              </div>
+              <div class="mini-card">
+                <h3>Livro de 123 Páginas</h3>
+                <p>A obra digital completa em PDF com todos os 11 capítulos inclusos.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: SINAIS DE ALERTA (BRANCO PURO) -->
+    <section class="section-signals">
+      <div class="wide stack">
+        <div class="signals-header">
+          <span class="eyebrow">Sinais de Alerta</span>
+          <h2 class="signals-title">Se você reconhece estes pensamentos, sua mente está pedindo ordem</h2>
+          <p class="signals-lede">
+            Quando um relacionamento adoece, o primeiro lugar onde o dano aparece não é na briga. É na solidão de quem ainda está acompanhada.
+          </p>
+        </div>
+
+        <div class="signals-grid-6">
+          <div class="signal-card-box">
+            <span class="signal-box-num">01</span>
+            <p class="signal-box-text">Você passa o dia medindo o humor da outra pessoa para saber se pode falar ou se é melhor ficar em silêncio.</p>
+          </div>
+          <div class="signal-card-box">
+            <span class="signal-box-num">02</span>
+            <p class="signal-box-text">Toda tentativa de conversa vira discussão — ou pior, um silêncio frio que dura dias.</p>
+          </div>
+          <div class="signal-card-box">
+            <span class="signal-box-num">03</span>
+            <p class="signal-box-text">Você já não sabe se continua porque ama, ou porque tem medo de como seria a sua vida sozinha.</p>
+          </div>
+          <div class="signal-card-box">
+            <span class="signal-box-num">04</span>
+            <p class="signal-box-text">A pessoa que você ama hoje é muito diferente da pessoa que você conheceu no início.</p>
+          </div>
+          <div class="signal-card-box">
+            <span class="signal-box-num">05</span>
+            <p class="signal-box-text">Você sente que está vivendo no limite emocional, se anulando e se escondendo para manter a paz.</p>
+          </div>
+          <div class="signal-card-box">
+            <span class="signal-box-num">06</span>
+            <p class="signal-box-text">Mesmo quando as coisas parecem calmas, existe uma tensão constante no ar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3: SITUAÇÕES REAIS (DOURADO CHAMPANHE) -->
+    <section class="section-situations">
+      <div class="wide stack">
+        <h2 class="situations-title">Se você já passou por isso...</h2>
+
+        <div class="situations-grid-3">
+          <!-- Card 01 -->
+          <div class="situation-card">
+            <div class="situation-photo-circle">
+              <img src="marca/situacao-1.png" alt="Situação 01">
+            </div>
+            <span class="situation-num">01</span>
+            <p class="situation-text">
+              Você já chorou, se frustrou, prometeu que não ia aceitar mais... mas continuou?
+            </p>
+          </div>
+
+          <!-- Card 02 -->
+          <div class="situation-card">
+            <div class="situation-photo-circle">
+              <img src="marca/situacao-2.png" alt="Situação 02">
+            </div>
+            <span class="situation-num">02</span>
+            <p class="situation-text">
+              Você já decidiu que ia terminar... mas na hora não conseguiu?
+            </p>
+          </div>
+
+          <!-- Card 03 -->
+          <div class="situation-card">
+            <div class="situation-photo-circle">
+              <img src="marca/situacao-3.png" alt="Situação 03">
+            </div>
+            <span class="situation-num">03</span>
+            <p class="situation-text">
+              Você já percebeu que esse relacionamento não te faz bem... mas mesmo assim ficou?
+            </p>
+          </div>
+        </div>
+
+        <div class="situations-conclusion">
+          <p>
+            Se você respondeu <strong>sim para pelo menos uma dessas situações</strong>... Você não está sozinha. E mais importante: isso não está acontecendo por acaso.
+          </p>
+          <a class="btn btn-buy-gold" href="https://lastlink.com/p/C92C922A0/checkout-payment/">
+            Quero Libertar Minha Mente com o Método →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4: OS 7 MÓDULOS (SLATE SUAVE BENTO) -->
+    <section class="section-modules" id="modulos">
+      <div class="wide stack">
+        <div class="modules-header">
+          <span class="eyebrow">A Estrutura do Método</span>
+          <h2 class="modules-title">Sete módulos. Duas trilhas. Um destino: você inteira.</h2>
+          <p class="modules-lede">
+            Os módulos <strong>1 e 2 são de todas</strong> — é onde a confusão vira clareza e você descobre se é fase ou se é fim. A partir do módulo 3, você tem acesso aos dois caminhos: <strong>restaurar</strong> a relação com comunicação consciente, ou <strong>decidir e recomeçar</strong> sem recaídas.
+          </p>
+        </div>
+
+        <div class="modules-grid">
+          <!-- Módulo 1 -->
+          <div class="module-card">
+            <div class="module-top">
+              <span class="module-number">01</span>
+              <span class="module-badge badge-all">Todas</span>
+            </div>
+            <h3 class="module-card-title">Clareza emocional</h3>
+            <p class="module-card-desc">Quando a emoção está alta, a mente perde clareza. Aqui você para, respira e separa o que você realmente sente do que está acontecendo de verdade no dia a dia.</p>
+            <div class="module-card-footer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Vídeo · Áudio guiado · Exercício das 3 perguntas</span>
+            </div>
+          </div>
+
+          <!-- Módulo 2 -->
+          <div class="module-card">
+            <div class="module-top">
+              <span class="module-number">02</span>
+              <span class="module-badge badge-all">Todas</span>
+            </div>
+            <h3 class="module-card-title">Fase ou fim?</h3>
+            <p class="module-card-desc">Respeito, esforço mútuo e admiração. Se dois desses três pilares não existem mais, não é fase — e você precisa saber disso com honestidade antes de tomar qualquer decisão.</p>
+            <div class="module-card-footer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Vídeo · Áudio guiado · Teste dos 3 pilares</span>
+            </div>
+          </div>
+
+          <!-- Módulo 3 -->
+          <div class="module-card">
+            <div class="module-top">
+              <span class="module-number">03</span>
+              <span class="module-badge badge-recomeco">Trilha Decisão</span>
+            </div>
+            <h3 class="module-card-title">Dependência emocional</h3>
+            <p class="module-card-desc">Você continua porque ama — ou porque se acostumou? A diferença entre sentir falta da pessoa e sentir falta de como você se sentia com ela no início.</p>
+            <div class="module-card-footer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Vídeo · Áudio · PDF: Lista de Identificação de Dependência</span>
+            </div>
+          </div>
+
+          <!-- Módulo 4 -->
+          <div class="module-card">
+            <div class="module-top">
+              <span class="module-number">04</span>
+              <span class="module-badge badge-recomeco">Trilha Decisão</span>
+            </div>
+            <h3 class="module-card-title">A decisão</h3>
+            <p class="module-card-desc">Você está esperando certeza. Mas decisão emocional não vem com certeza — vem com honestidade e limites. Três perguntas clínicas que destravam a sua resposta definitiva.</p>
+            <div class="module-card-footer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Vídeo · Áudio · PDF: Checklist da Decisão</span>
+            </div>
+          </div>
+
+          <!-- Módulo 5 -->
+          <div class="module-card">
+            <div class="module-top">
+              <span class="module-number">05</span>
+              <span class="module-badge badge-recomeco">Trilha Decisão</span>
+            </div>
+            <h3 class="module-card-title">Como terminar</h3>
+            <p class="module-card-desc">Sem ataque, sem retrospectiva do relacionamento inteiro, sem justificativa longa e sem negociação. O roteiro exato e seguro para a conversa difícil.</p>
+            <div class="module-card-footer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Vídeo · Áudio · PDF: Guia de Conversa Difícil</span>
+            </div>
+          </div>
+
+          <!-- Módulo 6 -->
+          <div class="module-card">
+            <div class="module-top">
+              <span class="module-number">06</span>
+              <span class="module-badge badge-recomeco">Trilha Decisão</span>
+            </div>
+            <h3 class="module-card-title">Recaída emocional</h3>
+            <p class="module-card-desc">Depois vem a saudade, a idealização e a ilusão de que "talvez não fosse tão ruim". Isso tem nome: abstinência emocional. E tem plano prático de contenção.</p>
+            <div class="module-card-footer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Vídeo · Áudio · PDF: Plano Anti-Recaída</span>
+            </div>
+          </div>
+
+          <!-- Módulo 7 -->
+          <div class="module-card">
+            <div class="module-top">
+              <span class="module-number">07</span>
+              <span class="module-badge badge-all">Todas</span>
+            </div>
+            <h3 class="module-card-title">Reconstrução</h3>
+            <p class="module-card-desc">Quem eu quero ser agora? O que eu não aceito mais em minha vida? Você não está recomeçando do zero — está recomeçando com maturidade e consciência.</p>
+            <div class="module-card-footer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Vídeo · Áudio · PDF: Plano de Nova Fase + Exercício 7 Dias</span>
+            </div>
+          </div>
+
+          <!-- Trilha Bônus: Restauração -->
+          <div class="module-card" style="border: 2px solid var(--accent-line); background: #FFFDF9;">
+            <div class="module-top">
+              <span class="module-number">★</span>
+              <span class="module-badge badge-restaura">Trilha Restauração</span>
+            </div>
+            <h3 class="module-card-title">Comunicação Restauradora</h3>
+            <p class="module-card-desc">Para quem ainda tem base: reconstruir a comunicação sem gerar briga, restaurar a admiração mútua, estabelecer novos acordos e reconectar a intimidade afetiva.</p>
+            <div class="module-card-footer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Aulas em vídeo · Roteiro de Diálogo · Desafio da Reconexão</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 5: A OFERTA & CHECKOUT (DEEP NAVY) -->
+    <section class="section-offer" id="oferta">
+      <div class="wide">
+        <div class="offer-box-main">
+          
+          <div class="offer-content-left">
+            <div>
+              <span class="eyebrow" style="color:var(--accent-line);">Acesso Completo &amp; Vitalício</span>
+              <h2 class="offer-title" style="margin-top:10px;">Não passe mais 30 dias no escuro emocional.</h2>
+            </div>
+            <p class="offer-desc">
+              Você não precisa continuar adiando a sua vida, tolerando o intolerável ou sofrendo em silêncio. As terapeutas Mara Lazarini e Giselli Louback estruturaram o método exato para você recuperar sua dignidade e clareza hoje.
+            </p>
+
+            <div class="offer-checklist">
+              <div class="offer-check-item">
+                <span class="check-gold-icon">✓</span>
+                <span><strong>Método Completo em 7 Módulos:</strong> Vídeo-aulas e áudios guiados com acesso imediato e vitalício.</span>
+              </div>
+              <div class="offer-check-item">
+                <span class="check-gold-icon">✓</span>
+                <span><strong>Livro Digital Oficial (123 páginas):</strong> A obra completa em PDF escrita por Mara Lazarini e Giselli Louback.</span>
+              </div>
+              <div class="offer-check-item">
+                <span class="check-gold-icon">✓</span>
+                <span><strong>5 Materiais de Apoio Práticos em PDF:</strong> Lista de Dependência, Checklist da Decisão, Guia de Conversa Difícil, Plano Anti-Recaída e Plano de Nova Fase.</span>
+              </div>
+              <div class="offer-check-item">
+                <span class="check-gold-icon">✓</span>
+                <span><strong>Exercício dos 7 Dias:</strong> Clareza, realidade, apego, decisão, ação, controle emocional e nova identidade — um dia por vez.</span>
+              </div>
+              <div class="offer-check-item">
+                <span class="check-gold-icon">✓</span>
+                <span><strong>Acesso às Duas Trilhas:</strong> Trilha de Restauração Afetiva e Trilha de Decisão e Recomeço Saudável.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="offer-card-price">
+            <span class="offer-price-old">De R$ 97,00 por apenas</span>
+            
+            <div class="offer-price-highlight">
+              <span class="offer-installments">Em até 7x de</span>
+              <div class="offer-big-price">
+                <span>R$</span>6,16
+              </div>
+              <span class="offer-cash-price">ou R$ 37,00 à vista</span>
+            </div>
+
+            <a class="btn btn-buy-gold" style="width:100%; font-size:1.05rem;" href="https://lastlink.com/p/C92C922A0/checkout-payment/">
+              Garantir Meu Acesso Agora →
+            </a>
+
+            <div class="offer-guarantee-badge">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span><strong>Garantia Blindada de 7 Dias:</strong> Se você não sentir clareza absoluta, devolvemos 100% do valor. O risco é todo nosso.</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 6: AS AUTORAS NO FINAL (DOURADO CHAMPANHE) -->
+    <section class="section-authors" id="autoras">
+      <div class="wide stack" style="gap: clamp(28px, 4vw, 44px);">
+        
+        <div class="authors-header">
+          <span class="eyebrow">Quem escreveu o método</span>
+          <h2 class="authors-title">Duas terapeutas dedicadas a devolver a sua clareza</h2>
+          <p class="authors-lede">
+            Não é teoria rasa de internet. É a vivência clínica diária de consultório que Mara Lazarini e Giselli Louback consolidaram no livro que escreveram juntas — agora estruturado em um método prático e acolhedor para apoiar sua decisão.
+          </p>
+        </div>
+
+        <div class="authors-bento-grid">
+          <!-- Card Giselli Louback -->
+          <article class="author-profile-card">
+            <div class="author-photo-wrapper">
+              <img src="marca/giselli.jpg" alt="Giselli Louback — Master Terapeuta TRG" class="author-photo" style="object-position: center 20%;">
+              <span class="author-badge-pill">Master Terapeuta TRG</span>
+            </div>
+            <div class="author-content">
+              <div class="author-identity">
+                <h3 class="author-name">Giselli Louback</h3>
+                <span class="author-specialty">Terapeuta Especialista em Padrões Emocionais</span>
+              </div>
+              <div class="author-highlight-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>+4.000 atendimentos clínicos realizados</span>
+              </div>
+              <p class="author-bio">
+                Especialista em transtornos emocionais e padrões repetitivos. Atua diretamente com ansiedade, traumas e bloqueios que fazem você viver em ciclos, mesmo sabendo que precisa mudar — exatamente o ponto onde muitas mulheres travam: saber o que precisa mudar e não conseguir sair do lugar.
+              </p>
+              <div class="author-books-box">
+                <span class="author-books-label">Livros e Obras publicadas:</span>
+                <span class="author-books-titles"><em>Se Deixe em Paz</em> · <em>Mente Blindada</em> · <em>E quando o amor acaba?</em></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card Mara Lazarini -->
+          <article class="author-profile-card">
+            <div class="author-photo-wrapper">
+              <img src="marca/mara.jpg" alt="Mara Lazarini — Master Terapeuta TRG" class="author-photo" style="object-position: center 15%;">
+              <span class="author-badge-pill">Master Terapeuta TRG</span>
+            </div>
+            <div class="author-content">
+              <div class="author-identity">
+                <h3 class="author-name">Mara Lazarini</h3>
+                <span class="author-specialty">Terapeuta Especialista em Traumas e Comportamento</span>
+              </div>
+              <div class="author-highlight-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>+25 anos de experiência clínica</span>
+              </div>
+              <p class="author-bio">
+                Especialista em traumas emocionais e comportamento humano, ajudando pessoas a romper padrões internos. Trabalha com mulheres que precisam desenvolver clareza emocional e se posicionar com mais segurança diante de relações que já não sustentam quem elas são hoje.
+              </p>
+              <div class="author-books-box">
+                <span class="author-books-label">Livros e Obras publicadas:</span>
+                <span class="author-books-titles"><em>Mentes Livres</em> · <em>E quando o amor acaba?</em></span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Citação Institucional do Livro -->
+        <div class="authors-pull-quote">
+          <div class="pull-quote-icon">“</div>
+          <blockquote class="pull-quote-text">
+            "Que este livro seja um farol na sua jornada, iluminando o caminho para um entendimento mais profundo de si mesma."
+          </blockquote>
+          <span class="pull-quote-cite">— Trecho da introdução oficial do livro <em>E quando o amor acaba?</em></span>
+        </div>
+
+        <div class="authors-bottom-cta">
+          <a class="btn btn-buy-gold" href="https://lastlink.com/p/C92C922A0/checkout-payment/">
+            Quero Começar o Método Agora (R$ 37) →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEÇÃO 7: PERGUNTAS FREQUENTES / FAQ (BRANCO PURO) -->
+    <section class="section-faq" id="faq">
+      <div class="wide stack">
+        <div class="faq-header">
+          <span class="eyebrow">Dúvidas Comuns</span>
+          <h2 class="faq-title">Perguntas que sempre chegam</h2>
+        </div>
+
+        <div class="faq-list">
+          <details open>
+            <summary>Esse método é para salvar o relacionamento ou para terminar?</summary>
+            <p>Para os dois caminhos. Ninguém deveria escolher um desses rumos no desespero ou no impulso. Os módulos 1 e 2 dão a clareza para você saber se é uma fase que pode ser curada ou se é o fim; em seguida, você tem acesso às duas trilhas: o passo a passo para restaurar ou o plano para decidir, conversar e recomeçar em paz.</p>
+          </details>
+          <details>
+            <summary>E se eu ainda não souber o que eu quero?</summary>
+            <p>Então este é exatamente o seu lugar. O método não foi feito para quem já tem todas as respostas — foi feito exatamente para quem está no meio da oscilação, cansada de pensar dia e noite sem chegar a lugar nenhum.</p>
+          </details>
+          <details>
+            <summary>Meu parceiro precisa participar?</summary>
+            <p>Não. Tudo aqui é feito por você e para você. Inclusive a trilha de restauração trabalha o que você pode mudar na dinâmica do relacionamento. O método também aborda especificamente como agir quando só um dos dois parece querer lutar.</p>
+          </details>
+          <details>
+            <summary>Quanto tempo leva para concluir?</summary>
+            <p>Cada módulo tem aulas práticas e diretas de cerca de 15 minutos em vídeo e áudio guiado, mais exercícios rápidos em PDF. Você pode fazer no ritmo do Exercício dos 7 Dias ou no seu próprio tempo, pois o acesso é vitalício.</p>
+          </details>
+          <details>
+            <summary>Como recebo o acesso após o pagamento?</summary>
+            <p>Assim que o pagamento for aprovado (cartão de crédito ou PIX), você recebe imediatamente no seu e-mail os dados de acesso à plataforma com todas as vídeo-aulas, áudios e o livro digital oficial em PDF para baixar.</p>
+          </details>
+          <details>
+            <summary>Como funciona a garantia incondicional?</summary>
+            <p>Você tem 7 dias completos a partir da compra para experimentar todo o material. Se por qualquer razão você sentir que o método não é para você, basta solicitar o reembolso e você receberá 100% do seu dinheiro de volta, sem burocracia.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (DEEP NAVY CLÁSSICO) -->
+  <footer>
+    <div class="wide">
+      <span class="mark">E quando o amor <span>acaba?</span></span>
+      <p>Um método de clareza emocional, decisão e reconstrução, criado a partir do livro de Mara Lazarini e Giselli Louback.</p>
+      <p class="legal">
+        O conteúdo deste método e livro são ferramentas de consciência emocional e apoio à tomada de decisão. Não constituem atendimento psicológico individual, psiquiátrico ou jurídico, e não substituem acompanhamento profissional.
+        <br><br>
+        Se você vive situações de violência física, psicológica, patrimonial, sexual ou moral, ligue <strong>180</strong> (Central de Atendimento à Mulher, gratuito e 24h) ou <strong>190</strong> em caso de emergência. Se estiver em sofrimento emocional grave, o <a href="https://www.cvv.org.br" target="_blank" rel="noopener">CVV</a> atende no <strong>188</strong>, 24 horas, gratuitamente.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,3537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E Quando o Amor Acaba? | Diagnóstico e Método</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============ DESIGN TOKENS (PALETA OFICIAL + CLEAN BENTO) ============ */
+    :root {
+      /* Ardósia / Cinza-azulado original */
+      --ground: #E7EBF0;
+      --surface: #FFFFFF;
+      --surface-2: #F0F4F8;
+      --surface-hover: #E7EEF5;
+      
+      /* Tipografia / Textos */
+      --ink: #0E141C;
+      --ink-2: #3D4C5F;
+      --ink-3: #6B7C90;
+      --ink-muted: #8C9CAE;
+      
+      /* Dourado / Ouro clássico original */
+      --accent: #8C6414;
+      --accent-hover: #75520E;
+      --accent-line: #C9A44E;
+      --accent-soft: #F4EAD6;
+      --accent-glow: rgba(201, 164, 78, 0.2);
+
+      /* Deep Navy sofisticado */
+      --sunk: #1B2735;
+      --sunk-2: #233144;
+      --on-sunk: #EDF1F5;
+      --on-sunk-2: #A7B6C7;
+
+      /* Linhas & Divisões */
+      --rule: #CBD4DE;
+      --rule-soft: #E2E8F0;
+      --rule-sunk: #2C3C50;
+
+      /* Feedback */
+      --good: #2F6B52;
+      --good-bg: #DFEBE5;
+      --warn: #96651A;
+      --warn-bg: #F3E7CE;
+      --alert: #9C3A2A;
+      --alert-bg: #F2DCD7;
+      --calm: #455076;
+      --calm-bg: #E0E3EE;
+
+      /* Geometria & Sombras */
+      --shadow-clean: 0 8px 30px -4px rgba(14, 20, 28, 0.05), 0 2px 6px rgba(14, 20, 28, 0.03);
+      --shadow-card-hover: 0 16px 40px -4px rgba(14, 20, 28, 0.09), 0 4px 10px rgba(14, 20, 28, 0.04);
+      --radius-card: 28px;
+      --radius-sm: 20px;
+      --radius-btn: 12px;
+      --font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --widew: min(1600px, 95vw);
+      --maxw: min(1120px, 92vw);
+    }
+
+    /* ============ BASE RESET ============ */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--ground);
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: 16.5px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.035em;
+      line-height: 1.14;
+      text-wrap: balance;
+    }
+
+    h1 { font-size: clamp(2.3rem, 4.8vw, 3.6rem); }
+    h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+    h3 { font-size: 1.35rem; }
+    p { margin: 0; color: var(--ink-2); }
+    a { color: inherit; text-decoration: none; }
+    strong { font-weight: 700; color: var(--ink); }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: 24px; }
+    .wide { max-width: var(--widew); width: 100%; margin-inline: auto; padding-inline: clamp(20px, 3.5vw, 44px); }
+    .stack { display: flex; flex-direction: column; }
+
+    /* ============ CONTROLE DE VIEWS / FOLHAS DO FUNIL ============ */
+    .app-view { display: none; }
+    .app-view.is-active { display: block; }
+    @media (prefers-reduced-motion: no-preference){
+      .app-view.is-active{ animation: viewIn .42s cubic-bezier(.22,1,.36,1) both; }
+      @keyframes viewIn{ from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+    }
+
+    /* ============ EYEBROW & BADGES ============ */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    /* Linha do eyebrow removida */
+
+    .top-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      padding: 7px 18px 7px 10px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+      box-shadow: var(--shadow-clean);
+    }
+    .top-pill-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+
+    .lede {
+      font-size: 1.1rem;
+      color: var(--ink-2);
+      line-height: 1.68;
+    }
+    .muted {
+      color: var(--ink-3);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* ============ BOTÕES ============ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      padding: 16px 30px;
+      border: none;
+      cursor: pointer;
+      background: var(--accent);
+      color: #FFFFFF !important;
+      border-radius: var(--radius-btn);
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(140, 100, 20, 0.25);
+    }
+    .btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(140, 100, 20, 0.35);
+    }
+    .btn:active {
+      transform: translateY(0);
+    }
+    .btn-ghost {
+      background: var(--surface);
+      color: var(--accent) !important;
+      border: 1.5px solid var(--accent);
+      box-shadow: none;
+    }
+    .btn-ghost:hover {
+      background: var(--accent-soft);
+      box-shadow: none;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+    .btn-note {
+      font-size: 0.86rem;
+      color: var(--ink-3);
+      font-weight: 500;
+    }
+
+    /* ============ HEADER / TOPBAR (BRANCO PURO) ============ */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--rule-soft);
+      padding-top: 18px;
+      padding-bottom: 18px;
+      position: relative;
+      z-index: 20;
+    }
+    .topbar .wide {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .main-logo {
+      height: 56px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+    .main-logo:hover {
+      transform: scale(1.02);
+    }
+    @media (max-width: 768px) {
+      .topbar {
+        display: none !important;
+      }
+    }
+
+    /* ============ SEÇÃO 1: HERO (SLATE / GELO BENTO WIDE) ============ */
+    .hero {
+      background-color: var(--ground);
+      background-image: 
+        radial-gradient(ellipse 70% 50% at 85% 15%, rgba(201, 164, 78, 0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 15% 85%, rgba(27, 39, 53, 0.05) 0%, transparent 60%);
+      border-bottom: 1px solid var(--rule);
+      padding-top: clamp(28px, 4.5vw, 48px);
+      padding-bottom: clamp(40px, 5.5vw, 68px);
+    }
+    .hero-bento {
+      display: grid;
+      grid-template-columns: 1.42fr 1fr;
+      gap: clamp(20px, 2.5vw, 36px);
+      align-items: stretch;
+    }
+    @media (max-width: 980px) {
+      .hero-bento {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-card-main {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      padding: clamp(36px, 4.5vw, 56px);
+      box-shadow: var(--shadow-clean);
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+    }
+    .hero-title {
+      font-size: clamp(2.3rem, 4.2vw, 3.7rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+
+    /* ============ CICLO DE OSCILAÇÃO (SEPARADO COM ANIMAÇÃO ALTERNADA) ============ */
+    .oscillate-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--rule-soft);
+      border-radius: var(--radius-sm);
+      padding: clamp(14px, 2vw, 18px);
+      box-shadow: 0 4px 16px rgba(14, 20, 28, 0.04);
+    }
+    .oscillate-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+    .oscillate-pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: oscillatePulse 1.8s infinite ease-in-out;
+    }
+    .oscillate-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+    }
+    @media (max-width: 680px) {
+      .oscillate-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .oscillate-switch-icon {
+        transform: rotate(90deg);
+        margin: 2px auto;
+      }
+    }
+    .oscillate-card {
+      border-radius: 16px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1.5px solid transparent;
+      transition: all 0.35s ease;
+      cursor: default;
+    }
+    .oscillate-wrapper:hover .oscillate-card {
+      opacity: 1 !important;
+    }
+    .oscillate-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .oscillate-badge {
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      transition: all 0.35s ease;
+    }
+    .oscillate-state-icon {
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+    .oscillate-phrase {
+      font-size: clamp(0.96rem, 1.8vw, 1.06rem);
+      font-weight: 700;
+      line-height: 1.42;
+      margin: 0;
+      transition: color 0.35s ease;
+    }
+    .oscillate-switch-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--rule-soft);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      animation: oscillateIconCycle 4.5s infinite ease-in-out;
+    }
+
+    /* Animação Card 1: Hoje / Terminar (Alerta / Terracota) */
+    .oscillate-card-term {
+      animation: oscillateCardTerm 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .oscillate-card-term .oscillate-badge {
+      animation: oscillateBadgeTerm 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .oscillate-card-term .oscillate-phrase {
+      animation: oscillatePhraseTerm 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Animação Card 2: Amanhã / Mais uma chance (Restauração / Verde) */
+    .oscillate-card-stay {
+      animation: oscillateCardStay 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .oscillate-card-stay .oscillate-badge {
+      animation: oscillateBadgeStay 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .oscillate-card-stay .oscillate-phrase {
+      animation: oscillatePhraseStay 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes oscillateCardTerm {
+      0%, 42% {
+        background-color: #FDF1EF;
+        border-color: #E29388;
+        box-shadow: 0 8px 24px -4px rgba(217, 83, 79, 0.22);
+        opacity: 1;
+        transform: translateY(-2px);
+      }
+      50%, 92% {
+        background-color: #FFFFFF;
+        border-color: var(--rule-soft);
+        box-shadow: none;
+        opacity: 0.58;
+        transform: translateY(0);
+      }
+      100% {
+        background-color: #FDF1EF;
+        border-color: #E29388;
+        box-shadow: 0 8px 24px -4px rgba(217, 83, 79, 0.22);
+        opacity: 1;
+        transform: translateY(-2px);
+      }
+    }
+
+    @keyframes oscillateBadgeTerm {
+      0%, 42% {
+        background-color: #C23829;
+        color: #FFFFFF;
+      }
+      50%, 92% {
+        background-color: #E2E8F0;
+        color: var(--ink-3);
+      }
+      100% {
+        background-color: #C23829;
+        color: #FFFFFF;
+      }
+    }
+
+    @keyframes oscillatePhraseTerm {
+      0%, 42% {
+        color: #801C12;
+      }
+      50%, 92% {
+        color: var(--ink-3);
+      }
+      100% {
+        color: #801C12;
+      }
+    }
+
+    @keyframes oscillateCardStay {
+      0%, 42% {
+        background-color: #FFFFFF;
+        border-color: var(--rule-soft);
+        box-shadow: none;
+        opacity: 0.58;
+        transform: translateY(0);
+      }
+      50%, 92% {
+        background-color: #EDF7F2;
+        border-color: #6EB293;
+        box-shadow: 0 8px 24px -4px rgba(47, 107, 82, 0.22);
+        opacity: 1;
+        transform: translateY(-2px);
+      }
+      100% {
+        background-color: #FFFFFF;
+        border-color: var(--rule-soft);
+        box-shadow: none;
+        opacity: 0.58;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes oscillateBadgeStay {
+      0%, 42% {
+        background-color: #E2E8F0;
+        color: var(--ink-3);
+      }
+      50%, 92% {
+        background-color: #245A43;
+        color: #FFFFFF;
+      }
+      100% {
+        background-color: #E2E8F0;
+        color: var(--ink-3);
+      }
+    }
+
+    @keyframes oscillatePhraseStay {
+      0%, 42% {
+        color: var(--ink-3);
+      }
+      50%, 92% {
+        color: #16402E;
+      }
+      100% {
+        color: var(--ink-3);
+      }
+    }
+
+    @keyframes oscillateIconCycle {
+      0%, 42% {
+        color: #C23829;
+        border-color: #E29388;
+        transform: scale(1.08);
+      }
+      50%, 92% {
+        color: #245A43;
+        border-color: #6EB293;
+        transform: scale(1.08) rotate(180deg);
+      }
+      100% {
+        color: #C23829;
+        border-color: #E29388;
+        transform: scale(1.08);
+      }
+    }
+
+    @keyframes oscillatePulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .oscillate-card-term,
+      .oscillate-card-stay,
+      .oscillate-badge,
+      .oscillate-phrase,
+      .oscillate-switch-icon,
+      .oscillate-pulse-dot {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .oscillate-card-term {
+        background-color: #FDF1EF;
+        border-color: #E29388;
+      }
+      .oscillate-card-term .oscillate-badge {
+        background-color: #C23829;
+        color: #FFFFFF;
+      }
+      .oscillate-card-term .oscillate-phrase {
+        color: #801C12;
+      }
+      .oscillate-card-stay {
+        background-color: #EDF7F2;
+        border-color: #6EB293;
+      }
+      .oscillate-card-stay .oscillate-badge {
+        background-color: #245A43;
+        color: #FFFFFF;
+      }
+      .oscillate-card-stay .oscillate-phrase {
+        color: #16402E;
+      }
+    }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(16px, 2vw, 24px);
+    }
+    .hero-visual-card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-clean);
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .hero-visual-card img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
+    }
+
+    /* ============ FOTO DAS AUTORAS NO MOBILE ============ */
+    .hero-mobile-photo {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .hero-mobile-photo {
+        display: block;
+        width: 100%;
+        max-width: 420px;
+        margin: 14px auto 18px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 16px 36px -6px rgba(14, 20, 28, 0.25), 0 0 0 1px rgba(201, 164, 78, 0.35);
+        background: #0E141C;
+      }
+      .hero-mobile-photo img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+      }
+      .hero-side .hero-visual-card {
+        display: none;
+      }
+    }
+    .hero-visual-badge {
+      padding: 18px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: var(--surface);
+      border-top: 1px solid var(--rule-soft);
+    }
+    .hero-visual-tag {
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
+    .hero-visual-authors {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .hero-mini-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(14px, 1.8vw, 22px);
+    }
+    .mini-card {
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: 24px 22px;
+      box-shadow: var(--shadow-clean);
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .mini-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .mini-card h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.025em;
+    }
+    .mini-card p {
+      font-size: 0.9rem;
+      color: var(--ink-2);
+      line-height: 1.55;
+    }
+
+    /* ============ SEÇÃO 2: SINAIS DE ALERTA (BRANCO PURO) ============ */
+    .section-signals {
+      background-color: #FFFFFF;
+      background-image: radial-gradient(circle at 50% 0%, rgba(240, 244, 248, 0.7) 0%, transparent 60%);
+      border-bottom: 1px solid var(--rule);
+      padding-top: clamp(48px, 6.5vw, 84px);
+      padding-bottom: clamp(56px, 7.5vw, 96px);
+    }
+    .signals-header {
+      max-width: 860px;
+      margin-bottom: clamp(28px, 4vw, 44px);
+    }
+    .signals-title {
+      font-size: clamp(2rem, 4.2vw, 3.1rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      margin-top: 10px;
+    }
+    .signals-lede {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: var(--ink-2);
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+    .signals-grid-6 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 2vw, 24px);
+    }
+    @media (max-width: 1080px) {
+      .signals-grid-6 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .signals-grid-6 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .signal-card-box {
+      background: var(--surface);
+      border: 1.5px solid var(--rule-soft);
+      border-radius: var(--radius-sm);
+      padding: clamp(22px, 3vw, 30px);
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: all 0.35s ease;
+      cursor: default;
+    }
+
+    /* Alternância de cores entre Dourado Champanhe e Branco */
+    .signals-grid-6 .signal-card-box:nth-child(odd) {
+      animation: signalPulseGold 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .signals-grid-6 .signal-card-box:nth-child(even) {
+      animation: signalPulseWhite 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    
+    /* Sincronização: os cards de sinais entram no scroll e iniciam a alternância contínua */
+    .js-anim .signals-grid-6 .signal-card-box {
+      animation: none;
+    }
+    .js-anim .signals-grid-6 .signal-card-box.in:nth-child(odd) {
+      animation: signalPulseGold 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      animation-delay: var(--d, 0ms);
+    }
+    .js-anim .signals-grid-6 .signal-card-box.in:nth-child(even) {
+      animation: signalPulseWhite 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      animation-delay: var(--d, 0ms);
+    }
+
+    .signals-grid-6:hover .signal-card-box {
+      animation-play-state: paused;
+    }
+    .signal-card-box:hover {
+      background-color: #FAF4E6 !important;
+      border-color: #C9A44E !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 16px 36px -6px rgba(201, 164, 78, 0.32) !important;
+    }
+
+    @keyframes signalPulseGold {
+      0%, 42% {
+        background-color: #FAF4E6;
+        border-color: #C9A44E;
+        box-shadow: 0 10px 28px -6px rgba(201, 164, 78, 0.28);
+        transform: translateY(-3px);
+      }
+      50%, 92% {
+        background-color: #FFFFFF;
+        border-color: var(--rule-soft);
+        box-shadow: 0 2px 8px rgba(14, 20, 28, 0.04);
+        transform: translateY(0);
+      }
+      100% {
+        background-color: #FAF4E6;
+        border-color: #C9A44E;
+        box-shadow: 0 10px 28px -6px rgba(201, 164, 78, 0.28);
+        transform: translateY(-3px);
+      }
+    }
+
+    @keyframes signalPulseWhite {
+      0%, 42% {
+        background-color: #FFFFFF;
+        border-color: var(--rule-soft);
+        box-shadow: 0 2px 8px rgba(14, 20, 28, 0.04);
+        transform: translateY(0);
+      }
+      50%, 92% {
+        background-color: #FAF4E6;
+        border-color: #C9A44E;
+        box-shadow: 0 10px 28px -6px rgba(201, 164, 78, 0.28);
+        transform: translateY(-3px);
+      }
+      100% {
+        background-color: #FFFFFF;
+        border-color: var(--rule-soft);
+        box-shadow: 0 2px 8px rgba(14, 20, 28, 0.04);
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .signals-grid-6 .signal-card-box:nth-child(odd),
+      .signals-grid-6 .signal-card-box:nth-child(even) {
+        animation: none !important;
+      }
+      .signals-grid-6 .signal-card-box:nth-child(odd) {
+        background-color: #FAF4E6;
+        border-color: #C9A44E;
+      }
+      .signals-grid-6 .signal-card-box:nth-child(even) {
+        background-color: #FFFFFF;
+        border-color: var(--rule-soft);
+      }
+    }
+    .signal-box-num {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--accent);
+      min-width: 1.7em;
+      line-height: 1.1;
+    }
+    .signal-box-text {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.52;
+    }
+
+    /* ============ SEÇÃO 3: SITUAÇÕES REAIS (DOURADO CHAMPANHE) ============ */
+    .section-situations {
+      background-color: #F8F5EE;
+      background-image: 
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201, 164, 78, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 85% 90%, rgba(140, 100, 20, 0.06) 0%, transparent 60%);
+      border-bottom: 1px solid #E3D7BE;
+      padding-top: clamp(48px, 6.5vw, 84px);
+      padding-bottom: clamp(56px, 7.5vw, 96px);
+      text-align: center;
+    }
+    .situations-title {
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      color: var(--ink);
+      font-style: italic;
+      letter-spacing: -0.03em;
+      margin-bottom: clamp(32px, 4.5vw, 52px);
+    }
+    .situations-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 2.5vw, 32px);
+      max-width: 1280px;
+      margin-inline: auto;
+    }
+    @media (max-width: 960px) {
+      .situations-grid-3 {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+      }
+    }
+    .situation-card {
+      background: linear-gradient(180deg, #9C201C 0%, #610E0E 100%);
+      color: #FFFFFF;
+      border-radius: 28px;
+      padding: clamp(32px, 4vw, 42px) clamp(22px, 3vw, 32px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 16px 36px -6px rgba(97, 14, 14, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .situation-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 46px -6px rgba(97, 14, 14, 0.5);
+    }
+    .situation-photo-circle {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3.5px solid #FFFFFF;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      flex-shrink: 0;
+      background: #FFFFFF;
+    }
+    .situation-photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .situation-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+    }
+    .situation-text {
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #FFFFFF;
+      text-wrap: balance;
+    }
+    .situations-conclusion {
+      max-width: 900px;
+      margin: clamp(36px, 5vw, 54px) auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .situations-conclusion p {
+      font-size: clamp(1.2rem, 2.6vw, 1.55rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.45;
+      text-wrap: balance;
+    }
+    .situations-conclusion p strong {
+      color: #B31D1D;
+    }
+
+    /* ============ SEÇÃO 4: AUTORAS NO FINAL (DEEP NAVY) ============ */
+    .section-authors {
+      background-color: var(--sunk);
+      background-image: 
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201, 164, 78, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 85% 90%, rgba(35, 49, 68, 0.6) 0%, transparent 60%);
+      color: var(--on-sunk);
+      border-bottom: 1px solid var(--rule-sunk);
+      padding-top: clamp(52px, 7vw, 88px);
+      padding-bottom: clamp(60px, 8vw, 100px);
+    }
+    .authors-header {
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto clamp(32px, 4.5vw, 48px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .authors-title {
+      font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+    }
+    .authors-lede {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: var(--on-sunk-2);
+      line-height: 1.62;
+    }
+    .authors-bento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 3.5vw, 40px);
+    }
+    @media (max-width: 920px) {
+      .authors-bento-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .author-profile-card {
+      background: var(--surface);
+      color: var(--ink);
+      border-radius: var(--radius-card);
+      box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.35);
+      border: 1.5px solid var(--rule);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .author-profile-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-line);
+      box-shadow: 0 24px 50px -8px rgba(0, 0, 0, 0.45);
+    }
+    .author-photo-wrapper {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      background: #EAE6DC;
+      overflow: hidden;
+    }
+    .author-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+    .author-profile-card:hover .author-photo {
+      transform: scale(1.02);
+    }
+    .author-badge-pill {
+      position: absolute;
+      bottom: 16px;
+      left: 20px;
+      background: rgba(27, 39, 53, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #F4EAD6;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      border: 1px solid rgba(201, 164, 78, 0.5);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .author-content {
+      padding: clamp(26px, 3.5vw, 38px);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+    .author-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .author-name {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .author-specialty {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .author-highlight-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--rule-soft);
+      padding: 10px 16px;
+      border-radius: var(--radius-btn);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .author-highlight-box svg {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .author-bio {
+      font-size: 0.98rem;
+      color: var(--ink-2);
+      line-height: 1.65;
+    }
+    .author-books-box {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule-soft);
+      font-size: 0.88rem;
+      color: var(--ink-3);
+      line-height: 1.5;
+    }
+    .author-books-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+    .author-books-titles {
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+    .authors-pull-quote {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-card);
+      padding: clamp(28px, 4vw, 42px);
+      border: 1px solid rgba(201, 164, 78, 0.3);
+      border-left: 5px solid var(--accent-line);
+      box-shadow: var(--shadow-clean);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      margin-top: 16px;
+    }
+    .pull-quote-icon {
+      font-size: 3.2rem;
+      line-height: 1;
+      color: var(--accent-line);
+      font-family: Georgia, serif;
+      font-weight: 700;
+      margin-bottom: -18px;
+    }
+    .pull-quote-text {
+      font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.48;
+      letter-spacing: -0.02em;
+      font-style: italic;
+    }
+    .pull-quote-cite {
+      font-size: 0.9rem;
+      color: var(--on-sunk-2);
+      font-weight: 600;
+    }
+    .authors-bottom-cta {
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ============ FOOTER (NAVY PROFUNDO ORIGINAL) ============ */
+    footer {
+      background: #0E141C;
+      color: var(--on-sunk-2);
+      border-top: 1px solid rgba(201, 164, 78, 0.25);
+      padding-block: clamp(52px, 7vw, 76px);
+      font-size: 0.9rem;
+      line-height: 1.68;
+    }
+    footer .mark {
+      color: #FFFFFF;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      display: block;
+    }
+    footer .mark span {
+      color: var(--accent-line);
+    }
+    footer .wide {
+      display: grid;
+      gap: 18px;
+    }
+    footer a {
+      color: var(--accent-line);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .legal {
+      font-size: 0.84rem;
+      color: #7D8D9F;
+      line-height: 1.65;
+      max-width: 74ch;
+    }
+
+    /* ============ FOLHA 2: IDENTIFICAÇÃO (VIEW DEDICADA) ============ */
+    .view-identificacao-wrap {
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-block: clamp(40px, 6vw, 72px);
+      background-color: var(--ground);
+      background-image: 
+        radial-gradient(ellipse 70% 50% at 85% 15%, rgba(201, 164, 78, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 15% 85%, rgba(27, 39, 53, 0.05) 0%, transparent 60%);
+    }
+    .lead-sheet-card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      box-shadow: 0 20px 50px -10px rgba(14, 20, 28, 0.12), 0 2px 8px rgba(14, 20, 28, 0.04);
+      border: 1px solid var(--rule);
+      max-width: 580px;
+      width: 100%;
+      padding: clamp(32px, 5vw, 48px);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      position: relative;
+    }
+    .back-to-landing-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink-3);
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.15s ease;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      align-self: flex-start;
+    }
+    .back-to-landing-btn:hover {
+      color: var(--ink);
+    }
+    .lead-sheet-header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .lead-sheet-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 1px solid var(--accent-line);
+      align-self: flex-start;
+    }
+    .lead-sheet-title {
+      font-size: clamp(1.6rem, 3.4vw, 2rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.18;
+    }
+    .lead-sheet-desc {
+      color: var(--ink-2);
+      font-size: 0.96rem;
+      line-height: 1.58;
+    }
+    .lead-form-box {
+      display: grid;
+      gap: 18px;
+      background: var(--surface-2);
+      padding: clamp(20px, 3.5vw, 26px);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--rule-soft);
+    }
+    .lead-field-group {
+      display: grid;
+      gap: 8px;
+    }
+    .lead-label {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .lead-req {
+      color: var(--alert);
+      font-weight: 800;
+      font-size: 0.78rem;
+    }
+    .lead-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .lead-input-icon {
+      position: absolute;
+      left: 16px;
+      color: var(--ink-muted);
+      pointer-events: none;
+      transition: color 0.2s ease;
+    }
+    .lead-input {
+      width: 100%;
+      height: 54px;
+      padding: 0 16px 0 48px;
+      font-family: var(--font);
+      font-size: 1.02rem;
+      color: var(--ink);
+      background: #FFFFFF;
+      border: 1.5px solid var(--rule);
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+    .lead-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(140, 100, 20, 0.15);
+    }
+    .lead-input-wrap:focus-within .lead-input-icon {
+      color: var(--accent);
+    }
+    .lead-input.is-invalid {
+      border-color: var(--alert) !important;
+      background: #FFF8F8;
+    }
+    .lead-hint {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+    .lead-error-box {
+      background: var(--alert-bg);
+      color: var(--alert);
+      border: 1px solid rgba(156, 58, 42, 0.3);
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      line-height: 1.4;
+    }
+    .btn-lead-submit {
+      width: 100%;
+      height: 56px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--accent) 0%, #73500E 100%);
+      color: #FFFFFF;
+      border-radius: var(--radius-btn);
+      box-shadow: 0 6px 22px rgba(140, 100, 20, 0.28);
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s ease;
+    }
+    .btn-lead-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(140, 100, 20, 0.38);
+    }
+    .lead-security-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--ink-2);
+      text-align: center;
+      margin-top: 6px;
+    }
+    .lead-active-user-box {
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-line);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 0.92rem;
+      color: var(--ink);
+    }
+    .lead-active-user-box strong {
+      color: var(--accent);
+    }
+    .lead-change-btn {
+      background: none;
+      border: none;
+      color: var(--ink-2);
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0;
+    }
+
+    /* ============ FOLHA 3: DIAGNÓSTICO (QUIZ VIEW) ============ */
+    .view-quiz-wrap {
+      padding-top: clamp(32px, 5vw, 56px);
+      padding-bottom: clamp(52px, 7vw, 84px);
+      background-color: #FFFFFF;
+      background-image: radial-gradient(circle at 50% 0%, rgba(240, 244, 248, 0.7) 0%, transparent 60%);
+      min-height: 90vh;
+    }
+    .quiz-top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .panel {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-clean);
+      border: 1px solid var(--rule);
+      overflow: hidden;
+    }
+    .progress {
+      height: 6px;
+      background: var(--rule-soft);
+    }
+    .progress span {
+      display: block;
+      height: 100%;
+      background: var(--accent-line);
+      border-radius: 0 4px 4px 0;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .panel-head {
+      padding: clamp(24px, 3.5vw, 34px) clamp(28px, 4vw, 48px) clamp(18px, 2.5vw, 24px);
+      border-bottom: 1px solid var(--rule-soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .stage-name {
+      font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+    }
+    .stage-sub {
+      font-size: 0.98rem;
+      color: var(--ink-2);
+      margin-top: 4px;
+    }
+    .stage-count {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 800;
+      background: var(--accent-soft);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 1px solid var(--accent-line);
+    }
+    .qlist {
+      padding: clamp(14px, 2.5vw, 24px) clamp(28px, 4vw, 48px) clamp(24px, 3vw, 36px);
+    }
+    .q {
+      padding-block: 22px;
+      border-bottom: 1px solid var(--rule-soft);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 32px;
+    }
+    @media (max-width: 980px) {
+      .q {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
+    .q:last-child {
+      border-bottom: none;
+    }
+    .q-text {
+      display: flex;
+      gap: 12px;
+      font-size: 1.06rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    .q-num {
+      color: var(--accent);
+      font-weight: 800;
+      min-width: 1.8em;
+    }
+    .scale {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      width: 480px;
+      max-width: 100%;
+    }
+    @media (max-width: 980px) {
+      .scale {
+        width: 100%;
+        max-width: 520px;
+      }
+    }
+    @media (max-width: 600px) {
+      .scale {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 320px;
+      }
+    }
+    .scale label {
+      position: relative;
+      cursor: pointer;
+    }
+    .scale input {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      cursor: pointer;
+    }
+    .scale span {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 4px;
+      border: 1.5px solid var(--rule);
+      border-radius: var(--radius-btn);
+      background: var(--surface-2);
+      color: var(--ink-2);
+      font-size: 1.02rem;
+      font-weight: 700;
+      transition: all 0.15s ease;
+    }
+    .scale span small {
+      font-size: 0.62rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
+      opacity: 0.8;
+    }
+    .scale label:hover span {
+      border-color: var(--accent-line);
+      background: var(--surface);
+      color: var(--ink);
+      transform: translateY(-1px);
+    }
+    .scale input:focus-visible + span {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .scale input:checked + span {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF !important;
+      box-shadow: 0 4px 12px rgba(140, 100, 20, 0.28);
+    }
+    .panel-foot {
+      padding: 22px clamp(28px, 4vw, 48px);
+      border-top: 1px solid var(--rule-soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      background: var(--surface-2);
+    }
+    .link-back {
+      background: none;
+      border: none;
+      color: var(--ink-2);
+      font-family: var(--font);
+      font-size: 0.94rem;
+      cursor: pointer;
+      padding: 8px 12px;
+      font-weight: 700;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+    }
+    .link-back:hover {
+      color: var(--ink);
+      background: rgba(0,0,0,0.04);
+    }
+    .foot-warn {
+      font-size: 0.92rem;
+      color: var(--alert);
+      font-weight: 700;
+    }
+
+    /* ============ FOLHA 4: RESULTADO (VIEW DEDICADA) ============ */
+    .view-result-wrap {
+      padding-top: clamp(36px, 5vw, 64px);
+      padding-bottom: clamp(56px, 7vw, 92px);
+      background-color: var(--ground);
+      background-image: 
+        radial-gradient(ellipse 70% 50% at 50% 20%, rgba(201, 164, 78, 0.1) 0%, transparent 60%);
+      min-height: 90vh;
+    }
+    .verdict {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-clean);
+      border: 1px solid var(--rule);
+      overflow: hidden;
+    }
+    .verdict-top {
+      padding: 36px 36px 26px;
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 9999px;
+    }
+    .badge svg { width: 16px; height: 16px; flex: none; }
+    .b-good { background: var(--good-bg); color: var(--good); }
+    .b-warn { background: var(--warn-bg); color: var(--warn); }
+    .b-alert { background: var(--alert-bg); color: var(--alert); }
+    .b-calm { background: var(--calm-bg); color: var(--calm); }
+    .verdict-top h3 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      margin-top: 16px;
+      letter-spacing: -0.03em;
+    }
+    .verdict-top .lede {
+      margin-top: 12px;
+    }
+
+    .meters {
+      padding: clamp(28px, 3.5vw, 36px) clamp(28px, 4vw, 48px);
+      display: grid;
+      gap: 20px;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .meters-title {
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--ink-3);
+      margin-bottom: 4px;
+    }
+    #meters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 18px 36px;
+    }
+    .meter {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 6px 14px;
+      align-items: baseline;
+    }
+    .meter-label {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .meter-val {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+    .meter-val em {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--ink-3);
+      margin-left: 8px;
+    }
+    .meter-track {
+      grid-column: 1 / -1;
+      height: 9px;
+      background: var(--rule-soft);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .meter-fill {
+      display: block;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 9999px;
+      transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .verdict-body {
+      padding: 32px 36px 36px;
+      display: grid;
+      gap: 24px;
+    }
+    .do-list {
+      display: grid;
+      gap: 12px;
+      list-style: none;
+    }
+    .do-list li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      font-size: 1.02rem;
+      line-height: 1.55;
+      color: var(--ink-2);
+      font-weight: 500;
+    }
+    .do-list li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+    .track-tag {
+      border-left: 4px solid var(--accent);
+      padding: 10px 0 10px 20px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--ink-2);
+      background: var(--surface-2);
+      border-radius: 0 14px 14px 0;
+    }
+    .track-tag b {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+
+    .safety {
+      background: var(--alert-bg);
+      border: 1px solid var(--alert);
+      border-radius: var(--radius-sm);
+      padding: 22px;
+      display: grid;
+      gap: 10px;
+    }
+    .safety h4 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--alert);
+    }
+    .safety p {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--ink-2);
+    }
+
+    .urgency-risk-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 8px;
+    }
+    .urgency-risk-tag.risk-high {
+      background: var(--alert-bg);
+      color: var(--alert);
+      border: 1px solid rgba(156, 58, 42, 0.3);
+    }
+    .urgency-risk-tag.risk-warn {
+      background: var(--warn-bg);
+      color: var(--warn);
+      border: 1px solid rgba(150, 101, 26, 0.3);
+    }
+    .urgency-risk-tag.risk-calm {
+      background: var(--calm-bg);
+      color: var(--calm);
+      border: 1px solid rgba(69, 80, 118, 0.3);
+    }
+    .urgency-risk-tag.risk-good {
+      background: var(--good-bg);
+      color: var(--good);
+      border: 1px solid rgba(47, 107, 82, 0.3);
+    }
+
+    .urgency-block {
+      background: #FFFDF9;
+      border: 1.5px solid var(--accent-line);
+      border-radius: var(--radius-sm);
+      padding: 24px 28px;
+      display: grid;
+      gap: 12px;
+      box-shadow: 0 4px 16px rgba(140, 100, 20, 0.06);
+    }
+    .urgency-block-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.02em;
+    }
+    .urgency-block p {
+      color: var(--ink-2);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+    .urgency-points {
+      display: grid;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .urgency-point {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    /* Card de Prescrição & Oferta Imediata no Resultado */
+    .result-cta-card {
+      background: linear-gradient(145deg, #1B2735 0%, #101824 100%);
+      color: #EDF1F5;
+      border-radius: var(--radius-card);
+      padding: clamp(30px, 5vw, 44px);
+      box-shadow: 0 16px 40px -6px rgba(14, 20, 28, 0.3);
+      display: grid;
+      gap: 24px;
+      position: relative;
+      overflow: hidden;
+      border: 1.5px solid var(--accent-line);
+      margin-top: 6px;
+    }
+    .result-cta-card::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 164, 78, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .result-cta-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .result-cta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      align-self: flex-start;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #F4EAD6;
+      background: rgba(201, 164, 78, 0.2);
+      border: 1px solid rgba(201, 164, 78, 0.4);
+      padding: 6px 14px;
+      border-radius: 9999px;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #C9A44E;
+      box-shadow: 0 0 0 0 rgba(201, 164, 78, 0.7);
+      animation: pulse-ring 1.8s infinite;
+    }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(201, 164, 78, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(201, 164, 78, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(201, 164, 78, 0); }
+    }
+    .result-cta-title {
+      color: #FFFFFF;
+      font-size: clamp(1.6rem, 3.8vw, 2.2rem);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .result-cta-desc {
+      color: #B2C0D1;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .result-cta-checklist {
+      display: grid;
+      gap: 12px;
+      padding-block: 8px;
+      border-block: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .result-cta-check {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.98rem;
+      color: #EDF1F5;
+      font-weight: 600;
+    }
+    .result-cta-check span.check-icon {
+      color: var(--accent-line);
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .result-cta-pricing-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .result-cta-price-box {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .result-cta-price-old {
+      font-size: 0.92rem;
+      color: #8C9CAE;
+      text-decoration: line-through;
+    }
+    .result-cta-price-now {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .result-cta-price-now small {
+      font-size: 1rem;
+      color: #B2C0D1;
+      font-weight: 600;
+    }
+    .result-cta-price-now b {
+      font-size: clamp(2.4rem, 6vw, 3.2rem);
+      color: #FFFFFF;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .result-cta-price-now em {
+      font-style: normal;
+      font-size: 0.95rem;
+      color: var(--accent-line);
+      font-weight: 700;
+    }
+    .btn-buy-now {
+      background: linear-gradient(135deg, #C9A44E 0%, #8C6414 100%);
+      color: #FFFFFF !important;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 18px 34px;
+      border-radius: var(--radius-btn);
+      box-shadow: 0 6px 24px rgba(201, 164, 78, 0.4);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+    }
+    .btn-buy-now:hover {
+      background: linear-gradient(135deg, #DDB964 0%, #A07418 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(201, 164, 78, 0.55);
+    }
+    .result-cta-guarantee {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: #8C9CAE;
+      line-height: 1.5;
+    }
+    .result-cta-guarantee strong {
+      color: #EDF1F5;
+    }
+
+    .exerc {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-clean);
+      padding: clamp(28px, 5vw, 42px);
+      display: grid;
+      gap: 20px;
+      border: 1px solid var(--rule);
+    }
+    .exerc ol {
+      list-style: none;
+      counter-reset: e;
+      display: grid;
+      gap: 0;
+    }
+    .exerc li {
+      counter-increment: e;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      padding-block: 15px;
+      border-bottom: 1px solid var(--rule-soft);
+      font-size: 1.12rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--ink);
+    }
+    .exerc li:last-child {
+      border-bottom: none;
+    }
+    .exerc li::before {
+      content: counter(e);
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--accent);
+      padding-top: 0.2em;
+    }
+
+    .recomeco {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-clean);
+      padding: clamp(28px, 5vw, 44px);
+      display: grid;
+      gap: 16px;
+      border: 1px solid var(--rule);
+    }
+    .recomeco p {
+      font-size: clamp(1.2rem, 3vw, 1.45rem);
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .recomeco p.small {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink-2);
+      line-height: 1.65;
+    }
+    .recomeco hr {
+      border: none;
+      border-top: 1px solid var(--rule-soft);
+    }
+
+    @media (max-width: 600px) {
+      .scale { grid-template-columns: repeat(3, 1fr); max-width: 280px; }
+      .qlist, .panel-head, .panel-foot { padding-inline: 18px; }
+      .verdict-top, .meters, .verdict-body { padding-inline: 18px; }
+      .hero-mini-cards { grid-template-columns: 1fr; }
+    }
+
+    /* ============ DIAGNÓSTICO GAMIFICADO ============ */
+    .quiz-head{
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
+      padding:20px 26px;border-bottom:1px solid var(--rule);flex-wrap:wrap;
+      background:var(--surface-2);
+    }
+    .quiz-dots{display:flex;gap:7px;align-items:center}
+    .quiz-dot{
+      width:26px;height:4px;border-radius:2px;background:var(--rule);
+      transition:background .3s ease,transform .3s ease;
+    }
+    .quiz-dot.done{background:var(--accent)}
+    .quiz-dot.now{background:var(--accent);transform:scaleY(2)}
+    .quiz-counter{
+      font-family:"Karla",sans-serif;font-variant-numeric:tabular-nums;
+      color:var(--ink-3);font-size:.86rem;font-weight:600;white-space:nowrap;
+    }
+    .quiz-counter b{color:var(--accent);font-size:1.35rem;margin-right:3px}
+
+    .quiz-body{display:grid;gap:0}
+    @media (min-width:860px){ .quiz-body{grid-template-columns:minmax(0,.8fr) minmax(0,1fr)} }
+
+    .quiz-art{margin:0;overflow:hidden;background:var(--sunk);position:relative;min-height:180px}
+    .quiz-art img{
+      display:block;width:100%;height:100%;object-fit:cover;
+      opacity:.85;transition:opacity .45s ease;
+    }
+    .quiz-art::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(11,16,23,.15),rgba(11,16,23,.55));
+    }
+    @media (max-width:859px){ .quiz-art{max-height:150px} }
+
+    .qcard{padding:clamp(24px,4vw,38px);display:grid;gap:22px;align-content:center}
+    .q-eyebrow{
+      font-size:.66rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+      color:var(--accent);
+    }
+    .q-title{
+      font-family:"Cormorant Garamond",Georgia,serif;
+      font-size:clamp(1.5rem,3.4vw,2.05rem);line-height:1.24;font-weight:600;
+      color:var(--ink);margin:0;text-wrap:balance;
+    }
+    .opts{display:grid;gap:8px}
+    .opt{
+      display:flex;align-items:center;gap:14px;width:100%;text-align:left;
+      padding:13px 16px;border:1px solid var(--rule);border-radius:3px;
+      background:var(--surface);color:var(--ink-2);cursor:pointer;
+      font-family:"Karla",sans-serif;font-size:1rem;font-weight:500;
+      transition:border-color .15s ease,background .15s ease,color .15s ease;
+    }
+    .opt:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
+    .opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .opt-dot{
+      width:18px;height:18px;border-radius:50%;flex:none;
+      border:1.5px solid var(--rule);transition:all .15s ease;
+    }
+    .opt:hover .opt-dot{border-color:var(--accent)}
+    .opt.sel{background:var(--accent);border-color:var(--accent);color:#FFFFFF;font-weight:700}
+    .opt.sel .opt-dot{background:#FFFFFF;border-color:#FFFFFF}
+
+    @media (prefers-reduced-motion: no-preference){
+      .qcard{animation:qIn .32s ease both}
+      @keyframes qIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    }
+
+    /* ============ BARRA FIXA DE COMPRA (RESULTADO) ============ */
+    .buy-bar{
+      position:sticky;bottom:0;z-index:40;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+      padding:14px clamp(16px,3vw,26px);margin-top:26px;
+      background:var(--sunk);border-top:1px solid var(--accent-line);
+      box-shadow:0 -8px 26px -14px rgba(0,0,0,.55);
+    }
+    .buy-bar-txt{display:grid;gap:1px;min-width:0}
+    .buy-bar-txt b{color:var(--on-sunk);font-size:.98rem;font-weight:700;line-height:1.25}
+    .buy-bar-txt span{color:var(--on-sunk-2);font-size:.83rem}
+    .buy-bar .btn-buy-now{white-space:nowrap}
+
+    /* ============ CAMADA DE ANIMAÇÃO ============ */
+    /* Só esconde o que vai ser revelado quando o JS assume o controle.
+       Sem JS, .reveal nunca fica invisível. */
+    @media (prefers-reduced-motion: no-preference){
+      .js-anim .reveal{
+        opacity:0; transform:translateY(22px);
+        transition:opacity .62s cubic-bezier(.22,1,.36,1), transform .62s cubic-bezier(.22,1,.36,1);
+        transition-delay:var(--d,0ms);
+        will-change:opacity,transform;
+      }
+      .js-anim .reveal.in{opacity:1;transform:none}
+
+      /* entrada do herói, sem esperar rolagem */
+      .js-anim .hero-card-main,
+      .js-anim .hero-side{ animation:heroIn .72s cubic-bezier(.22,1,.36,1) both }
+      .js-anim .hero-side{ animation-delay:.12s }
+      @keyframes heroIn{ from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+
+      /* marcador de etapa comemora quando a etapa fecha */
+      @keyframes dotPop{ 0%{transform:scaleY(1)} 45%{transform:scaleY(3.4)} 100%{transform:scaleY(1)} }
+      .quiz-dot.pop{ animation:dotPop .5s cubic-bezier(.34,1.56,.64,1) }
+
+      /* opção responde ao toque */
+      .opt{ transition:border-color .15s ease,background .15s ease,color .15s ease,transform .12s ease }
+      .opt:active{ transform:scale(.985) }
+
+      /* barra de compra entra deslizando */
+      .app-view.is-active .buy-bar{ animation:barUp .5s .35s cubic-bezier(.22,1,.36,1) both }
+      @keyframes barUp{ from{opacity:0;transform:translateY(100%)} to{opacity:1;transform:none} }
+
+      /* cartão do veredito e oferta */
+      .app-view.is-active .verdict{ animation:cardIn .55s .1s cubic-bezier(.22,1,.36,1) both }
+      @keyframes cardIn{ from{opacity:0;transform:translateY(16px) scale(.99)} to{opacity:1;transform:none} }
+    }
+
+    /* hover dos cartões - vale mesmo com movimento reduzido, é sutil */
+    .situation-card,.author-profile-card,.signal-card-box{
+      transition:transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease;
+    }
+    @media (hover:hover){
+      .situation-card:hover,.author-profile-card:hover{
+        transform:translateY(-4px);
+        box-shadow:0 14px 34px -18px rgba(14,20,28,.45);
+      }
+      .signal-card-box:hover{ transform:translateY(-2px) }
+    }
+
+    /* números da pontuação contando */
+    .meter-val b{font-variant-numeric:tabular-nums}
+  
+    
+    /* Barra de Progresso de Leitura no Topo */
+    .scroll-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #C9A44E 0%, #D9B868 50%, #F3E5AB 100%);
+      box-shadow: 0 1px 8px rgba(201, 164, 78, 0.45);
+      z-index: 99999;
+      pointer-events: none;
+      transition: width 0.08s ease-out;
+    }
+
+    /* Animação escalonada dos textos do Hero no index.html */
+    @media (prefers-reduced-motion: no-preference) {
+      .js-anim .hero-card-main .eyebrow {
+        animation: heroTextReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+      }
+      .js-anim .hero-card-main .hero-title {
+        animation: heroTextReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+      }
+      .js-anim .hero-card-main .oscillate-wrapper {
+        animation: heroTextReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+      }
+      .js-anim .hero-card-main .lede {
+        animation: heroTextReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.44s both;
+      }
+      .js-anim .hero-card-main .hero-mini-cards {
+        animation: heroTextReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.54s both;
+      }
+      .js-anim .hero-card-main .btn-row {
+        animation: heroTextReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.64s both;
+      }
+
+      @keyframes heroTextReveal {
+        0% {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Shimmer nos botões principais */
+      .btn-primary, .buy-bar-btn {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-primary::after, .buy-bar-btn::after {
+        content: "";
+        position: absolute;
+        top: -60%;
+        left: -130%;
+        width: 60%;
+        height: 220%;
+        background: linear-gradient(
+          105deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.28) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(25deg);
+        animation: btnGoldShimmerIndex 4.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+      }
+
+      @keyframes btnGoldShimmerIndex {
+        0%, 65% {
+          left: -130%;
+        }
+        100% {
+          left: 230%;
+        }
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================================================================= -->
+<!-- FOLHA 1: LANDING PAGE INSTITUCIONAL (SEM PERGUNTAS NA TELA)      -->
+<!-- ================================================================= -->
+<div id="view-landing" class="app-view is-active">
+  
+  <!-- TOPBAR (BRANCO PURO) -->
+  <header class="topbar">
+    <div class="wide">
+      <a href="#view-landing" class="brand-link" title="E Quando o Amor Acaba">
+        <img src="marca/logo-oficial.webp" alt="E Quando o Amor Acaba | Mara Lazarini &amp; Giselli Louback" class="main-logo">
+      </a>
+      <div class="top-pill">
+        <span class="top-pill-icon">+</span>
+        <span>Diagnóstico Terapêutico Online</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- SEÇÃO 1: HERO (SLATE / GELO BENTO WIDE) -->
+    <section class="hero">
+      <div class="wide">
+        <div class="hero-bento">
+          
+          <!-- Card Principal Esquerdo -->
+          <div class="hero-card-main">
+            <div>
+              <p class="eyebrow">Diagnóstico gratuito · 50 perguntas · resultado na hora</p>
+              <h1 class="hero-title" style="margin-top:14px;">Você não está confusa à toa.</h1>
+            </div>
+
+            <div class="oscillate-wrapper" aria-label="Ciclo de oscilação emocional">
+              <div class="oscillate-label">
+                <span class="oscillate-pulse-dot"></span>
+                <span>O ciclo da dúvida constante:</span>
+              </div>
+              <div class="oscillate-grid">
+                <div class="oscillate-card oscillate-card-term">
+                  <div class="oscillate-card-top">
+                    <span class="oscillate-badge">Hoje</span>
+                    <span class="oscillate-state-icon">⚡</span>
+                  </div>
+                  <p class="oscillate-phrase">Hoje eu acho que devo terminar.</p>
+                </div>
+
+                <div class="oscillate-switch-icon" aria-hidden="true" title="Oscilação constante">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="17 1 21 5 17 9"></polyline>
+                    <path d="M3 5h18"></path>
+                    <polyline points="7 23 3 19 7 15"></polyline>
+                    <path d="M21 19H3"></path>
+                  </svg>
+                </div>
+
+                <div class="oscillate-card oscillate-card-stay">
+                  <div class="oscillate-card-top">
+                    <span class="oscillate-badge">Amanhã</span>
+                    <span class="oscillate-state-icon">🌱</span>
+                  </div>
+                  <p class="oscillate-phrase">Amanhã eu acho que posso dar mais uma chance.</p>
+                </div>
+              </div>
+            </div>
+
+            <p class="lede">
+              Esse vai e vem não é falta de força. É <strong>excesso de emoção sem organização</strong>, e enquanto ele durar, qualquer decisão que você tomar vai ser tomada no escuro.
+            </p>
+
+            <p class="lede">
+              Antes de decidir qualquer coisa sobre o seu relacionamento, descubra a verdade: <strong>é uma fase ou é o fim?</strong> Identifique o estágio real da sua relação hoje.
+            </p>
+
+            <div class="btn-row">
+              <button type="button" class="btn btn-trigger-quiz">Fazer o diagnóstico gratuito</button>
+              <span class="btn-note">Leva 8 minutos · Sem cadastro prévio · Resultado na hora</span>
+            </div>
+
+            <!-- Foto das Autoras visível no mobile (abaixo do botão) -->
+            <div class="hero-mobile-photo">
+              <img src="marca/autoras-mobile.jpg" alt="Mara Lazarini e Giselli Louback | E Quando o Amor Acaba?" width="682" height="1024" loading="eager">
+            </div>
+          </div>
+
+          <!-- Coluna Lateral Direita -->
+          <div class="hero-side">
+            <div class="hero-visual-card">
+              <img src="marca/autoras.webp" alt="Mara Lazarini e Giselli Louback">
+              <div class="hero-visual-badge">
+                <span class="hero-visual-tag">Método Autoral</span>
+                <span class="hero-visual-authors">Mara Lazarini &amp; Giselli Louback</span>
+              </div>
+            </div>
+
+            <div class="hero-mini-cards">
+              <div class="mini-card">
+                <h3>4 Estágios</h3>
+                <p>Mapeamento preciso do seu momento emocional e do vínculo com o parceiro.</p>
+              </div>
+              <div class="mini-card">
+                <h3>100% Sigiloso</h3>
+                <p>Diagnóstico gratuito e anônimo. O resultado é calculado instantaneamente.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: SINAIS DE ALERTA (BRANCO PURO) -->
+    <section class="section-signals">
+      <div class="wide stack">
+        <div class="signals-header">
+          <span class="eyebrow">Sinais de Alerta</span>
+          <h2 class="signals-title">Se você reconhece estes pensamentos, sua mente está pedindo ordem</h2>
+          <p class="signals-lede">
+            Quando um relacionamento adoece, o primeiro lugar onde o dano aparece não é na briga. É na solidão de quem ainda está acompanhada.
+          </p>
+        </div>
+
+        <div class="signals-grid-6">
+          <div class="signal-card-box">
+            <span class="signal-box-num">01</span>
+            <p class="signal-box-text">Você passa o dia medindo o humor da outra pessoa para saber se pode falar ou se é melhor ficar em silêncio.</p>
+          </div>
+          <div class="signal-card-box">
+            <span class="signal-box-num">02</span>
+            <p class="signal-box-text">Toda tentativa de conversa vira discussão ou, pior, um silêncio frio que dura dias.</p>
+          </div>
+          <div class="signal-card-box">
+            <span class="signal-box-num">03</span>
+            <p class="signal-box-text">Você já não sabe se continua porque ama, ou porque tem medo de como seria a sua vida sozinha.</p>
+          </div>
+          <div class="signal-card-box">
+            <span class="signal-box-num">04</span>
+            <p class="signal-box-text">A pessoa que você ama hoje é muito diferente da pessoa que você conheceu no início.</p>
+          </div>
+          <div class="signal-card-box">
+            <span class="signal-box-num">05</span>
+            <p class="signal-box-text">Você sente que está vivendo no limite emocional, se anulando e se escondendo para manter a paz.</p>
+          </div>
+          <div class="signal-card-box">
+            <span class="signal-box-num">06</span>
+            <p class="signal-box-text">Mesmo quando as coisas parecem calmas, existe uma tensão constante no ar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3: SITUAÇÕES REAIS (DOURADO CHAMPANHE) -->
+    <section class="section-situations">
+      <div class="wide stack">
+        <h2 class="situations-title">Se você já passou por isso...</h2>
+
+        <div class="situations-grid-3">
+          <!-- Card 01 -->
+          <div class="situation-card">
+            <div class="situation-photo-circle">
+              <img src="marca/situacao-1.webp" alt="Situação 01">
+            </div>
+            <span class="situation-num">01</span>
+            <p class="situation-text">
+              Você já chorou, se frustrou, prometeu que não ia aceitar mais... mas continuou?
+            </p>
+          </div>
+
+          <!-- Card 02 -->
+          <div class="situation-card">
+            <div class="situation-photo-circle">
+              <img src="marca/situacao-2.webp" alt="Situação 02">
+            </div>
+            <span class="situation-num">02</span>
+            <p class="situation-text">
+              Você já decidiu que ia terminar... mas na hora não conseguiu?
+            </p>
+          </div>
+
+          <!-- Card 03 -->
+          <div class="situation-card">
+            <div class="situation-photo-circle">
+              <img src="marca/situacao-3.webp" alt="Situação 03">
+            </div>
+            <span class="situation-num">03</span>
+            <p class="situation-text">
+              Você já percebeu que esse relacionamento não te faz bem... mas mesmo assim ficou?
+            </p>
+          </div>
+        </div>
+
+        <div class="situations-conclusion">
+          <p>
+            Se você respondeu <strong>sim para pelo menos uma dessas situações</strong>... Você não está sozinha. E mais importante: isso não está acontecendo por acaso.
+          </p>
+          <button type="button" class="btn btn-trigger-quiz" style="margin-top:10px;">
+            Fazer o diagnóstico gratuito agora →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4: AS AUTORAS NO FINAL (DEEP NAVY) -->
+    <section class="section-authors" id="autoras">
+      <div class="wide stack" style="gap: clamp(28px, 4vw, 44px);">
+        
+        <div class="authors-header">
+          <span class="eyebrow" style="color:var(--accent-line);">Quem escreveu o método</span>
+          <h2 class="authors-title">Duas terapeutas dedicadas a devolver a sua clareza</h2>
+          <p class="authors-lede">
+            Não é teoria rasa de internet. É a vivência clínica diária de consultório que Mara Lazarini e Giselli Louback consolidaram neste método prático e acolhedor para apoiar sua decisão.
+          </p>
+        </div>
+
+        <div class="authors-bento-grid">
+          <!-- Card Giselli Louback -->
+          <article class="author-profile-card">
+            <div class="author-photo-wrapper">
+              <img src="marca/giselli.webp" alt="Giselli Louback, Master Terapeuta TRG" class="author-photo" style="object-position: center 20%;">
+              <span class="author-badge-pill">Master Terapeuta TRG</span>
+            </div>
+            <div class="author-content">
+              <div class="author-identity">
+                <h3 class="author-name">Giselli Louback</h3>
+                <span class="author-specialty">Terapeuta Especialista em Padrões Emocionais</span>
+              </div>
+              <div class="author-highlight-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>+4.000 atendimentos clínicos realizados</span>
+              </div>
+              <p class="author-bio">
+                Especialista em transtornos emocionais e padrões repetitivos. Atua diretamente com ansiedade, traumas e bloqueios que fazem você viver em ciclos, mesmo sabendo que precisa mudar: exatamente o ponto onde muitas mulheres travam: saber o que precisa mudar e não conseguir sair do lugar.
+              </p>
+              <div class="author-books-box">
+                <span class="author-books-label">Especialidades e Obras:</span>
+                <span class="author-books-titles"><em>Se Deixe em Paz</em> · <em>Mente Blindada</em> · <em>E quando o amor acaba?</em></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card Mara Lazarini -->
+          <article class="author-profile-card">
+            <div class="author-photo-wrapper">
+              <img src="marca/mara.webp" alt="Mara Lazarini, Master Terapeuta TRG" class="author-photo" style="object-position: center 15%;">
+              <span class="author-badge-pill">Master Terapeuta TRG</span>
+            </div>
+            <div class="author-content">
+              <div class="author-identity">
+                <h3 class="author-name">Mara Lazarini</h3>
+                <span class="author-specialty">Terapeuta Especialista em Traumas e Comportamento</span>
+              </div>
+              <div class="author-highlight-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>+25 anos de experiência clínica</span>
+              </div>
+              <p class="author-bio">
+                Especialista em traumas emocionais e comportamento humano, ajudando pessoas a romper padrões internos. Trabalha com mulheres que precisam desenvolver clareza emocional e se posicionar com mais segurança diante de relações que já não sustentam quem elas são hoje.
+              </p>
+              <div class="author-books-box">
+                <span class="author-books-label">Especialidades e Obras:</span>
+                <span class="author-books-titles"><em>Mentes Livres</em> · <em>E quando o amor acaba?</em></span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Citação Institucional do Método -->
+        <div class="authors-pull-quote">
+          <div class="pull-quote-icon">“</div>
+          <blockquote class="pull-quote-text">
+            "Que este método seja um farol na sua jornada, iluminando o caminho para um entendimento mais profundo de si mesma."
+          </blockquote>
+          <span class="pull-quote-cite">Mara Lazarini &amp; Giselli Louback, criadoras do método <em>E quando o amor acaba?</em></span>
+        </div>
+
+        <div class="authors-bottom-cta">
+          <button type="button" class="btn btn-trigger-quiz">
+            Iniciar Meu Diagnóstico Terapêutico →
+          </button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (DEEP NAVY CLÁSSICO) -->
+  <footer>
+    <div class="wide">
+      <span class="mark">E quando o amor <span>acaba?</span></span>
+      <p>Um método de clareza emocional, decisão e reconstrução, desenvolvido por Mara Lazarini e Giselli Louback.</p>
+      <p class="legal">
+        O <strong>Diagnóstico Terapêutico do Relacionamento</strong> e o conteúdo deste método são ferramentas de consciência emocional e apoio à tomada de decisão. Não constituem diagnóstico clínico, atendimento psicológico, psiquiátrico ou jurídico, e não substituem acompanhamento profissional. Nenhum resultado de relacionamento é garantido.
+        <br><br>
+        Se você vive situações de violência física, psicológica, patrimonial, sexual ou moral, ligue <strong>180</strong> (Central de Atendimento à Mulher, gratuito e 24h) ou <strong>190</strong> em caso de emergência. Se estiver em sofrimento emocional grave, o <a href="https://www.cvv.org.br" target="_blank" rel="noopener">CVV</a> atende no <strong>188</strong>, 24 horas, gratuitamente.
+      </p>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ================================================================= -->
+<!-- FOLHA 2: TELA DE IDENTIFICAÇÃO (SEGUNDA FOLHA DEDICADA)           -->
+<!-- ================================================================= -->
+<div id="view-identificacao" class="app-view">
+  
+  <header class="topbar">
+    <div class="wide">
+      <a href="#view-landing" class="brand-link" title="E Quando o Amor Acaba">
+        <img src="marca/logo-oficial.webp" alt="E Quando o Amor Acaba" class="main-logo">
+      </a>
+      <button type="button" class="back-to-landing-btn" id="leadBackToHome">
+        ← Voltar para a página inicial
+      </button>
+    </div>
+  </header>
+
+  <div class="view-identificacao-wrap">
+    <div class="wide" style="display:flex; justify-content:center;">
+      
+      <div class="lead-sheet-card">
+        <div class="lead-sheet-header">
+          <span class="lead-sheet-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Segunda Folha · Identificação Confidencial
+          </span>
+          <h2 class="lead-sheet-title">Para quem é este diagnóstico?</h2>
+          <p class="lead-sheet-desc">
+            Suas respostas são 100% confidenciais. Digite seu primeiro nome e WhatsApp para personalizarmos seu relatório terapêutico e liberarmos o acesso às 5 etapas.
+          </p>
+        </div>
+
+        <form class="lead-form-box" id="leadForm" novalidate onsubmit="return false;">
+          
+          <div id="leadExistingBox" class="lead-active-user-box" style="display:none;">
+            <span>Continuar como <strong id="leadSavedName"></strong> (<span id="leadSavedPhone"></span>)</span>
+            <button type="button" class="lead-change-btn" id="leadChangeBtn">Alterar dados</button>
+          </div>
+
+          <div id="leadInputsArea">
+            <div class="lead-field-group">
+              <label for="leadName" class="lead-label">
+                <span>Como prefere ser chamada?</span>
+                <span class="lead-req">*Obrigatório</span>
+              </label>
+              <div class="lead-input-wrap">
+                <svg class="lead-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" id="leadName" class="lead-input" placeholder="Digite seu primeiro nome (ex: Mariana)" autocomplete="given-name" required>
+              </div>
+              <small class="lead-hint">Seu nome será utilizado no seu relatório personalizado.</small>
+            </div>
+
+            <div class="lead-field-group" style="margin-top:14px;">
+              <label for="leadPhone" class="lead-label">
+                <span>Seu WhatsApp com DDD</span>
+                <span class="lead-req">*Obrigatório</span>
+              </label>
+              <div class="lead-input-wrap">
+                <svg class="lead-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <input type="tel" id="leadPhone" class="lead-input" placeholder="(00) 00000-0000" maxlength="15" autocomplete="tel" required>
+              </div>
+              <small class="lead-hint">🔒 Não enviamos spam. Utilizado para validação segura da análise.</small>
+            </div>
+          </div>
+
+          <div id="leadError" class="lead-error-box" style="display:none;"></div>
+
+          <button type="button" id="startQuizBtn" class="btn btn-lead-submit">
+            Liberar Perguntas e Começar Diagnóstico →
+          </button>
+
+          <div class="lead-security-note">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2F6B52" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Ambiente seguro. Seus dados estão protegidos por sigilo e pela LGPD.</span>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ================================================================= -->
+<!-- FOLHA 3: DIAGNÓSTICO INTERATIVO (20 PERGUNTAS, UMA POR TELA)     -->
+<!-- ================================================================= -->
+<div id="view-diagnostico" class="app-view">
+  
+  <header class="topbar">
+    <div class="wide quiz-top-nav">
+      <a href="#view-landing" class="brand-link" title="E Quando o Amor Acaba">
+        <img src="marca/logo-oficial.webp" alt="E Quando o Amor Acaba" class="main-logo">
+      </a>
+      <div class="top-pill">
+        <span class="top-pill-icon">✦</span>
+        <span id="quizUserGreeting">Diagnóstico Terapêutico</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="view-quiz-wrap">
+    <div class="wide">
+      
+      <div class="panel" id="panel">
+        <div class="progress"><span id="bar" style="width:0%"></span></div>
+        
+        <div class="quiz-head">
+          <div class="quiz-dots" id="stageDots"></div>
+          <div class="quiz-counter"><b id="qNow">1</b><span id="qTotal">/ 20</span></div>
+        </div>
+
+        <div class="quiz-body">
+          <figure class="quiz-art"><img id="stageImg" src="marca/etapa-1.webp" alt="" width="640" height="480"></figure>
+          <div class="qlist" id="qlist"></div>
+        </div>
+
+        <div class="panel-foot">
+          <button class="link-back" id="back" type="button" hidden>← Voltar</button>
+          <span class="foot-warn" id="warn" hidden>Escolha uma opção para continuar.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ================================================================= -->
+<!-- FOLHA 4: RESULTADO DETALHADO & PRESCRIÇÃO                         -->
+<!-- ================================================================= -->
+<div id="view-resultado" class="app-view">
+  
+  <header class="topbar">
+    <div class="wide">
+      <a href="#view-landing" class="brand-link" title="E Quando o Amor Acaba">
+        <img src="marca/logo-oficial.webp" alt="E Quando o Amor Acaba" class="main-logo">
+      </a>
+      <button type="button" class="back-to-landing-btn" id="resultBackToHome">
+        ← Voltar para a página inicial
+      </button>
+    </div>
+  </header>
+
+  <div class="view-result-wrap">
+    <div class="wide stack" style="gap:28px">
+      <div>
+        <p class="eyebrow" id="resultEyebrow">Seu diagnóstico</p>
+        <h2 style="margin-top:12px" id="resultHeading">O estágio da sua relação hoje</h2>
+      </div>
+
+      <div class="verdict">
+        <div class="verdict-top">
+          <div id="vUrgencyBadge" class="urgency-risk-tag"></div>
+          <span class="badge" id="vBadge"></span>
+          <h3 id="vTitle"></h3>
+          <p class="lede" id="vText"></p>
+        </div>
+
+        <div class="meters">
+          <p class="meters-title">Suas pontuações por etapa · 0 a 20</p>
+          <div id="meters"></div>
+        </div>
+
+        <div class="verdict-body">
+          <div class="urgency-block">
+            <div class="urgency-block-title" id="vUrgencyTitle"></div>
+            <p id="vUrgencyDesc"></p>
+            <div class="urgency-points" id="vUrgencyPoints"></div>
+          </div>
+
+          <div>
+            <p class="eyebrow" style="margin-bottom:14px">O que fazer agora</p>
+            <ul class="do-list" id="vDo"></ul>
+          </div>
+          <div class="track-tag" id="vTrack"></div>
+
+          <!-- Card de Prescrição & Chamada Direta de Alta Conversão -->
+          <div class="result-cta-card" id="oferta">
+            <div class="result-cta-header">
+              <span class="result-cta-badge"><span class="pulse-dot"></span> Prescrição Terapêutica Liberada</span>
+              <h3 class="result-cta-title">Não passe mais 30 dias no escuro emocional.</h3>
+              <p class="result-cta-desc">O diagnóstico mapeou com exatidão onde dói e qual é o seu próximo passo seguro. As terapeutas Mara Lazarini e Giselli Louback estruturaram o método prático para você sair da angústia, tomar decisões sem medo e recuperar sua dignidade.</p>
+            </div>
+
+            <div class="result-cta-checklist">
+              <div class="result-cta-check"><span class="check-icon">✓</span> Acesso completo aos 7 Módulos práticos em vídeo e áudio guiado</div>
+              <div class="result-cta-check"><span class="check-icon">✓</span> Trilha Personalizada liberada para o seu resultado</div>
+              <div class="result-cta-check"><span class="check-icon">✓</span> Método Completo com Guias de Aplicação Prática (Mara &amp; Giselli)</div>
+              <div class="result-cta-check"><span class="check-icon">✓</span> 5 Guias de Apoio em PDF + Exercício dos 7 Dias</div>
+              <div class="result-cta-check"><span class="check-icon">✓</span> Reavaliação e acompanhamento do seu progresso em 30 dias</div>
+            </div>
+
+            <div class="result-cta-pricing-row">
+              <div class="result-cta-price-box">
+                <span class="result-cta-price-old">De R$ 97,00 por apenas</span>
+                <div class="result-cta-price-now">
+                  <small>Em até 7x de</small>
+                  <b>R$ 6,16</b>
+                  <em>ou R$ 37,00 à vista</em>
+                </div>
+              </div>
+              <a class="btn-buy-now" id="vCtaBtn" href="https://lastlink.com/p/C92C922A0/checkout-payment/">
+                Liberar Meu Acesso Imediato →
+              </a>
+            </div>
+
+            <div class="result-cta-guarantee">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A44E" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span><strong>Garantia Blindada de 7 Dias:</strong> Experimente o método completo sem risco algum. Se achar que não valeu a pena, você recebe 100% do valor de volta.</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="exerc">
+        <p class="eyebrow">Exercício de Consciência</p>
+        <h3>Cinco perguntas para responder com sinceridade</h3>
+        <ol>
+          <li>O que ainda me prende nessa relação?</li>
+          <li>O que estou perdendo emocionalmente permanecendo assim?</li>
+          <li>Existe esforço mútuo ou apenas unilateral?</li>
+          <li>O que eu realmente desejo para minha vida emocional?</li>
+          <li>Qual decisão preciso tomar para voltar a viver com paz?</li>
+        </ol>
+        <p class="muted">Escreva as respostas à mão, em papel. O que passa pela caneta organiza o que a cabeça não consegue organizar sozinha.</p>
+      </div>
+
+      <div class="recomeco">
+        <p class="eyebrow">Recomeço saudável</p>
+        <p>Você não acabou porque a relação acabou. O fim de um ciclo não define o seu valor.</p>
+        <p>Recomeçar não significa fracasso. Significa coragem.</p>
+        <hr>
+        <p class="small">Às vezes, Deus restaura relacionamentos. Às vezes, Ele restaura pessoas. E os dois processos exigem a mesma coisa: verdade, maturidade emocional e decisão.</p>
+      </div>
+
+      <div id="vSafety"></div>
+
+      <div class="btn-row" style="margin-top:8px;">
+        <a class="btn" href="https://lastlink.com/p/C92C922A0/checkout-payment/" target="_blank" rel="noopener">Garantir Meu Acesso Completo (R$ 37)</a>
+        <button class="btn btn-ghost" id="redo" type="button">Refazer o diagnóstico</button>
+      </div>
+    </div>
+
+    <div class="buy-bar">
+      <div class="buy-bar-txt">
+        <b id="buyBarTitle">Sua trilha personalizada está liberada</b>
+        <span>Acesso imediato e vitalício · 7x de R$ 6,16 · Garantia de 7 dias</span>
+      </div>
+      <a class="btn-buy-now" id="buyBarBtn" href="#oferta">Liberar meu acesso por R$ 37 →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ DESTINO DOS LEADS ============ */
+  // URL do Apps Script publicado (termina em /exec). Veja google-apps-script.js.
+  // Vazio: cai no /api/lead do server.js, para rodar local.
+  var LEADS_URL = "https://script.google.com/macros/s/AKfycbxiMX_hJagYSX8zbW7XPJCrz80DmIze1ntgPZKicLIhOwb55mbAgYdrY__4qsamdhha/exec";
+
+  function enviarLead(lead){
+    var destino = LEADS_URL || "/api/lead";
+
+    // Em producao sem LEADS_URL, o POST cai num endereco que nao existe e o
+    // cadastro se perde sem ninguem perceber. Avisa alto no console.
+    var local = /^(localhost|127.0.0.1|[::1])$/.test(location.hostname);
+    if(!LEADS_URL && !local){
+      console.error("[LEADS] LEADS_URL esta vazio: este cadastro NAO sera salvo em lugar nenhum. Preencha a URL do Apps Script no topo do script.");
+    }
+    var corpo = {
+      name: lead.name,
+      phone: lead.phone,
+      origem: (location.hostname || "") + (document.referrer ? " · via " + document.referrer : "")
+    };
+    try {
+      fetch(destino, {
+        method: "POST",
+        // text/plain evita a checagem CORS de preflight, que o Apps Script
+        // nao responde. O corpo continua sendo JSON.
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(corpo)
+      }).catch(function(){});
+    } catch(e) {}
+  }
+
+  /* ============ LINK DE PAGAMENTO ============ */
+  // Troque pela URL do seu checkout (Hotmart, Kiwify, Cakto...).
+  // Enquanto estiver vazio, os botões apenas rolam até a oferta na página.
+  var CHECKOUT_URL = "https://lastlink.com/p/C92C922A0/checkout-payment/";
+
+  function aplicarCheckout(){
+    if(!CHECKOUT_URL) return;
+    ["vCtaBtn","buyBarBtn"].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el){ el.href = CHECKOUT_URL; el.target = "_blank"; el.rel = "noopener"; }
+    });
+  }
+
+  /* ============ NAVEGAÇÃO DE VIEWS / FOLHAS ============ */
+  var views = {
+    landing: document.getElementById("view-landing"),
+    identificacao: document.getElementById("view-identificacao"),
+    diagnostico: document.getElementById("view-diagnostico"),
+    resultado: document.getElementById("view-resultado")
+  };
+
+  function switchView(name) {
+    Object.keys(views).forEach(function(key) {
+      if (views[key]) {
+        views[key].classList.remove("is-active");
+      }
+    });
+    if (views[name]) {
+      views[name].classList.add("is-active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
+  // Links de voltar para Home
+  var leadBackToHome = document.getElementById("leadBackToHome");
+  if (leadBackToHome) {
+    leadBackToHome.addEventListener("click", function(){ switchView("landing"); });
+  }
+  var resultBackToHome = document.getElementById("resultBackToHome");
+  if (resultBackToHome) {
+    resultBackToHome.addEventListener("click", function(){ switchView("landing"); });
+  }
+
+  // Botões de chamada na Landing Page que levam para a Folha 2 de Identificação
+  var triggerBtns = document.querySelectorAll(".btn-trigger-quiz");
+  triggerBtns.forEach(function(btn) {
+    btn.addEventListener("click", function(e) {
+      e.preventDefault();
+      initLeadGate();
+      switchView("identificacao");
+      setTimeout(function(){
+        if (leadInputsArea && leadInputsArea.style.display !== "none" && leadName) {
+          leadName.focus();
+        }
+      }, 100);
+    });
+  });
+
+  /* ============ DADOS DAS 20 PERGUNTAS (4 POR ETAPA) ============ */
+  var STAGES = [
+    { name:"Conexão emocional", sub:"O vínculo afetivo ainda existe?", img:"marca/etapa-1.webp", qs:[
+      "Sinto que ainda existe carinho entre nós.",
+      "Me sinto emocionalmente segura nessa relação.",
+      "Sinto que somos parceiros de vida.",
+      "Ainda existe em mim o desejo de lutar por essa relação."
+    ]},
+    { name:"Desgaste e distanciamento", sub:"Quanto essa relação está te custando?", img:"marca/etapa-2.webp", qs:[
+      "Evitamos conversar para não discutir.",
+      "Sinto solidão mesmo estando acompanhada.",
+      "Me sinto emocionalmente drenada.",
+      "Já pensei várias vezes em desistir da relação."
+    ]},
+    { name:"Respeito e saúde emocional", sub:"A relação ainda é segura para você?", img:"marca/etapa-3.webp", qs:[
+      "Tenho medo das reações dessa pessoa.",
+      "Existe manipulação emocional ou chantagem entre nós.",
+      "Já houve humilhações ou desrespeito com frequência.",
+      "Minha saúde emocional piorou depois dessa relação."
+    ]},
+    { name:"Possibilidade de restauração", sub:"Ainda existe base para reconstruir?", img:"marca/etapa-4.webp", qs:[
+      "Existe arrependimento verdadeiro pelos erros.",
+      "Nós dois estamos dispostos a mudar.",
+      "Ainda conseguimos nos conectar emocionalmente.",
+      "Vejo possibilidade real de transformação."
+    ]},
+    { name:"Identidade e recomeço", sub:"E você, como está nisso tudo?", img:"marca/etapa-5.webp", qs:[
+      "Permaneci nessa relação mais por apego do que por amor.",
+      "Sinto que preciso me curar emocionalmente.",
+      "Preciso aprender a me valorizar novamente.",
+      "Sinto que preciso tomar uma decisão definitiva."
+    ]}
+  ];
+
+  var POR_ETAPA = 4;
+  var MAX_ETAPA = POR_ETAPA * 5;          // 4 perguntas x nota maxima 5 = 20
+
+  // ordem plana das 20 perguntas, uma por tela
+  var FLOW = [];
+  STAGES.forEach(function(st, si){
+    st.qs.forEach(function(txt, qi){ FLOW.push({ st:si, qi:qi, txt:txt }); });
+  });
+
+  var LABELS = ["Nunca","Raramente","Às vezes","Frequentemente","Quase sempre","Sempre"];
+
+  // escala reduzida de 0-50 para 0-20 (4 perguntas por etapa)
+  var READ = [
+    function(v){ return v>=14 ? "vínculo preservado" : v>=7 ? "vínculo fragilizado" : "vínculo rompido"; },
+    function(v){ return v>=14 ? "desgaste alto" : v>=7 ? "desgaste moderado" : "desgaste baixo"; },
+    function(v){ return v>=10 ? "sinais graves de adoecimento" : v>=4 ? "sinais presentes" : "relação respeitosa"; },
+    function(v){ return v>=14 ? "base sólida para reconstruir" : v>=7 ? "base parcial" : "sem base aparente"; },
+    function(v){ return v>=14 ? "necessidade forte de recomeço" : v>=7 ? "necessidade moderada" : "identidade preservada"; }
+  ];
+
+  var SCEN = {
+    tox:{
+      cls:"b-alert", kind:"Atenção prioritária",
+      urgencyBadge:"Nível de Alerta Crítico",
+      urgencyRiskClass:"risk-high",
+      urgencyTitle:"O risco invisível de adiar uma atitude",
+      urgencyDesc:"Cada semana sem limites claros custa um pouco mais da sua autoestima e da sua paz.",
+      urgencyPoints:[
+        "Cada semana em silêncio normaliza atitudes que você jamais deveria tolerar.",
+        "A dependência emocional e a culpa fazem você acreditar que não conseguirá ficar bem sozinha.",
+        "Você precisa de um mapa seguro para sair da confusão e blindar sua dignidade imediatamente."
+      ],
+      ctaText:"Quero Recuperar Minha Paz e Força Agora →",
+      title:"Sinais de adoecimento emocional na relação",
+      text:"Suas respostas apontam a presença de manipulação, controle, medo ou desrespeito frequente. Antes de qualquer conversa sobre continuar ou terminar, a prioridade é a sua segurança emocional e, se houver risco, a sua segurança física.",
+      "do":["Priorizar sua segurança emocional","Reestabelecer limites não negociáveis","Buscar apoio terapêutico"],
+      track:"Cura emocional e reconstrução da identidade",
+      trackText:"Comece pelos módulos 1 e 2, siga para o 3 (dependência) e o 7 (reconstrução).",
+      safety:true
+    },
+    fim:{
+      cls:"b-calm", kind:"Encerramento emocional",
+      urgencyBadge:"Ponto de Decisão Iminente",
+      urgencyRiskClass:"risk-calm",
+      urgencyTitle:"O custo silencioso de adiar sua vida por mais 6 meses",
+      urgencyDesc:"Arrastar uma relação que já acabou por dentro custa anos da sua energia.",
+      urgencyPoints:[
+        "Adiar a decisão não diminui a dor; apenas prolonga o sofrimento em banho-maria.",
+        "O medo da solidão custa muito mais caro do que a coragem de recomeçar com orientação terapêutica.",
+        "Você não precisa passar por esse encerramento perdida, com recaídas ou sentindo culpa."
+      ],
+      ctaText:"Quero Decidir com Segurança e Recomeçar →",
+      title:"A relação demonstra sinais de encerramento",
+      text:"Há desconexão profunda, ausência de parceria e perda do vínculo afetivo e, do seu lado, uma necessidade clara de recomeçar. Isso não é fracasso. É o fim de uma etapa, e o começo de outra.",
+      "do":["Aceitar o fim sem se culpar","Atravessar o luto em vez de fugir dele","Reconstruir sua identidade"],
+      track:"Decisão e recomeço",
+      trackText:"A trilha completa, do módulo 1 ao 7. O Exercício dos 7 Dias é para o seu momento.",
+      safety:false
+    },
+    desg:{
+      cls:"b-warn", kind:"Desgaste avançado",
+      urgencyBadge:"Janela Crítica de Reversão",
+      urgencyRiskClass:"risk-warn",
+      urgencyTitle:"O desgaste não se resolve sozinho com o tempo",
+      urgencyDesc:"Relações não morrem por falta de amor, morrem de mágoa acumulada. Sem método, o desgaste vira indiferença.",
+      urgencyPoints:[
+        "O tempo sem método não cura feridas: ele apenas amplia a distância entre vocês.",
+        "Repetir os mesmos ciclos de discussões consome a última reserva de afeto e admiração.",
+        "Com o método de comunicação restauradora, você saberá em 7 dias se a restauração é viável."
+      ],
+      ctaText:"Quero Restaurar Antes que Seja Tarde →",
+      title:"A relação entrou em esgotamento emocional",
+      text:"Ainda pode existir amor, mas há cansaço acumulado, mágoas não resolvidas e uma desconexão real. Este é o ponto em que a maioria dos casais desiste sem nunca ter tentado com método.",
+      "do":["Pausar os conflitos destrutivos","Reaprender a conversar sem brigar","Restaurar a confiança em passos pequenos"],
+      track:"Restaurando relacionamento",
+      trackText:"Módulos 1 e 2 antes de qualquer reconciliação, depois a trilha de restauração.",
+      safety:false
+    },
+    saud:{
+      cls:"b-good", kind:"Desgaste comum da rotina",
+      urgencyBadge:"Momento Ideal de Blindagem",
+      urgencyRiskClass:"risk-good",
+      urgencyTitle:"Proteja seu relacionamento antes que o afastamento aumente",
+      urgencyDesc:"A base existe, mas a rotina já abriu espaço para o esfriamento. Distância pequena hoje vira desconexão amanhã.",
+      urgencyPoints:[
+        "A rotina engole o romance e a cumplicidade quando não há novos rituais afetivos.",
+        "É infinitamente mais fácil reacender a conexão hoje do que tentar resgatar uma relação quebrada depois.",
+        "Com poucos ajustes práticos no diálogo diário, a intimidade e a leveza voltam a fazer parte da sua rotina."
+      ],
+      ctaText:"Blindar e Reconectar Minha Relação Hoje →",
+      title:"Existe base saudável e desgaste de rotina",
+      text:"Há amor, parceria e uma base emocional preservada. O que aparece nas suas respostas é o desgaste comum da convivência: menos conversa, menos toque, menos presença. Isso se reverte, e se reverte rápido quando se sabe onde mexer.",
+      "do":["Restaurar o diálogo antes do silêncio","Retomar momentos só de vocês dois","Criar hábitos afetivos diários"],
+      track:"Reconstrução do amor e conexão emocional",
+      trackText:"Módulos 1 e 2 para nomear o que esfriou, depois a trilha de restauração.",
+      safety:false
+    }
+  };
+
+  var ICON = {
+    "b-alert":'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 8v5"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>',
+    "b-calm":'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h16"/><path d="M13 6l6 6-6 6"/></svg>',
+    "b-warn":'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg>',
+    "b-good":'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 7"/></svg>'
+  };
+
+  var answers = [[],[],[],[],[]];
+  var stage = 0;   // etapa atual (0-4), derivada de FLOW[idx]
+  var idx = 0;     // pergunta atual dentro de FLOW (0-19)
+  var travado = false;
+
+  var qlist=document.getElementById("qlist"),
+      bar=document.getElementById("bar"),
+      nameEl=document.getElementById("stageName"),
+      subEl=document.getElementById("stageSub"),
+      countEl=document.getElementById("stageCount"),
+      backBtn=document.getElementById("back"),
+      dotsEl=document.getElementById("stageDots"),
+      qNowEl=document.getElementById("qNow"),
+      qTotalEl=document.getElementById("qTotal"),
+      stageImg=document.getElementById("stageImg"),
+      warnEl=document.getElementById("warn"),
+      panelEl=document.getElementById("panel"),
+      leadName=document.getElementById("leadName"),
+      leadPhone=document.getElementById("leadPhone"),
+      leadError=document.getElementById("leadError"),
+      startQuizBtn=document.getElementById("startQuizBtn"),
+      leadExistingBox=document.getElementById("leadExistingBox"),
+      leadSavedName=document.getElementById("leadSavedName"),
+      leadSavedPhone=document.getElementById("leadSavedPhone"),
+      leadChangeBtn=document.getElementById("leadChangeBtn"),
+      leadInputsArea=document.getElementById("leadInputsArea"),
+      quizUserGreeting=document.getElementById("quizUserGreeting");
+
+  var currentLead = null;
+  try {
+    var stored = localStorage.getItem("diagnostico_lead");
+    if (stored) currentLead = JSON.parse(stored);
+  } catch(e) {}
+
+  if (leadPhone) {
+    leadPhone.addEventListener("input", function(e){
+      var v = e.target.value.replace(/\D/g, '').slice(0, 11);
+      if(v.length === 0) {
+        e.target.value = '';
+      } else if(v.length <= 2) {
+        e.target.value = '(' + v;
+      } else if(v.length <= 6) {
+        e.target.value = '(' + v.slice(0,2) + ') ' + v.slice(2);
+      } else if(v.length <= 10) {
+        e.target.value = '(' + v.slice(0,2) + ') ' + v.slice(2,6) + '-' + v.slice(6);
+      } else {
+        e.target.value = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+      }
+      if (leadError) leadError.style.display = "none";
+      leadPhone.classList.remove("is-invalid");
+    });
+  }
+
+  if (leadName) {
+    leadName.addEventListener("input", function(){
+      if (leadError) leadError.style.display = "none";
+      leadName.classList.remove("is-invalid");
+    });
+  }
+
+  if (leadChangeBtn) {
+    leadChangeBtn.addEventListener("click", function(){
+      leadExistingBox.style.display = "none";
+      leadInputsArea.style.display = "block";
+      startQuizBtn.textContent = "Atualizar e Começar Diagnóstico →";
+      leadName.focus();
+    });
+  }
+
+  function initLeadGate(){
+    if (currentLead && currentLead.name && currentLead.phone) {
+      leadSavedName.textContent = currentLead.name;
+      leadSavedPhone.textContent = currentLead.phone;
+      leadExistingBox.style.display = "flex";
+      leadInputsArea.style.display = "none";
+      leadName.value = currentLead.name;
+      leadPhone.value = currentLead.phone;
+      startQuizBtn.textContent = "Continuar Diagnóstico como " + currentLead.name + " →";
+    } else {
+      if (leadExistingBox) leadExistingBox.style.display = "none";
+      if (leadInputsArea) leadInputsArea.style.display = "block";
+      if (startQuizBtn) startQuizBtn.textContent = "Liberar Perguntas e Começar Diagnóstico →";
+    }
+  }
+
+  function validateAndStartQuiz(){
+    if (leadExistingBox && leadExistingBox.style.display !== "none" && currentLead && currentLead.name) {
+      unlockQuiz();
+      return;
+    }
+
+    var nameVal = leadName ? leadName.value.trim() : "";
+    var phoneVal = leadPhone ? leadPhone.value.trim() : "";
+    var digits = phoneVal.replace(/\D/g, '');
+
+    if (leadName) leadName.classList.remove("is-invalid");
+    if (leadPhone) leadPhone.classList.remove("is-invalid");
+    if (leadError) leadError.style.display = "none";
+
+    if (!nameVal || nameVal.length < 2 || !/[a-zA-ZÀ-ÿ]/.test(nameVal)) {
+      if (leadName) {
+        leadName.classList.add("is-invalid");
+        leadName.focus();
+      }
+      if (leadError) {
+        leadError.textContent = "Por favor, digite seu nome ou como prefere ser chamada (mínimo de 2 letras).";
+        leadError.style.display = "flex";
+      }
+      return;
+    }
+
+    if (digits.length < 10 || digits.length > 11) {
+      if (leadPhone) {
+        leadPhone.classList.add("is-invalid");
+        leadPhone.focus();
+      }
+      if (leadError) {
+        leadError.textContent = "Por favor, informe seu WhatsApp completo com DDD (ex: (11) 98765-4321).";
+        leadError.style.display = "flex";
+      }
+      return;
+    }
+
+    var ddd = parseInt(digits.slice(0, 2), 10);
+    if (ddd < 11 || ddd > 99 || /^(\d)\1+$/.test(digits)) {
+      if (leadPhone) {
+        leadPhone.classList.add("is-invalid");
+        leadPhone.focus();
+      }
+      if (leadError) {
+        leadError.textContent = "Por favor, informe um número de DDD e WhatsApp válido.";
+        leadError.style.display = "flex";
+      }
+      return;
+    }
+
+    currentLead = {
+      name: nameVal,
+      phone: phoneVal,
+      rawPhone: digits,
+      startedAt: new Date().toISOString()
+    };
+
+    try {
+      localStorage.setItem("diagnostico_lead", JSON.stringify(currentLead));
+    } catch(e) {}
+
+    enviarLead(currentLead);
+
+    unlockQuiz();
+  }
+
+  function unlockQuiz(){
+    if (currentLead && currentLead.name && quizUserGreeting) {
+      quizUserGreeting.textContent = "Diagnóstico de " + currentLead.name;
+    }
+    idx = 0;
+    switchView("diagnostico");
+    renderFlow(true);
+  }
+
+  if (startQuizBtn) {
+    startQuizBtn.addEventListener("click", validateAndStartQuiz);
+  }
+
+  /* ============ DIAGNÓSTICO: UMA PERGUNTA POR TELA ============ */
+  function renderDots(){
+    if(!dotsEl) return;
+    var h = "";
+    for(var i=0;i<5;i++){
+      var cls = i < stage ? "quiz-dot done" : (i === stage ? "quiz-dot now" : "quiz-dot");
+      h += '<span class="'+cls+'" title="Etapa '+(i+1)+' · '+STAGES[i].name+'"></span>';
+    }
+    dotsEl.innerHTML = h;
+  }
+
+  function renderFlow(scroll){
+    var item = FLOW[idx];
+    stage = item.st;
+    var st = STAGES[stage];
+
+    if(qNowEl) qNowEl.textContent = String(idx + 1);
+    if(qTotalEl) qTotalEl.textContent = "/ " + FLOW.length;
+    if(bar) bar.style.width = (idx / FLOW.length * 100) + "%";
+    if(stageImg && stageImg.getAttribute("src") !== st.img){
+      stageImg.style.opacity = "0";
+      stageImg.src = st.img;
+      stageImg.alt = "";
+      stageImg.onload = function(){ stageImg.style.opacity = ".85"; };
+    }
+    renderDots();
+    backBtn.hidden = (idx === 0);
+    warnEl.hidden = true;
+
+    var atual = answers[stage][item.qi];
+    var h = '<div class="qcard">'
+      + '<p class="q-eyebrow">Etapa ' + (stage+1) + ' de 5 · ' + st.name + '</p>'
+      + '<h3 class="q-title">' + item.txt + '</h3>'
+      + '<div class="opts" role="radiogroup" aria-label="' + item.txt + '">';
+    for(var v=0; v<=5; v++){
+      var sel = atual === v ? " sel" : "";
+      h += '<button type="button" class="opt'+sel+'" data-v="'+v+'" role="radio" aria-checked="'+(atual===v)+'">'
+        + '<span class="opt-dot"></span><span class="opt-label">'+LABELS[v]+'</span></button>';
+    }
+    h += '</div></div>';
+    qlist.innerHTML = h;
+
+    var opts = qlist.querySelectorAll(".opt");
+    for(var k=0;k<opts.length;k++) opts[k].addEventListener("click", onPick);
+
+    if(scroll && panelEl) panelEl.scrollIntoView({behavior:"smooth", block:"start"});
+  }
+
+  function onPick(e){
+    if(travado) return;
+    var btn = e.currentTarget;
+    var item = FLOW[idx];
+    answers[item.st][item.qi] = parseInt(btn.getAttribute("data-v"), 10);
+
+    var todos = qlist.querySelectorAll(".opt");
+    for(var i=0;i<todos.length;i++){
+      todos[i].classList.remove("sel");
+      todos[i].setAttribute("aria-checked","false");
+    }
+    btn.classList.add("sel");
+    btn.setAttribute("aria-checked","true");
+    warnEl.hidden = true;
+
+    // avanca sozinho: da o feedback da escolha e segue
+    // ultima pergunta da etapa? o marcador comemora antes de virar
+    var fechouEtapa = (item.qi === POR_ETAPA - 1);
+    if(fechouEtapa && dotsEl && dotsEl.children[item.st]){
+      dotsEl.children[item.st].classList.add("pop");
+    }
+
+    travado = true;
+    setTimeout(function(){
+      travado = false;
+      if(idx < FLOW.length - 1){ idx++; renderFlow(false); }
+      else { finish(); }
+    }, fechouEtapa ? 620 : 320);
+  }
+
+  backBtn.addEventListener("click", function(){
+    if(idx > 0){ idx--; renderFlow(false); }
+  });
+
+  function total(i){
+    var t = 0;
+    for(var k=0;k<POR_ETAPA;k++) t += answers[i][k] || 0;
+    return t;
+  }
+
+  // limiares reescalados de 0-50 para 0-20; segurança continua sendo o 1º teste
+  function pick(e1,e2,e3,e4,e5){
+    if(e3 >= 10) return SCEN.tox;
+    if(e1 <= 7 && e4 <= 7 && e5 >= 12) return SCEN.fim;
+    if(e2 >= 12 || e1 <= 8 || e4 <= 8) return SCEN.desg;
+    return SCEN.saud;
+  }
+
+  function finish(){
+    bar.style.width = "100%";
+    var t = [total(0),total(1),total(2),total(3),total(4)];
+    var s = pick(t[0],t[1],t[2],t[3],t[4]);
+
+    if (currentLead && currentLead.name) {
+      var rEye = document.getElementById("resultEyebrow");
+      if (rEye) rEye.textContent = "Diagnóstico Personalizado · " + currentLead.name;
+      var rHead = document.getElementById("resultHeading");
+      if (rHead) rHead.textContent = currentLead.name + ", este é o estágio da sua relação hoje";
+      var ctaTitle = document.querySelector(".result-cta-title");
+      if (ctaTitle) ctaTitle.textContent = currentLead.name + ", não passe mais 30 dias no escuro emocional.";
+    }
+
+    var urgencyBadge = document.getElementById("vUrgencyBadge");
+    if(urgencyBadge){
+      urgencyBadge.className = "urgency-risk-tag " + s.urgencyRiskClass;
+      urgencyBadge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> ' + s.urgencyBadge;
+    }
+
+    var badge = document.getElementById("vBadge");
+    badge.className = "badge " + s.cls;
+    badge.innerHTML = ICON[s.cls] + s.kind;
+    document.getElementById("vTitle").textContent = s.title;
+    document.getElementById("vText").textContent = s.text;
+
+    var m = "";
+    for(var i=0;i<5;i++){
+      m += '<div class="meter"><span class="meter-label">Etapa '+(i+1)+' · '+STAGES[i].name+'</span>'
+         + '<span class="meter-val"><b class="meter-num">0</b>/'+MAX_ETAPA+'<em>'+READ[i](t[i])+'</em></span>'
+         + '<span class="meter-track"><span class="meter-fill" style="width:0%"></span></span></div>';
+    }
+    var meters = document.getElementById("meters");
+    meters.innerHTML = m;
+
+    var urgencyTitle = document.getElementById("vUrgencyTitle");
+    if(urgencyTitle){
+      urgencyTitle.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ' + s.urgencyTitle;
+    }
+    var urgencyDesc = document.getElementById("vUrgencyDesc");
+    if(urgencyDesc){
+      urgencyDesc.textContent = s.urgencyDesc;
+    }
+    var urgencyPoints = document.getElementById("vUrgencyPoints");
+    if(urgencyPoints && s.urgencyPoints){
+      var pts = "";
+      for(var p=0; p<s.urgencyPoints.length; p++){
+        pts += '<div class="urgency-point"><span style="color:var(--accent);font-weight:bold;font-size:1.1rem;line-height:1">⚠</span><span>' + s.urgencyPoints[p] + '</span></div>';
+      }
+      urgencyPoints.innerHTML = pts;
+    }
+
+    var ctaBtn = document.getElementById("vCtaBtn");
+    if(ctaBtn && s.ctaText){
+      ctaBtn.innerHTML = s.ctaText;
+    }
+
+    var doList = "";
+    for(var j=0;j<s["do"].length;j++) doList += "<li>" + s["do"][j] + "</li>";
+    document.getElementById("vDo").innerHTML = doList;
+
+    document.getElementById("vTrack").innerHTML = "<b>Sua trilha: " + s.track + "</b>" + s.trackText;
+
+    document.getElementById("vSafety").innerHTML = s.safety
+      ? '<div class="safety"><h4>Você não está sozinha</h4>'
+        + '<p>O que você descreveu pode configurar violência psicológica, e isso não se resolve com mais esforço da sua parte.</p>'
+        + '<p>Em caso de violência, ligue <strong>180</strong> (gratuito, 24h). Emergência: <strong>190</strong>.</p></div>'
+      : "";
+
+    var buyTitle = document.getElementById("buyBarTitle");
+    if(buyTitle && currentLead && currentLead.name){
+      buyTitle.textContent = currentLead.name + ", sua trilha personalizada está liberada";
+    }
+    aplicarCheckout();
+
+    switchView("resultado");
+
+    // setTimeout em vez de requestAnimationFrame: o rAF é estrangulado em aba
+    // de segundo plano, e o resultado ficaria com todas as barras em 0%.
+    setTimeout(function(){
+      var fills = meters.querySelectorAll(".meter-fill");
+      for(var k=0;k<fills.length;k++) fills[k].style.width = (t[k]/MAX_ETAPA*100) + "%";
+      contarPontuacoes(t);
+    }, 60);
+  }
+
+  document.getElementById("redo").addEventListener("click", function(){
+    answers = [[],[],[],[],[]];
+    stage = 0;
+    idx = 0;
+    switchView("diagnostico");
+    renderFlow(true);
+  });
+
+  /* ============ ANIMAÇÕES ============ */
+  var animaOk = !window.matchMedia || !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function montarReveal(){
+
+    // Barra de progresso de leitura no topo
+    var progressBar = document.createElement("div");
+    progressBar.className = "scroll-progress-bar";
+    progressBar.setAttribute("aria-hidden", "true");
+    document.body.appendChild(progressBar);
+
+    var tickProgress = false;
+    function atualizarProgresso(){
+      var winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      progressBar.style.width = Math.min(scrolled, 100) + "%";
+      tickProgress = false;
+    }
+    window.addEventListener("scroll", function(){
+      if(!tickProgress){
+        window.requestAnimationFrame(atualizarProgresso);
+        tickProgress = true;
+      }
+    }, { passive: true });
+    atualizarProgresso();
+
+    if(!animaOk || !("IntersectionObserver" in window)) return;
+    document.documentElement.classList.add("js-anim");
+
+    var alvos = [];
+    [".signals-header",".signals-lede",".signal-card-box",
+     ".situations-title",".situation-card",".situations-conclusion",
+     ".authors-header",".authors-lede",".author-profile-card",
+     ".authors-pull-quote",".authors-bottom-cta"].forEach(function(sel){
+      Array.prototype.forEach.call(document.querySelectorAll(sel), function(el){ alvos.push(el); });
+    });
+
+    // escalona os irmãos para o grupo entrar em cascata, não em bloco
+    var porPai = {};
+    alvos.forEach(function(el){
+      el.classList.add("reveal");
+      var chave = el.parentNode ? (el.parentNode.className || "raiz") : "raiz";
+      porPai[chave] = (porPai[chave] || 0);
+      el.style.setProperty("--d", Math.min(porPai[chave] * 70, 350) + "ms");
+      porPai[chave]++;
+    });
+
+    // Dois mecanismos, porque cada um falha num caso diferente:
+    // - o observador não depende de evento de scroll nem de requestAnimationFrame,
+    //   mas só entrega o que está intersectando;
+    // - a varredura pega o que foi ultrapassado num salto (top negativo), mas
+    //   depende do evento de scroll.
+    // Juntos cobrem rolagem normal, salto por âncora/teclado e navegador sem IO.
+    var pendentes = alvos.slice();
+
+    function revelar(el){
+      var i = pendentes.indexOf(el);
+      if(i < 0) return;
+      el.classList.add("in");
+      pendentes.splice(i, 1);
+    }
+
+    function varrer(){
+      var limite = window.innerHeight * 0.92;
+      for(var i = pendentes.length - 1; i >= 0; i--){
+        if(pendentes[i].getBoundingClientRect().top < limite) revelar(pendentes[i]);
+      }
+      if(!pendentes.length){
+        window.removeEventListener("scroll", varrer);
+        window.removeEventListener("resize", varrer);
+      }
+    }
+
+    if("IntersectionObserver" in window){
+      var obs = new IntersectionObserver(function(entradas){
+        entradas.forEach(function(e){
+          // isIntersecting cobre a entrada normal; top < 0 cobre o que já passou
+          if(e.isIntersecting || e.boundingClientRect.top < 0){
+            revelar(e.target);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+      alvos.forEach(function(el){ obs.observe(el); });
+    }
+
+    window.addEventListener("scroll", varrer, { passive: true });
+    window.addEventListener("resize", varrer);
+    varrer();   // o que já está na primeira tela entra sem esperar rolagem
+
+    // REDE DE SEGURANÇA. Numa página de vendas, conteúdo invisível é pior do que
+    // conteúdo sem animação. Se o observador e o evento de scroll falharem — aba
+    // em segundo plano, navegador antigo, extensão bloqueando —, este timer varre
+    // do mesmo jeito, e desiste da animação de vez depois de 15s, mostrando tudo.
+    var tique = setInterval(function(){
+      if(!pendentes.length){ clearInterval(tique); return; }
+      varrer();
+    }, 500);
+
+    setTimeout(function(){
+      clearInterval(tique);
+      while(pendentes.length) revelar(pendentes[0]);
+    }, 15000);
+  }
+
+  // pontuações contam de 0 até o valor, em vez de aparecerem prontas
+  function contarPontuacoes(valores){
+    var els = document.querySelectorAll("#meters .meter-num");
+    if(!els.length) return;
+    function escreverFinal(){
+      for(var i=0;i<els.length;i++) els[i].textContent = valores[i];
+    }
+
+    escreverFinal();
+    if(!animaOk) return;
+
+    var dur = 900, pronto = false;
+    // Rede: se o rAF não rodar até o fim do tempo previsto, o número final entra
+    // por temporizador. A animação é enfeite; o número correto é obrigação.
+    var rede = setTimeout(function(){ if(!pronto) escreverFinal(); }, dur + 250);
+
+    for(var j=0;j<els.length;j++) els[j].textContent = "0";
+    var t0 = null;
+    function passo(ts){
+      if(t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var e = 1 - Math.pow(1 - p, 3);   // desacelera no fim
+      for(var i=0;i<els.length;i++) els[i].textContent = Math.round(valores[i] * e);
+      if(p < 1){ requestAnimationFrame(passo); }
+      else { pronto = true; clearTimeout(rede); }
+    }
+    requestAnimationFrame(passo);
+  }
+
+  montarReveal();
+
+  // Inicializa o estado
+  initLeadGate();
+})();
+</script>
+
+</body>
+</html>
